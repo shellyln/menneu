@@ -3,9 +3,15 @@
 
 ✒️Render the { markdown | lsx | html } document templates into a ✨beautiful✨ { pdf | html | image }📄 formats.
 
-[![Ménneu](https://shellyln.github.io/assets/image/ménneu-logo.svg)](https://shellyln.github.io/menneu/)
+[![Ménneu](https://shellyln.github.io/assets/image/ménneu-logo.svg)](https://github.com/shellyln/menneu/)
 
 
+
+[![npm](https://img.shields.io/npm/v/menneu.svg)](https://www.npmjs.com/package/menneu)
+[![GitHub release](https://img.shields.io/github/release/shellyln/menneu.svg)](https://github.com/shellyln/menneu/releases)
+[![Travis](https://img.shields.io/travis/shellyln/menneu/master.svg)](https://travis-ci.org/shellyln/menneu)
+[![GitHub forks](https://img.shields.io/github/forks/shellyln/menneu.svg?style=social&label=Fork)](https://github.com/shellyln/menneu/fork)
+[![GitHub stars](https://img.shields.io/github/stars/shellyln/menneu.svg?style=social&label=Star)](https://github.com/shellyln/menneu)
 
 ----
 
