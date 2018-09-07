@@ -16,18 +16,39 @@
 ----
 
 
-## Install
+## Getting started
 
 ### Use CLI:
+
+install via NPM:
 ```bash
 $ npm install -g menneu
 ```
 
+and run Ménneu:
+```bash
+$ menneu README.md --raw -o README.pdf
+```
+
 ### Use APIs:
+
+install via NPM:
 ```bash
 $ npm install menneu --save
 ```
 
+and import Ménneu in your code:
+```ts
+import { render } from 'menneu';
+
+(async () => {
+    const buf = await render('# Hello!', {}, {
+        inputFormat: 'md',
+        dataFormat: 'object',
+        outputFormat: 'pdf',
+    });
+})();
+```
 
 ----
 
