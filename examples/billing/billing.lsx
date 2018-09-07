@@ -1,0 +1,182 @@
+;; Billing statement example
+
+
+($defun $currency (v)
+    ($to-locale-string "en-US" (# (style "currency") (currency "USD")) v) )
+($defun $percent (v)
+    ($to-locale-string "en-US" (# (style "percent")) v) )
+
+;; Calculate the total due.
+($last
+    ;; Input data is set to "$data".
+    ($let event $data)
+
+    ($for x of ($get event detail)
+        ($set (x amount) (* ($get x qty) ($get x rate))) )
+    ($set (event subtotal)
+        ($reduce ($get event detail) (-> (a b) (+ a ($get b amount))) 0) )
+    ($set (event tax1)
+        (* ($get event subtotal) ($get event tax1Rate)) )
+    ($set (event tax2)
+        (* ($get event subtotal) ($get event tax2Rate)) )
+    ($set (event total)
+        (+ ($get event subtotal) ($get event tax1) ($get event tax2) ($get event shipping)) )
+    ($set (event totalDue)
+        (- ($get event total) ($get event paid)) )
+
+    ;; Initialize variables.
+    ($let carried-amount 0)
+    ($let row-count 0)
+)
+
+(Html5
+    (head (title "Billing statement")
+          (meta (@ (charset "UTF-8")))
+          (NormalizeCss)
+          (PaperCss)
+          (Style (@ (src "./examples/billing/billing.style.css"))) )
+
+    (body (@ (class "A4"))
+        ;; output pages.
+        ($=for ($group-every (# (single       15)
+                                (first        21)
+                                (intermediate 20)
+                                (last         14) )
+                             ($get event detail) )
+
+            ;; $data  : current item of "$=for" loop.
+            ;; $index : current index of "$=for" loop.
+            ;; $array : source array of "$=for" loop.
+            ;; $parent: parent scope of "$=for" loop.
+            ;;          "$=for" is creating a new scope and defining the above variables,
+            ;;          so you should use ($get $parent varname) to access the shadowed variables.
+            ($last ($let details $data)
+                   ($let pages $array)
+                   ;; To output none, you should return "nil".
+                   nil )
+
+            ;; paper size element
+            (section (@ (class "sheet padding-10mm"))
+
+                ;; output report header into every pages.
+                (section (@ (class "report-header"))
+                    (h1 (@ (class "report-title")) "Billing Statement")
+
+                    (div (@ (class "my-company-info"))
+                        (h1 (@ (class "value company-name"))
+                            (Image (@ (src "https://shellyln.github.io/assets/app/Emoticon_Smile_Face.svg")
+                                      (width  16)
+                                      (height 16)
+                                      (unit   "mm") ))
+                            ($get event me name) )
+                        (div (@ (class "value addr1"))       ($get event me addr1))
+                        (div (@ (class "value addr2"))       ($get event me addr2))
+                        (div (@ (class "value city-st-zip")) ($get event me city)  " "
+                                                             ($get event me state) " "
+                                                             ($get event me zip)) )
+
+                    (div (@ (class "bill-to"))
+                        (table (tr (td (@ (class "header date"))        "Date:")
+                                   (td (@ (class "value date"))         ($get event date)) )
+                               (tr (td (@ (class "header invoice-no"))  "Invoice#:")
+                                   (td (@ (class "value invoice-no"))   ($get event invoiceNo)) )
+                               (tr (td (@ (class "header page"))        "Page:")
+                                   (td (@ (class "value page"))         (+ $index 1) " of " ($length pages)) ))
+
+                        (table (tr (td (@ (rowspan 5)
+                                          (class "header bill-to"))     "Bill To:")
+                                   (td (@ (class "value company-name")) ($get event billTo name)) )
+                               (tr (td (@ (class "value addr1"))        ($get event billTo addr1)))
+                               (tr (td (@ (class "value addr2"))        ($get event billTo addr2)))
+                               (tr (td (@ (class "value city-st-zip"))  ($get event billTo city)  " "
+                                                                        ($get event billTo state) " "
+                                                                        ($get event billTo zip)))
+                               (tr (td)) )) )
+
+                ;; output report detail into every pages.
+                (section (@ (class "report-detail"))
+                    (table (@ (class "detail"))
+                        (thead (tr (th (@ (class "header date"))        "Date")
+                                   (th (@ (class "header description")) "Description")
+                                   (th (@ (class "header qty"))         "Qty")
+                                   (th (@ (class "header rate"))        "Rate")
+                                   (th (@ (class "header amount"))      "Amount") ))
+
+                        ;; every pages except the first page
+                        ($=if (> $index 0)
+                            (tbody (@ (class "brought-forward"))
+                                (tr (th (@ (colspan 4)
+                                           (class "header"))       "Total brought forward from previous page")
+                                    (td (@ (class "value number")) ($currency carried-amount)) )))
+
+                        ;; output the detail rows.
+                        ($=if (> ($length details) 0)
+                            (tbody
+                                ($=for details
+                                    ($last
+                                        ($set row-count (+ row-count 1))
+                                        ($set ($data description) ($concat ($get $data description) "-C" ($to-string row-count) "R" ($to-string (+ $index 1))))
+                                        nil )
+
+                                    (tr (td (@ (class "value date"))          ($get $data date))
+                                        (td (@ (class "value description"))   ($get $data description))
+                                        (td (@ (class "value number qty"))    ($to-locale-string "en-US" ($get $data qty)))
+                                        (td (@ (class "value number rate"))   ($get $data rate))
+                                        (td (@ (class "value number amount")) ($currency ($get $data amount))) ))))
+
+                        ;; every pages except the last page
+                        ($=if (!== $index (- ($length pages) 1))
+                            ($last ($let carried-amount (+ carried-amount ($reduce details (-> (a b) (+ a ($get b amount))) 0)))
+                                   nil )
+                            (tfoot (@ (class "carried-forward"))
+                                (tr (th (@ (colspan 4)
+                                           (class "header"))       "Total carried forward to the next page")
+                                    (td (@ (class "value number")) ($currency carried-amount)) )))
+
+                        ;; last page
+                        ($=if (=== $index (- ($length pages) 1))
+                            (tfoot
+                                (tr (@ (class "subtotal"))
+                                    (th (@ (colspan 4)
+                                           (class "header"))       "SUBTOTAL")
+                                    (td (@ (class "value number")) ($currency ($get event subtotal))) )
+                                (tr (@ (class "tax1"))
+                                    (th (@ (colspan 4)
+                                           (class "header"))       ($get event tax1Name) " "
+                                                                   ($percent ($get event tax1Rate)) )
+                                    (td (@ (class "value number")) ($currency ($get event tax1))) )
+                                (tr (@ (class "tax2"))
+                                    (th (@ (colspan 4)
+                                           (class "header"))       ($get event tax2Name) " "
+                                                                   ($percent ($get event tax2Rate) ))
+                                    (td (@ (class "value number")) ($currency ($get event tax2))) )
+                                (tr (@ (class "shipping"))
+                                    (th (@ (colspan 4)
+                                           (class "header"))       "Shipping & Handling")
+                                    (td (@ (class "value number")) ($currency ($get event shipping))) )
+                                (tr (@ (class "total"))
+                                    (th (@ (colspan 4)
+                                           (class "header"))       "TOTAL")
+                                    (td (@ (class "value number")) ($currency ($get event total))) )
+                                (tr (@ (class "paid"))
+                                    (th (@ (colspan 4)
+                                           (class "header"))       "PAID")
+                                    (td (@ (class "value number")) ($currency ($get event paid))) )
+                                (tr (@ (class "total-due"))
+                                    (th (@ (colspan 4)
+                                           (class "header"))       "TOTAL DUE")
+                                    (td (@ (class "value number")) ($currency ($get event totalDue))) ) ))))
+                ;; end of report detail
+
+                ;; output report footer into every pages.
+                (section (@ (class "report-footer"))
+                    (div (@ (class "notes"))
+                        "Notes:"
+                        (div (@ (class "notes-body")
+                                (setInnerText ($get event notes)) )) )
+                    (div (@ (class "barcode")) ($replace-all ($get event invoiceNo) "-" "")) )
+            )
+            ;; end of paper size element
+        )
+    )
+)

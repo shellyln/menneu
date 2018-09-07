@@ -1,0 +1,119 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program (html->html)",
+            "program": "${workspaceRoot}/bin.cli/menneu.js",
+            "args": [
+                "examples/html-demo/html-demo.html",
+                "-d",
+                "examples/html-demo/html-demo.data.lisp",
+                "-o",
+                "debug/debug.html"
+            ],
+            "outFiles": [
+                "${workspaceRoot}/bin.cli/menneu.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program (md->html)",
+            "program": "${workspaceRoot}/bin.cli/menneu.js",
+            "args": [
+                "examples/markdown-demo/markdown-demo.md",
+                "-c",
+                "examples/markdown-demo/menneu.config.js",
+                "-d",
+                "examples/markdown-demo/markdown-demo.data.lisp",
+                "-o",
+                "debug/debug.html"
+            ],
+            "outFiles": [
+                "${workspaceRoot}/bin.cli/menneu.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program (md->pdf)",
+            "program": "${workspaceRoot}/bin.cli/menneu.js",
+            "args": [
+                "examples/markdown-demo/markdown-demo.md",
+                "-d",
+                "examples/markdown-demo/markdown-demo.data.lisp",
+                "-o",
+                "debug/debug.pdf"
+            ],
+            "outFiles": [
+                "${workspaceRoot}/bin.cli/menneu.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program (lsx->html)",
+            "program": "${workspaceRoot}/bin.cli/menneu.js",
+            "args": [
+                "examples/billing/billing.lsx",
+                "-c",
+                "examples/billing/menneu.config.js",
+                "-d",
+                "examples/billing/billing.data.lisp",
+                "-o",
+                "debug/debug.html"
+            ],
+            "outFiles": [
+                "${workspaceRoot}/bin.cli/menneu.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program (lsx->pdf)",
+            "program": "${workspaceRoot}/bin.cli/menneu.js",
+            "args": [
+                "examples/billing/billing.lsx",
+                "-c",
+                "examples/billing/menneu.config.js",
+                "-d",
+                "examples/billing/billing.data.lisp",
+                "-o",
+                "debug/debug.pdf"
+            ],
+            "outFiles": [
+                "${workspaceRoot}/bin.cli/menneu.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Watch (md->html)",
+            "program": "${workspaceRoot}/bin.cli/menneu.js",
+            "args": [
+                "examples/markdown-demo/markdown-demo.md",
+                "-c",
+                "examples/markdown-demo/menneu.config.js",
+                "-d",
+                "examples/markdown-demo/markdown-demo.data.lisp",
+                "-o",
+                "debug/debug.html",
+                "--watch"
+            ],
+            "outFiles": [
+                "${workspaceRoot}/bin.cli/menneu.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Test",
+            "program": "${workspaceRoot}/node_modules/jasmine/bin/jasmine.js",
+            "outFiles": [
+                "${workspaceRoot}/bin.test/index.spec.js"
+            ]
+        }
+    ]
+}

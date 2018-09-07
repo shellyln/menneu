@@ -1,0 +1,572 @@
+# Ménneu
+## Component-based extensible document processor
+
+✒️Render the { markdown | lsx | html } document templates into a ✨beautiful✨ { pdf | html | image }📄 formats.
+
+[![Ménneu](https://shellyln.github.io/assets/image/ménneu-logo.svg)](https://shellyln.github.io/menneu/)
+
+
+
+----
+
+
+## Install
+
+### Use CLI:
+```bash
+$ npm install -g menneu
+```
+
+### Use APIs:
+```bash
+$ npm install menneu --save
+```
+
+
+----
+
+
+## Examples
+
+* [markdown-demo](https://github.com/shellyln/menneu/tree/master/examples/markdown-demo)
+* [html-demo](https://github.com/shellyln/menneu/tree/master/examples/html-demo)
+* [Billing statement](https://github.com/shellyln/menneu/tree/master/examples/billing)
+
+
+----
+
+
+## CLI
+```
+menneu -h
+menneu --help
+
+menneu InputFilePath [OPTIONS]
+menneu - [OPTIONS]
+```
+
+* `InputFilePath`
+    * Path to input document template file.
+    * If `-` is set, read from `STDIN`.
+
+#### Options
+* `-h`, `--help`
+    * Show this help.
+* `-if` *InFormatName*, `--in-format` *InFormatName*
+    * *InFormatName* : `lsx` | `lisp` | `md` | `markdown` | `html` | `htm`
+    * Input document template file format.
+    * This format is set automatically from template file's extension.
+        * If it is not set, Defailt is `md`.
+* `--raw`
+    * Disable Lisp block expansion.
+        * This option can be set for `md` | `markdown` | `html` | `htm` .
+* `-c` *ConfigJsonOrJsPath*, `--config` *ConfigJsonOrJsPath*
+    * *ConfigJsonOrJsPath* : Path to `menneu.config.js` | `menneu.config.json` .
+    * Default is `menneu.config.js` | `menneu.config.json` that is in the same directory to input file.
+        * If no `menneu.config.js` | `menneu.config.json` files is in the same directory to input file,
+          use `menneu.config.js` | `menneu.config.json` in the current working directory.
+* `-df` *DataDormatName*, `--data-format` *DataDormatName*
+    * *DataDormatName* : `json` | `lisp`
+    * The file format of the data applied to the document template.
+    * This format is set automatically from data file's extension.
+        * If it is not set, defailt is `json`.
+* `-d` *DataPath*
+    * *DataPath* : Path to data file.
+* `-of` *OutFormatName*, `--out-format` *OutFormatName*
+    * *OutFormatName* : `html` | `pdf` | `png` | `jpeg`
+    * Output file format.
+    * This format is set automatically from output file's extension.
+        * If it is not set, defailt is `pdf`.
+* `-o`, `--out`
+    * Path to output file.
+    * If this option is not present, it is output to `STDOUT`.
+* `--watch`
+    * Watch changes of the parent directory of `InputFilePath` forever.
+    * If changes are detected, update the output.
+
+
+----
+
+
+## Config file
+`.js` or `.json` are available.
+
+```js
+const escapeHtml = (s) => s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
+module.exports = {
+    title: 'example',               // Document title of markdown.
+
+    // rawInput: true,              // Disable Lisp block expansion.
+
+    // inputFormat: 'md',           // Input document template file format. (md | html | lsx)
+    // dataFormat: 'json',          // The file format of the data applied to the document template. (json | lisp)
+    // outputFormat: 'pdf',         // Output file format. (pdf | html | png | jpeg)
+
+    // navigateOptions: {},         // Puppeteer's option. See "page.goto(url, options)".
+                                    //   https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagegotourl-options
+    // imageOptions: {},            // Puppeteer's option. See "page.screenshot([options])".
+                                    //   https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagescreenshotoptions
+    pdfOptions: {                   // Puppeteer's option. See "page.pdf(options)".
+                                    //   https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagepdfoptions
+        width: '210mm',
+        height: '297mm',
+        printBackground: true,
+        landscape: false,
+        preferCSSPageSize: false,
+        displayHeaderFooter: true,
+        headerTemplate: `
+            <div style="margin: 0mm auto -10mm; text-align: center; font-size: 9pt;">
+                <span class="title"></span>
+            </div>`,
+        footerTemplate: `
+            <div style="margin: 10mm auto 0mm; text-align: center; font-size: 9pt;">
+                <span class="pageNumber"></span> of <span class="totalPages"></span>
+            </div>`,
+    },
+
+    globals: {                      // Lisp global variables.
+        "$now": () => (new Date).toLocaleDateString('en-US'),
+        "$to-locale-string": (...args) => args.slice(-1)[0].toLocaleString(...(args.slice(0, -1))),
+        "$dir": (...args) => console.dir(...args),
+        "qwerty": "asdfgh",
+    },
+
+    // noDefaultComponents: true,   // Disable default components.
+    components: {                   // Additional RedAgate components.
+                                    // See also https://github.com/shellyln/red-agate/tree/master/packages/red-agate
+        Greeting: (props) => `Hello, ${props.to}! ${props.children}`,
+    },
+
+    // noDefaultMarkdownPlugins:    // Disable default markdown-it plugins.
+    //     true,
+    // markdownPlugins:             // Additional markdown-it plugins.
+    //     [{ plugin: require('markdown-it-'), options: [] }],
+
+    markdownCustomContainers: [{    // See https://github.com/markdown-it/markdown-it-container
+        name: 'content',
+    }, {
+        name: 'spoiler',
+        validate: (params) => {
+            return params.trim().match(/^spoiler\s+(.*)$/);
+        },
+        render: (tokens, idx) => {
+            const m = tokens[idx].info.trim().match(/^spoiler\s+(.*)$/);
+            if (tokens[idx].nesting === 1) {
+                // opening tag
+                return '<details><summary>' + escapeHtml(m[1]) + '</summary>\n';
+            } else {
+                // closing tag
+                return '</details>\n';
+            }
+        },
+    }],
+};
+```
+
+----
+
+
+## Features
+
+### Render markdown into HTML and PDF.
+
+Markdown is parsed into HTML by [markdown-it](https://github.com/markdown-it/markdown-it)
+and converting from HTML into PDF by [puppeteer](https://github.com/GoogleChrome/puppeteer) .
+
+Following markdown-it plugins are available by default:
+* [markdown-it-checkbox](https://github.com/mcecot/markdown-it-checkbox)
+* [markdown-it-container](https://github.com/markdown-it/markdown-it-container)
+* [markdown-it-emoji](https://github.com/markdown-it/markdown-it-emoji)
+* [markdown-it-imsize](https://github.com/tatsy/markdown-it-imsize)
+* [markdown-it-math](https://github.com/runarberg/markdown-it-math)
+* [markdown-it-plantuml](https://github.com/gmunguia/markdown-it-plantuml)
+* [markdown-it-sub](https://github.com/markdown-it/markdown-it-sub)
+* [markdown-it-sup](https://github.com/markdown-it/markdown-it-sup)
+
+You can append other plugins by configureing the `menneu.config.js` .
+
+HTML source files are also available.
+
+### Render LSX template into HTML and PDF.
+
+See [Liyad](https://github.com/shellyln/liyad) for more informations about Lisp and [LSX](https://github.com/shellyln/liyad#what-is-lsx) syntax and operators.
+
+
+### Lisp block expansion
+
+In the markdown or HTML documents, you can start `Lisp` block.
+The block starts with `%%%(` and ends with pair parenthesis `)` .
+* You should escape following characters in the document:
+    * `\` -> `\\`
+    * `"""` -> `\"\"\"`
+    * `%%%(` -> `\%\%\%(`
+
+
+#### Conditional branch
+```markdown
+%%%($last                           ;; "$last" is a function that evaluate parameters, and returns last parameter.
+    ($set ($data isMorning) false)
+    ($set ($data name) "World")
+    nil                             ;; "nil" is zero length array. it will replace to zero length string by document processor.
+)
+
+%%%($=if ($get $data isMorning)
+"""Markdown
+## Good morning, %%%($get $data name)!
+""")
+
+%%%($=if ($not ($get $data isMorning))
+"""Markdown
+## Hello, %%%($get $data name)!
+""")
+```
+is equivalent to
+
+```markdown
+## Hello, World!
+```
+
+
+#### Repeating
+```markdown
+# Greeting
+
+%%%($=for ($list "World" "Jane" "Joe")
+"""Markdown
+## Hello, %%%($get $data)!
+""")
+
+Good morning!
+```
+
+is equivalent to
+
+```markdown
+# Greeting
+
+## Hello, World!
+## Hello, Jane!
+## Hello, Joe!
+
+Good morning!
+```
+
+
+#### Variables
+
+* The data file is parsed and set to `$data` variable.
+
+Data file:
+```json
+{
+    "foo": 1,
+    "bar": "World"
+}
+```
+
+Document template:
+```markdown
+## Hello, %%%($get $data bar)!
+```
+
+Result:
+```html
+<h2>Hello, World!</h2>
+```
+
+* To define the variable, use `$let` function in the Lisp block.
+
+Document template:
+```markdown
+%%%($let a "A")
+%%%($get a)
+```
+
+Result:
+```html
+<p>A</p>
+```
+
+* To set the value to the variable, use `$set` function in the Lisp block.
+
+Document template:
+```markdown
+%%%($let a "A")
+%%%($set a "B")
+%%%($get a)
+```
+
+Result:
+```html
+<p>B</p>
+```
+
+* To set the value to the object property or array index, you can also use `$set` function.
+
+Document template:
+```markdown
+%%%($let a (#    ;; "#" is object literal function.
+    (foo 1)
+    (bar ($list "World" "Jane" "Joe"))
+))
+%%%($set (a bar 1) "John")
+%%%($get a bar 1)
+```
+
+Result:
+```html
+<p>John</p>
+```
+
+#### Functions
+
+Document template:
+```markdown
+%%%(
+($defun fac (n)
+    ($if (== n 0)
+        1
+        (* n ($self (- n 1))) ) )
+)
+Factorial of 3 is %%%(fac 3).
+```
+
+Result:
+```html
+<p>Factorial of 3 is 6.</p>
+```
+
+
+#### LSX DOM elements
+You can markup standard HTML and SVG tags witten in [LSX](https://github.com/shellyln/liyad#what-is-lsx) notation.
+
+Document template:
+```markdown
+%%%(style (@ (dangerouslySetInnerHTML ".content { font-style: italic; color: red; }")))
+```
+
+Result:
+```html
+<style>.content { font-style: italic; color: red; }</style>
+```
+
+
+#### Components
+You also can markup with [RedAgate](https://github.com/shellyln/red-agate) tag-lib components.
+
+Document template:
+```markdown
+%%%(Greeting (@ (to "Menneu")) "Good morning!")
+%%%(Svg (@ (width 100)
+           (height 100)
+           (unit "mm") )
+    (Rect   (@  (x 5)
+                (y 67)
+                (width 70)
+                (height 11)
+                (stroke) ))
+    (Qr     (@  (x 5)
+                (y 7)
+                (data "Hello") ))
+    (Ean13  (@  (x 5)
+                (y 37)
+                (elementWidth 0.66)
+                (height 15)
+                (quietHeight 0)
+                (textHeight 7)
+                (font "7px 'OCRB'")
+                (data "123456789012") )) )
+```
+
+`menneu.config.js`:
+```js
+module.exports = {
+    ...
+    components: {
+        Greeting: (props) => `Hello, ${props.to}! ${props.children}`,
+    },
+    ...
+};
+```
+
+Result:
+```html
+<p>Hello, Menneu! Good morning!</p>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100mm" height="100mm" viewBox="0 0 100 100">
+...
+</svg>
+```
+
+Following components are available by default:
+* Utilities
+    * [Do](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/taglib.ts)
+    * [Facet](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/taglib.ts)
+* Resource bundlers
+    * [Asset](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/bundler.ts)
+    * [Image](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/bundler.ts)
+    * [Script](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/bundler.ts)
+    * [Style](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/bundler.ts)
+    * [Font](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/bundler.ts)
+    * [SingleFont](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/bundler.ts)
+* HTML and XML
+    * [Html4_01_Strict](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/html.tsx)
+    * [Html4_01_Transitional](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/html.tsx)
+    * [Html4_01_Frameset](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/html.tsx)
+    * [Xhtml1_0_Strict](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/html.tsx)
+    * [Xhtml1_0_Transitional](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/html.tsx)
+    * [Xhtml1_0_Frameset](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/html.tsx)
+    * [Html5](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/html.tsx)
+    * [Xml](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/html.tsx)
+    * [HtmlImposition](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/html.tsx)
+* SVG and Canvas
+    * [Svg](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [Ambient](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [Arc](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [Canvas](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [Circle](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [Curve](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [GridLine](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [Group](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [Line](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [Path](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [Pie](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [Polygon](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [Rect](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [RoundRect](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [SvgAssetFragment](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [SvgFragment](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [Text](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+    * [SvgImposition](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/svg.tsx)
+* Printer marks
+    * [PrinterMarks](https://github.com/shellyln/red-agate/blob/master/packages/red-agate/src/red-agate/printing.ts)
+* Barcodes and 2D codes
+    * [Code128](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Code128.ts)
+    * [Code39](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Code39.ts)
+    * [Ean13](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Ean.ts)
+    * [Ean8](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Ean.ts)
+    * [Ean5](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Ean.ts)
+    * [Ean2](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Ean.ts)
+    * [UpcA](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Ean.ts)
+    * [UpcE](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Ean.ts)
+    * [Itf](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Itf.ts)
+    * [JapanPostal](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/JapanPostal.ts)
+    * [Nw7](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Nw7.ts)
+    * [Qr](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Qr.ts)
+* Markdown
+    * [MarkdownRoot](https://github.com/shellyln/menneu/blob/master/src/components/Markdown.ts)
+    * [Markdown](https://github.com/shellyln/menneu/blob/master/src/components/Markdown.ts)
+* HTML fragments
+    * [RawHtml](https://github.com/shellyln/menneu/blob/master/src/components/RawHtml.ts)
+* Math ML
+    * [Math](https://github.com/shellyln/menneu/blob/master/src/components/Math.ts)
+    * [Mml](https://github.com/shellyln/menneu/blob/master/src/components/Math.ts)
+* Charts and UML graphs
+    * [PlantUml](https://github.com/shellyln/menneu/blob/master/src/components/PlantUml.ts)
+    * [PlantUmlLite](https://github.com/shellyln/menneu/blob/master/src/components/PlantUml.tsx)
+    * [~~Chart~~](https://github.com/shellyln/menneu/blob/master/src/components/Chart.ts)
+* Style sheets
+    * [NormalizeCss](https://github.com/shellyln/menneu/blob/master/src/components/styles.tsx)
+    * [MarkdownCss](https://github.com/shellyln/menneu/blob/master/src/components/styles.tsx)
+    * [HighlightCss](https://github.com/shellyln/menneu/blob/master/src/components/styles.tsx)
+    * [PaperCss](https://github.com/shellyln/menneu/blob/master/src/components/styles.tsx)
+
+
+----
+
+
+## APIs
+
+### render()
+```ts
+export async function render(source: string, data: any, options: RenderOptions): Promise<Buffer>;
+```
+Render the document from document template.
+
+* returns : Buffer of output document.
+* `source` : Document template.
+* `data` : Data (json string | lisp string | object)
+* `options` : Render options.
+
+
+### processDocument()
+```ts
+export async function processDocument(config: CliConfig): Promise<Buffer>;
+```
+Read input file or STDIN, read config file, render and output document into file or STDOUT.
+
+* returns : Buffer of output document.
+* `config` : Configurations that specified by command line options.
+
+### run()
+```ts
+export async function run();
+```
+Main of CLI app.  
+Parse command line options and call processDocument().
+
+### parameters types :
+```ts
+export interface MarkdownOptions {
+    noDefaultMarkdownPlugins?: boolean;
+    markdownPlugins?: Array<{
+        plugin: any,
+        options: any[],
+    }>;
+
+    markdownCustomContainers?: Array<{
+        name: string,
+        validate?: (params: string) => boolean,
+        render?: (tokens: any[], index: number) => string,
+        marker?: string,
+    }>;
+}
+
+export interface FormatOptions {
+    rawInput?: boolean;
+    inputFormat: 'markdown' | 'md' | 'html' | 'htm' | 'lsx' | 'lisp';
+    dataFormat: 'lisp' | 'json' | 'object';
+    outputFormat: 'html' | 'pdf' | 'png' | 'jpeg';
+}
+
+export interface RenderOptions extends MarkdownOptions, FormatOptions {
+    title?: string;
+
+    navigateOptions?: any;
+    imageOptions?: any;
+    pdfOptions?: any;
+
+    globals?: object;
+
+    noDefaultComponents?: boolean;
+    components?: object;
+}
+
+export interface CliConfig extends FormatOptions {
+    useStdin: boolean;
+    inputPath?: string;
+
+    configPath?: string;
+    configFormat: 'js' | 'json' | 'object';
+
+    dataPath?: string;
+
+    useStdout: boolean;
+    outputPath?: string;
+
+    watch?: boolean;
+}
+```
+
+
+----
+
+
+## License
+[ISC](https://github.com/shellyln/menneu/blob/master/LICENSE.md)  
+Copyright (c) 2018, Shellyl_N and Authors.
