@@ -1,7 +1,7 @@
 {
   "name": "menneu",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Component-based extensible document processor",
   "keywords": ["markdown", "md", "html", "pdf", "barcode", "QR", "lisp", "lsx", "Ménneu", "react", "redagate"],
   "main": "./bin/index.js",

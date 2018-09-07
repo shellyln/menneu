@@ -1,4 +1,5 @@
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
 
 
 
@@ -49,7 +50,9 @@ module.exports = function (env) {
                 ]
             }]
         },
-        plugins: [],
+        plugins: [
+            new webpack.BannerPlugin({ banner: "#!/usr/bin/env node", raw: true })
+        ],
         resolve: {
             extensions: ['.tsx', '.ts', '.jsx', '.js']
         },
