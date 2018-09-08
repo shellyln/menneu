@@ -233,7 +233,7 @@ The block starts with `%%%(` and ends with pair parenthesis `)` .
 * You should escape following characters in the document:
     * `\` -> `\\`
     * `"""` -> `\"\"\"`
-    * `%%%(` -> `\%\%\%(`
+    * `%%%` -> `\%\%\%`
 
 
 #### Conditional branch
