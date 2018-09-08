@@ -49,6 +49,7 @@ import { render } from 'menneu';
     });
 })();
 ```
+> NOTE: To build it, you should use `webpack` + `raw-loader` (or other packagers and/or plugins) to load CSS as string.
 
 ----
 
