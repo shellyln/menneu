@@ -4,15 +4,22 @@
 
 
 /** @jsx rdgt.createElement */
-import * as rdgt  from 'red-agate/modules';
-import * as React from 'react';
+import * as rdgt     from 'red-agate/modules';
+import { SvgCanvas } from 'red-agate-svg-canvas/modules';
+import * as ChartJs  from 'chart.js';
 
-import { ReactHost }             from 'red-agate-react-host/modules';
+// tslint:disable-next-line:no-var-requires
+const plugin = require('chartjs-plugin-datalabels');
 
 
 
 export interface ChartProps extends rdgt.ComponentProps {
+    width: number;
+    height: number;
+    unit?: string;
+    useParentSvg?: boolean;
     settings: any;
+    displayDataLabel?: boolean;
 }
 
 
@@ -22,10 +29,52 @@ export class Chart extends rdgt.RedAgateComponent<ChartProps> {
     }
 
     public transform(): rdgt.RedAgateNode {
-        return (
-            <ReactHost element={
-                React.createElement(/* ReactChart as any */ (p) => React.createElement('span', {}, 'chart'), this.props.settings)
-            }></ReactHost>
-        );
+        const c = (<rdgt.Canvas>{(ctx: SvgCanvas) => {
+            // TODO: following members are not exist in the SvgCanvas.
+            (ctx as any).canvas = {
+                width: this.props.width,
+                height: this.props.height,
+                style: {
+                    width: `${this.props.width}${this.props.unit || 'px'}`,
+                    height: `${this.props.height}${this.props.unit || 'px'}`,
+                },
+            };
+            const el = { getContext: () => ctx };
+
+            const opts = Object.assign({}, this.props.settings);
+            if (! opts.options) {
+                opts.options = {};
+            }
+            opts.options.animation = false;
+            opts.options.devicePixelRatio = 1;
+            opts.options.events = [];
+            opts.options.responsive = false;
+
+            if (! this.props.displayDataLabel) {
+                if (! opts.options.plugins) {
+                    opts.options.plugins = {};
+                }
+                opts.options.plugins.datalabels = false;
+            }
+
+            const chart = new ChartJs.Chart(el as any, opts);
+
+            if (this.props.useParentSvg) {
+                delete (ctx as any).canvas;
+            }
+        }}</rdgt.Canvas>);
+
+        if (this.props.useParentSvg) {
+            return c;
+        } else {
+            return (
+                <rdgt.Svg
+                    id={this.props.id}
+                    width={this.props.width}
+                    height={this.props.height}
+                    unit={this.props.unit}
+                >{c}</rdgt.Svg>
+            );
+        }
     }
 }

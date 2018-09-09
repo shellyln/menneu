@@ -13,6 +13,13 @@
 [![GitHub forks](https://img.shields.io/github/forks/shellyln/menneu.svg?style=social&label=Fork)](https://github.com/shellyln/menneu/fork)
 [![GitHub stars](https://img.shields.io/github/stars/shellyln/menneu.svg?style=social&label=Star)](https://github.com/shellyln/menneu)
 
+
+You can easily build the complex documents written in [Markdown](https://github.com/markdown-it/markdown-it), HTML or [LSX](https://github.com/shellyln/liyad#what-is-lsx)
+that including images, [charts](https://www.chartjs.org/), [UML diagrams](http://plantuml.com/), [barcodes and 2d codes (QR Code)](https://github.com/shellyln/red-agate/tree/master/packages/red-agate-barcode).  
+And get the output as a PDF, PNG, JPEG powered by [Puppeteer](https://github.com/GoogleChrome/puppeteer) or the HTML that packed into the single file.
+
+Furthermore, you can insert the data from the file into the document with the control statements.
+
 ----
 
 
@@ -489,20 +496,28 @@ Following components are available by default:
 * Markdown
     * [MarkdownRoot](https://github.com/shellyln/menneu/blob/master/src/components/Markdown.ts)
     * [Markdown](https://github.com/shellyln/menneu/blob/master/src/components/Markdown.ts)
+        * This is using the [markdown-it](https://github.com/markdown-it/markdown-it).
 * HTML fragments
     * [RawHtml](https://github.com/shellyln/menneu/blob/master/src/components/RawHtml.ts)
 * Math ML
     * [Math](https://github.com/shellyln/menneu/blob/master/src/components/Math.ts)
+        * This is using the [markdown-it-math](https://www.npmjs.com/package/markdown-it-math).
     * [Mml](https://github.com/shellyln/menneu/blob/master/src/components/Math.ts)
 * Charts and UML graphs
+    * [Chart](https://github.com/shellyln/menneu/blob/master/src/components/Chart.ts)
+        * This is using the [Chart.js](https://github.com/chartjs/Chart.js) and [chartjs-plugin-datalabels](https://github.com/chartjs/chartjs-plugin-datalabels).
     * [PlantUml](https://github.com/shellyln/menneu/blob/master/src/components/PlantUml.ts)
+        * This is using the [markdown-it-plantuml](https://www.npmjs.com/package/markdown-it-plantuml).
     * [PlantUmlLite](https://github.com/shellyln/menneu/blob/master/src/components/PlantUml.tsx)
-    * [~~Chart~~](https://github.com/shellyln/menneu/blob/master/src/components/Chart.ts)
 * Style sheets
     * [NormalizeCss](https://github.com/shellyln/menneu/blob/master/src/components/styles.tsx)
+        * Include a [Normalize.css](https://necolas.github.io/normalize.css/) stylesheet into the document.
     * [MarkdownCss](https://github.com/shellyln/menneu/blob/master/src/components/styles.tsx)
+        * Include a [github-markdown-css](https://github.com/sindresorhus/github-markdown-css) stylesheet into the document.
     * [HighlightCss](https://github.com/shellyln/menneu/blob/master/src/components/styles.tsx)
+        * Include a [highlight.js](https://highlightjs.org/) stylesheet into the document.
     * [PaperCss](https://github.com/shellyln/menneu/blob/master/src/components/styles.tsx)
+        * Include a [paper-css](https://github.com/cognitom/paper-css) stylesheet into the document.
 
 
 ----

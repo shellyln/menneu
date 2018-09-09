@@ -261,6 +261,103 @@ Alice -> UC3 : Bonjour
 """)
 
 
+# Charts
+
+
+%%%(Chart (@ (width 800)
+             (height 400)
+             (unit "px")
+             (displayDataLabel)
+             (settings (#
+    (type "bar")
+    (data (#
+        (labels ($list "Red" "Blue" "Yellow" "Green" "Purple" "Orange"))
+        (datasets ($list (#
+            (label "# of Votes")
+            (data ($list 12 19.2 3 5 2 3))
+            (backgroundColor ($list
+                "rgba(255, 99, 132, 0.2)"
+                "rgba(54, 162, 235, 0.2)"
+                "rgba(255, 206, 86, 0.2)"
+                "rgba(75, 192, 192, 0.2)"
+                "rgba(153, 102, 255, 0.2)"
+                "rgba(255, 159, 64, 0.2)"
+            ))
+            (borderColor ($list
+                "rgba(255, 99, 132, 1)"
+                "rgba(54, 162, 235, 1)"
+                "rgba(255, 206, 86, 1)"
+                "rgba(75, 192, 192, 1)"
+                "rgba(153, 102, 255, 1)"
+                "rgba(255, 159, 64, 1)"
+            ))
+            (borderWidth 1)
+        )))
+    ))
+    (options (#
+        (title (#
+            (display true)
+            (text "CHart.js example")
+        ))
+        (scales (#
+            (yAxes ($list (# (ticks (#
+                (beginAtZero true)
+            )))))
+        ))
+        (plugins (# (datalabels (#
+            (color "black")
+            (font (# (weight "bold")))
+            (display (-> (ctx) (> ($get ctx dataset data ($get ctx dataIndex)) 5)))
+            (formatter (-> (v) ($round v)))
+        ))))
+    ))
+))))
+
+
+%%%(Chart (@ (width 800)
+             (height 400)
+             (unit "px")
+             (displayDataLabel)
+             (settings (#
+    (type "doughnut")
+    (data (#
+        (labels ($list "Red" "Blue" "Yellow" "Green" "Purple" "Orange"))
+        (datasets ($list (#
+            (label "# of Votes")
+            (data ($list 350 200 100 80 70 100))
+            (backgroundColor ($list
+                "rgba(255, 99, 132, 0.2)"
+                "rgba(54, 162, 235, 0.2)"
+                "rgba(255, 206, 86, 0.2)"
+                "rgba(75, 192, 192, 0.2)"
+                "rgba(153, 102, 255, 0.2)"
+                "rgba(255, 159, 64, 0.2)"
+            ))
+            (borderColor ($list
+                "rgba(255, 99, 132, 1)"
+                "rgba(54, 162, 235, 1)"
+                "rgba(255, 206, 86, 1)"
+                "rgba(75, 192, 192, 1)"
+                "rgba(153, 102, 255, 1)"
+                "rgba(255, 159, 64, 1)"
+            ))
+            (borderWidth 1)
+        )))
+    ))
+    (options (#
+        (title (#
+            (display true)
+            (text "CHart.js example")
+        ))
+        (plugins (# (datalabels (#
+            (color "black")
+            (font (# (weight "bold")))
+            (display (-> (ctx) (> ($get ctx dataset data ($get ctx dataIndex)) 80)))
+            (formatter (-> (v) ($round v)))
+        ))))
+    ))
+))))
+
 
 # Superscript / Subscript
 
