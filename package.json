@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "chart.js": "^2.7.2",
+    "chartjs-plugin-datalabels": "^0.4.0",
     "github-markdown-css": "^2.10.0",
     "highlight.js": "^9.12.0",
     "liyad": "^0.0.7",
@@ -46,10 +47,10 @@
     "puppeteer": "^1.8.0",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
-    "red-agate": "^0.2.0",
-    "red-agate-barcode": "^0.2.1",
-    "red-agate-react-host": "^0.2.0",
-    "red-agate-svg-canvas": "^0.2.0"
+    "red-agate": "^0.2.4",
+    "red-agate-barcode": "^0.2.4",
+    "red-agate-react-host": "^0.2.4",
+    "red-agate-svg-canvas": "^0.2.4"
   },
   "devDependencies": {
     "@types/chart.js": "^2.7.32",

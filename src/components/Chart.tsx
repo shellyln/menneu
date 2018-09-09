@@ -8,6 +8,9 @@ import * as rdgt     from 'red-agate/modules';
 import { SvgCanvas } from 'red-agate-svg-canvas/modules';
 import * as ChartJs  from 'chart.js';
 
+// tslint:disable-next-line:no-var-requires
+const plugin = require('chartjs-plugin-datalabels');
+
 
 
 export interface ChartProps extends rdgt.ComponentProps {
@@ -16,6 +19,7 @@ export interface ChartProps extends rdgt.ComponentProps {
     unit?: string;
     useParentSvg?: boolean;
     settings: any;
+    displayDataLabel?: boolean;
 }
 
 
@@ -31,20 +35,9 @@ export class Chart extends rdgt.RedAgateComponent<ChartProps> {
                 width: this.props.width,
                 height: this.props.height,
                 style: {
-                    width: `${this.props.width}px`,
-                    height: `${this.props.height}px`,
+                    width: `${this.props.width}${this.props.unit || 'px'}`,
+                    height: `${this.props.height}${this.props.unit || 'px'}`,
                 },
-            };
-            (ctx as any).measureText = (text: string) => {
-                const re = ctx.font.match(/(\d+px)/);
-                const size = re ? Number.parseFloat(re[1]) : 9;
-                return { width: 1.333 * size * text.length };
-            };
-            (ctx as any).clearRect = (x: number, y: number, w: number, h: number) => {
-                ctx.save();
-                ctx.fillStyle = 'white';
-                ctx.fillRect(x, y, w, h);
-                ctx.restore();
             };
             const el = { getContext: () => ctx };
 
@@ -57,12 +50,17 @@ export class Chart extends rdgt.RedAgateComponent<ChartProps> {
             opts.options.events = [];
             opts.options.responsive = false;
 
+            if (! this.props.displayDataLabel) {
+                if (! opts.options.plugins) {
+                    opts.options.plugins = {};
+                }
+                opts.options.plugins.datalabels = false;
+            }
+
             const chart = new ChartJs.Chart(el as any, opts);
 
             if (this.props.useParentSvg) {
                 delete (ctx as any).canvas;
-                delete (ctx as any).measureText;
-                delete (ctx as any).clearRect;
             }
         }}</rdgt.Canvas>);
 
