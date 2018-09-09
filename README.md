@@ -495,9 +495,9 @@ Following components are available by default:
     * [Math](https://github.com/shellyln/menneu/blob/master/src/components/Math.ts)
     * [Mml](https://github.com/shellyln/menneu/blob/master/src/components/Math.ts)
 * Charts and UML graphs
+    * [Chart](https://github.com/shellyln/menneu/blob/master/src/components/Chart.ts)
     * [PlantUml](https://github.com/shellyln/menneu/blob/master/src/components/PlantUml.ts)
     * [PlantUmlLite](https://github.com/shellyln/menneu/blob/master/src/components/PlantUml.tsx)
-    * [~~Chart~~](https://github.com/shellyln/menneu/blob/master/src/components/Chart.ts)
 * Style sheets
     * [NormalizeCss](https://github.com/shellyln/menneu/blob/master/src/components/styles.tsx)
     * [MarkdownCss](https://github.com/shellyln/menneu/blob/master/src/components/styles.tsx)
