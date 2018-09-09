@@ -28,6 +28,7 @@
     "menneu": "./bin.cli/menneu.js"
   },
   "dependencies": {
+    "chart.js": "^2.7.2",
     "github-markdown-css": "^2.10.0",
     "highlight.js": "^9.12.0",
     "liyad": "^0.0.7",
@@ -47,9 +48,11 @@
     "react-dom": "^16.5.0",
     "red-agate": "^0.2.0",
     "red-agate-barcode": "^0.2.1",
-    "red-agate-react-host": "^0.2.0"
+    "red-agate-react-host": "^0.2.0",
+    "red-agate-svg-canvas": "^0.2.0"
   },
   "devDependencies": {
+    "@types/chart.js": "^2.7.32",
     "@types/highlight.js": "^9.12.3",
     "@types/jasmine": "^2.8.8",
     "@types/markdown-it": "^0.0.5",

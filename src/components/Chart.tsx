@@ -4,14 +4,17 @@
 
 
 /** @jsx rdgt.createElement */
-import * as rdgt  from 'red-agate/modules';
-import * as React from 'react';
-
-import { ReactHost }             from 'red-agate-react-host/modules';
+import * as rdgt     from 'red-agate/modules';
+import { SvgCanvas } from 'red-agate-svg-canvas';
+import * as ChartJs  from 'chart.js';
 
 
 
 export interface ChartProps extends rdgt.ComponentProps {
+    width: number;
+    height: number;
+    unit?: string;
+    useParentSvg?: boolean;
     settings: any;
 }
 
@@ -23,9 +26,44 @@ export class Chart extends rdgt.RedAgateComponent<ChartProps> {
 
     public transform(): rdgt.RedAgateNode {
         return (
-            <ReactHost element={
-                React.createElement(/* ReactChart as any */ (p) => React.createElement('span', {}, 'chart'), this.props.settings)
-            }></ReactHost>
+            <rdgt.Canvas>{(ctx: SvgCanvas) => {
+                // TODO: following members are not exist in the SvgCanvas.
+                (ctx as any).canvas = {
+                    width: 600,
+                    height: 600,
+                    style: {
+                        width: '600px',
+                        height: '600px',
+                    },
+                };
+                (ctx as any).measureText = (text: string) => {
+                    const re = ctx.font.match(/(\d+px)/);
+                    const size = re ? Number.parseFloat(re[1]) : 9;
+                    return { width: 1.333 * size * text.length };
+                };
+                (ctx as any).clearRect = (x: number, y: number, w: number, h: number) => {
+                    ctx.save();
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(x, y, w, h);
+                    ctx.restore();
+                };
+                const el = { getContext: () => ctx };
+
+                const opts = Object.assign({}, this.props.settings);
+                if (! opts.options) {
+                    opts.options = {};
+                }
+                opts.options.animation = false;
+                opts.options.devicePixelRatio = 1;
+                opts.options.events = [];
+                opts.options.responsive = false;
+
+                const chart = new ChartJs.Chart(el as any, opts);
+
+                delete (ctx as any).canvas;
+                delete (ctx as any).measureText;
+                delete (ctx as any).clearRect;
+            }}</rdgt.Canvas>
         );
     }
 }
