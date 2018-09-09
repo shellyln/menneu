@@ -14,9 +14,9 @@
 [![GitHub stars](https://img.shields.io/github/stars/shellyln/menneu.svg?style=social&label=Star)](https://github.com/shellyln/menneu)
 
 
-You can easily build the complex documents written in [Markdown](https://github.com/markdown-it/markdown-it), HTML or [LSX](https://github.com/shellyln/liyad#what-is-lsx)
+You can easily build the complex documents written in [Markdown](https://github.com/markdown-it/markdown-it), HTML and [LSX](https://github.com/shellyln/liyad#what-is-lsx)
 that including images, [charts](https://www.chartjs.org/), [UML diagrams](http://plantuml.com/), [barcodes and 2d codes (QR Code)](https://github.com/shellyln/red-agate/tree/master/packages/red-agate-barcode).  
-And get the output as a PDF, PNG, JPEG powered by [Puppeteer](https://github.com/GoogleChrome/puppeteer) or the HTML that packed into the single file.
+And get the output as a PDF, PNG and JPEG rendered by [Puppeteer](https://github.com/GoogleChrome/puppeteer), or the HTML that packed into the single file.
 
 Furthermore, you can insert the data from the file into the document with the control statements.
 
