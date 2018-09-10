@@ -267,7 +267,7 @@ Alice -> UC3 : Bonjour
 %%%(Chart (@ (width 800)
              (height 400)
              (unit "px")
-             ; (asImgTag)
+             (asImgTag)
              (displayDataLabel)
              (settings (#
     (type "bar")
@@ -318,7 +318,7 @@ Alice -> UC3 : Bonjour
 %%%(Chart (@ (width 800)
              (height 400)
              (unit "px")
-             ; (asImgTag)
+             (asImgTag)
              (displayDataLabel)
              (settings (#
     (type "doughnut")
@@ -364,7 +364,7 @@ Alice -> UC3 : Bonjour
 %%%(Chart (@ (width 800)
              (height 400)
              (unit "px")
-             ; (asImgTag)
+             (asImgTag)
              (settings (#
     (type "line")
     (data (#
@@ -430,7 +430,7 @@ Alice -> UC3 : Bonjour
 %%%(Chart (@ (width 800)
              (height 400)
              (unit "px")
-             ; (asImgTag)
+             (asImgTag)
              (settings (#
     (type "line")
     (data (#
