@@ -297,7 +297,7 @@ Alice -> UC3 : Bonjour
     (options (#
         (title (#
             (display true)
-            (text "CHart.js example")
+            (text "Chart.js example")
         ))
         (scales (#
             (yAxes ($list (# (ticks (#
@@ -347,7 +347,7 @@ Alice -> UC3 : Bonjour
     (options (#
         (title (#
             (display true)
-            (text "CHart.js example")
+            (text "Chart.js example")
         ))
         (plugins (# (datalabels (#
             (color "black")
@@ -355,6 +355,127 @@ Alice -> UC3 : Bonjour
             (display (-> (ctx) (> ($get ctx dataset data ($get ctx dataIndex)) 80)))
             (formatter (-> (v) ($round v)))
         ))))
+    ))
+))))
+
+
+%%%(Chart (@ (width 800)
+             (height 400)
+             (unit "px")
+             (settings (#
+    (type "line")
+    (data (#
+        (labels ($list "January" "February" "March" "April" "May" "June" "July"))
+        (datasets ($list (#
+            (label "dataset - big points")
+            (data ($list 40 30 60 80 70 100 20))
+            (backgroundColor "rgba(255, 99, 132, 1)")
+            (borderColor "rgba(255, 99, 132, 1)")
+            (fill false)
+            (borderDash ($list 5 5))
+            (pointRadius 15)
+        ) (#
+            (label "dataset - individual point sizes")
+            (data ($list 50 10 20 15 30 40 45))
+            (backgroundColor "rgba(54, 162, 235, 1)")
+            (borderColor "rgba(54, 162, 235, 1)")
+            (fill false)
+            (borderDash ($list 5 5))
+            (pointRadius ($list 2 4 6 18 0 12 20))
+        ) (#
+            (label "dataset - large pointHoverRadius")
+            (data ($list 70 100 20 40 30 60 80))
+            (backgroundColor "rgba(255, 206, 86, 1)")
+            (borderColor "rgba(255, 206, 86, 1)")
+            (fill false)
+        ) (#
+            (label "dataset - large pointHitRadius")
+            (data ($list 80 70 100 20 40 30 60))
+            (backgroundColor "rgba(75, 192, 192, 1)")
+            (borderColor "rgba(75, 192, 192, 1)")
+            (fill false)
+        ) ))
+    ))
+    (options (#
+        (legend (#
+            (position "bottom")
+        ))
+        (scales (#
+            (xAxes ($list (#
+                (display true)
+                (scaleLabel (#
+                    (display true)
+                    (labelString "Month")
+                ))
+            )))
+            (yAxes ($list (#
+                (display true)
+                (scaleLabel (#
+                    (display true)
+                    (labelString "Value")
+                ))
+            )))
+        ))
+        (title (#
+            (display true)
+            (text "Chart.js example")
+        ))
+    ))
+))))
+
+
+%%%(Chart (@ (width 800)
+             (height 400)
+             (unit "px")
+             (settings (#
+    (type "line")
+    (data (#
+        (labels ($list "January" "February" "March" "April" "May" "June" "July"))
+        (datasets ($list (#
+            (label "My First dataset")
+            (data ($list 40 30 -60 -80 70 100 20))
+            (backgroundColor "rgba(255, 99, 132, 1)")
+            (borderColor "rgba(255, 99, 132, 1)")
+        ) (#
+            (label "My Second dataset")
+            (data ($list -50 -10 20 15 30 40 45))
+            (backgroundColor "rgba(54, 162, 235, 1)")
+            (borderColor "rgba(54, 162, 235, 1)")
+        ) (#
+            (label "My Third dataset")
+            (data ($list -70 -100 20 40 -30 60 80))
+            (backgroundColor "rgba(255, 206, 86, 1)")
+            (borderColor "rgba(255, 206, 86, 1)")
+        ) (#
+            (label "My Third dataset")
+            (data ($list 80 70 100 20 -40 -30 60))
+            (backgroundColor "rgba(75, 192, 192, 1)")
+            (borderColor "rgba(75, 192, 192, 1)")
+        ) ))
+    ))
+    (options (#
+        (legend (#
+            (position "bottom")
+        ))
+        (scales (#
+            (xAxes ($list (#
+                (scaleLabel (#
+                    (display true)
+                    (labelString "Month")
+                ))
+            )))
+            (yAxes ($list (#
+                (stacked true)
+                (scaleLabel (#
+                    (display true)
+                    (labelString "Value")
+                ))
+            )))
+        ))
+        (title (#
+            (display true)
+            (text "Chart.js example")
+        ))
     ))
 ))))
 
