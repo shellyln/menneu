@@ -13,10 +13,9 @@ const plugin = require('chartjs-plugin-datalabels');
 
 
 
-export interface ChartProps extends rdgt.ComponentProps {
+export interface ChartProps extends rdgt.ShapeBaseProps, rdgt.ImagingShapeBasePropsMixin {
     width: number;
     height: number;
-    unit?: string;
     useParentSvg?: boolean;
     settings: any;
     displayDataLabel?: boolean;
@@ -73,6 +72,9 @@ export class Chart extends rdgt.RedAgateComponent<ChartProps> {
                     width={this.props.width}
                     height={this.props.height}
                     unit={this.props.unit}
+                    asImgTag={this.props.asImgTag}
+                    asElementStyle={this.props.asElementStyle}
+                    asDataUrl={this.props.asDataUrl}
                 >{c}</rdgt.Svg>
             );
         }
