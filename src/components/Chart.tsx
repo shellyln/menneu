@@ -4,12 +4,29 @@
 
 
 /** @jsx rdgt.createElement */
-import * as rdgt     from 'red-agate/modules';
-import { SvgCanvas } from 'red-agate-svg-canvas/modules';
-import * as ChartJs  from 'chart.js';
+import * as rdgt               from 'red-agate/modules';
+import { SvgCanvas,
+         SvgCanvas2DGradient } from 'red-agate-svg-canvas/modules';
+import * as ChartJs            from 'chart.js';
 
 // tslint:disable-next-line:no-var-requires
 const plugin = require('chartjs-plugin-datalabels');
+
+let isNode = false;
+if (typeof process === "object") {
+    if (typeof process.versions === "object") {
+        if (typeof process.versions.node !== "undefined") {
+            if (typeof (process as any).type !== "undefined" && (process as any).type === "renderer") {
+                // electron renderer process
+            } else {
+                isNode = true;
+            }
+        }
+    }
+}
+if (isNode) {
+    (global as any).CanvasGradient = SvgCanvas2DGradient;
+}
 
 
 
@@ -38,6 +55,7 @@ export class Chart extends rdgt.RedAgateComponent<ChartProps> {
                     height: `${this.props.height}${this.props.unit || 'px'}`,
                 },
             };
+            ctx.fontHeightRatio = 2;
             const el = { getContext: () => ctx };
 
             const opts = Object.assign({}, this.props.settings);
