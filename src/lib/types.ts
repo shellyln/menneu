@@ -49,6 +49,7 @@ export interface CliConfig extends FormatOptions {
     configPath?: string;
     configFormat: 'js' | 'json' | 'object';
 
+    dataUseStdin?: boolean;
     dataPath?: string;
 
     useStdout: boolean;

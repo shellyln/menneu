@@ -8,26 +8,16 @@ import * as rdgt               from 'red-agate/modules';
 import { SvgCanvas,
          SvgCanvas2DGradient } from 'red-agate-svg-canvas/modules';
 import * as ChartJs            from 'chart.js';
+import { default as isNode }   from '../lib/is-node';
 
 // tslint:disable-next-line:no-var-requires
 const plugin = require('chartjs-plugin-datalabels');
 
-let isNode = false;
-if (typeof process === "object") {
-    if (typeof process.versions === "object") {
-        if (typeof process.versions.node !== "undefined") {
-            if (typeof (process as any).type !== "undefined" && (process as any).type === "renderer") {
-                // electron renderer process
-            } else {
-                isNode = true;
-            }
-        }
-    }
-}
-if (isNode) {
+
+
+if (isNode && !((global as any).CanvasGradient)) {
     (global as any).CanvasGradient = SvgCanvas2DGradient;
 }
-
 
 
 export interface ChartProps extends rdgt.ShapeBaseProps, rdgt.ImagingShapeBasePropsMixin {

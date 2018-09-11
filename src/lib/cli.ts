@@ -32,6 +32,28 @@ export function makeCliConfig(argv: string[], helpFn: () => void) {
         outputFormat: 'pdf',
     };
 
+    const getInputFormat = (path: string) => {
+        const t = path.toLowerCase();
+        if (t.endsWith('.lsx') || t.endsWith('.lisp')) {
+            return 'lsx';
+        } else if (t.endsWith('.md') || t.endsWith('.markdown')) {
+            return 'md';
+        } else if (t.endsWith('.html') || t.endsWith('.htm')) {
+            return 'html';
+        }
+        return null;
+    };
+
+    const getDataFormat = (path: string) => {
+        const t = path.toLowerCase();
+        if (t.endsWith('.lisp')) {
+            return 'lisp';
+        } else if (t.endsWith('.json')) {
+            return 'json';
+        }
+        return null;
+    };
+
     const inputPath = argv[2];
     if (inputPath === '-h' || inputPath === '--help') {
         helpFn();
@@ -45,21 +67,38 @@ export function makeCliConfig(argv: string[], helpFn: () => void) {
         }
         config.useStdin = false;
         config.inputPath = inputPath;
-        const t = inputPath.toLowerCase();
-        if (t.endsWith('.lsx') || t.endsWith('.lisp')) {
-            config.inputFormat = 'lsx';
-        } else if (t.endsWith('.md') || t.endsWith('.markdown')) {
-            config.inputFormat = 'md';
-        } else if (t.endsWith('.html') || t.endsWith('.htm')) {
-            config.inputFormat = 'html';
-        }
+        config.inputFormat = getInputFormat(config.inputPath) || config.inputFormat;
     }
 
     const args = argv.slice(3);
+    let dp = false, df = false;
+
     for (let i = 0; i < args.length; i++) {
         const arg = args[i];
 
-        if (arg === '-if' || arg === '--in-format') {
+        if (arg === '-i' || arg === '--in') {
+            // next is path/to/input/file
+            if (args.length <= (i + 1)) {
+                helpFn();
+            }
+            if (!existsSync(args[i + 1])) {
+                helpFn();
+            }
+
+            if (config.useStdin) {
+                config.dataUseStdin = config.useStdin;
+                config.dataPath = void 0;
+                config.useStdin = false;
+            } else if (! dp) {
+                config.dataPath = config.inputPath;
+            }
+            if (! df) {
+                config.dataFormat = getDataFormat(config.dataPath || '') || config.dataFormat;
+            }
+
+            config.inputPath = args[++i];
+            config.inputFormat = getInputFormat(config.inputPath) || config.inputFormat;
+        } else if (arg === '-if' || arg === '--in-format') {
             // next is output format (lsx|md|markdown|html)
             switch (args[i + 1]) {
             case 'lsx': case 'lisp':
@@ -73,6 +112,7 @@ export function makeCliConfig(argv: string[], helpFn: () => void) {
         } else if (arg === '--raw') {
             config.rawInput = true;
         } else if (arg === '-df' || arg === '--data-format') {
+            df = true;
             // next is data format (lisp|json)
             switch (args[i + 1]) {
             case 'lisp': case 'json':
@@ -82,6 +122,7 @@ export function makeCliConfig(argv: string[], helpFn: () => void) {
                 helpFn();
             }
         } else if (arg === '-d' || arg === '--data') {
+            dp = true;
             // next is path/to/data/file
             if (args.length <= (i + 1)) {
                 helpFn();
@@ -91,13 +132,7 @@ export function makeCliConfig(argv: string[], helpFn: () => void) {
             }
 
             config.dataPath = args[++i];
-            const t = config.dataPath.toLowerCase();
-
-            if (t.endsWith('.lisp')) {
-                config.dataFormat = 'lisp';
-            } else if (t.endsWith('.json')) {
-                config.dataFormat = 'json';
-            }
+            config.dataFormat = getDataFormat(config.dataPath || '') || config.dataFormat;
         } else if (arg === '-c' || arg === '--config') {
             // next is path/to/config/file
             if (args.length <= (i + 1)) {
@@ -210,11 +245,12 @@ export async function readConfig(config: CliConfig): Promise<RenderOptions> {
 
 
 export function readData(config: CliConfig) {
-    if (config.dataPath) {
+    if (config.dataUseStdin) {
+        return readFromStdin();
+    } else if (config.dataPath) {
         return promisify(readFile)(config.dataPath, { encoding: 'utf8' });
-    } else {
-        return Promise.resolve('');
     }
+    return Promise.resolve('');
 }
 
 
