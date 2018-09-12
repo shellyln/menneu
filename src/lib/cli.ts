@@ -3,22 +3,26 @@
 // https://github.com/shellyln
 
 
-import { dirname,
-         join,
-         resolve }                from 'path';
-import { existsSync,
-         readFile,
-         writeFile,
-         watch }                  from 'fs';
-import { promisify }              from 'util';
-import { requireDynamic }         from './dynamic';
+// import { dirname,
+//          join,
+//          resolve }                   from 'path';
+// import { existsSync,
+//          readFile,
+//          writeFile,
+//          watch }                     from 'fs';
+// import { promisify }                 from 'util';
+import { default as requireDynamic } from './require-dynamic';
 import { CliConfig,
          RenderOptions,
-         InvalidCliOptionsError } from './types';
+         InvalidCliOptionsError }    from './types';
 import { readFromStdin,
-         writeToStdout }          from './io';
-import { render }                 from './render';
-import { showHelp }               from './help';
+         writeToStdout }             from './io';
+import { render }                    from './render';
+import { showHelp }                  from './help';
+
+const path = requireDynamic('path');
+const fs   = requireDynamic('fs');
+const util = requireDynamic('util');
 
 
 
@@ -32,8 +36,8 @@ export function makeCliConfig(argv: string[], helpFn: () => void) {
         outputFormat: 'pdf',
     };
 
-    const getInputFormat = (path: string) => {
-        const t = path.toLowerCase();
+    const getInputFormat = (filePath: string) => {
+        const t = filePath.toLowerCase();
         if (t.endsWith('.lsx') || t.endsWith('.lisp')) {
             return 'lsx';
         } else if (t.endsWith('.md') || t.endsWith('.markdown')) {
@@ -44,8 +48,8 @@ export function makeCliConfig(argv: string[], helpFn: () => void) {
         return null;
     };
 
-    const getDataFormat = (path: string) => {
-        const t = path.toLowerCase();
+    const getDataFormat = (filePath: string) => {
+        const t = filePath.toLowerCase();
         if (t.endsWith('.lisp')) {
             return 'lisp';
         } else if (t.endsWith('.json')) {
@@ -62,7 +66,7 @@ export function makeCliConfig(argv: string[], helpFn: () => void) {
         config.useStdin = true;
     } else {
         // read path/to/input/file
-        if (!existsSync(inputPath)) {
+        if (! fs.existsSync(inputPath)) {
             helpFn();
         }
         config.useStdin = false;
@@ -81,7 +85,7 @@ export function makeCliConfig(argv: string[], helpFn: () => void) {
             if (args.length <= (i + 1)) {
                 helpFn();
             }
-            if (!existsSync(args[i + 1])) {
+            if (! fs.existsSync(args[i + 1])) {
                 helpFn();
             }
 
@@ -127,7 +131,7 @@ export function makeCliConfig(argv: string[], helpFn: () => void) {
             if (args.length <= (i + 1)) {
                 helpFn();
             }
-            if (!existsSync(args[i + 1])) {
+            if (! fs.existsSync(args[i + 1])) {
                 helpFn();
             }
 
@@ -138,7 +142,7 @@ export function makeCliConfig(argv: string[], helpFn: () => void) {
             if (args.length <= (i + 1)) {
                 helpFn();
             }
-            if (!existsSync(args[i + 1])) {
+            if (! fs.existsSync(args[i + 1])) {
                 helpFn();
             }
 
@@ -187,24 +191,24 @@ export function makeCliConfig(argv: string[], helpFn: () => void) {
 
     if (! config.configPath) {
         if (config.inputPath) {
-            const p = dirname(resolve(config.inputPath));
-            const name = join(p, 'menneu.config');
-            if (existsSync(name + '.js')) {
+            const p = path.dirname(path.resolve(config.inputPath));
+            const name = path.join(p, 'menneu.config');
+            if (fs.existsSync(name + '.js')) {
                 config.configFormat = 'js';
                 config.configPath = name + '.js';
-            } else if (existsSync(name + '.json')) {
+            } else if (fs.existsSync(name + '.json')) {
                 config.configFormat = 'json';
                 config.configPath = name + '.json';
             }
         }
     }
     if (! config.configPath) {
-        const p = dirname(process.cwd());
-        const name = join(p, 'menneu.config');
-        if (existsSync(name + '.js')) {
+        const p = path.dirname(process.cwd());
+        const name = path.join(p, 'menneu.config');
+        if (fs.existsSync(name + '.js')) {
             config.configFormat = 'js';
             config.configPath = name + '.js';
-        } else if (existsSync(name + '.json')) {
+        } else if (fs.existsSync(name + '.json')) {
             config.configFormat = 'json';
             config.configPath = name + '.json';
         }
@@ -218,7 +222,7 @@ export function readInput(config: CliConfig) {
     if (config.useStdin) {
         return readFromStdin();
     } else if (config.inputPath) {
-        return promisify(readFile)(config.inputPath as string, { encoding: 'utf8' });
+        return util.promisify(fs.readFile)(config.inputPath as string, { encoding: 'utf8' });
     }
     return Promise.resolve('');
 }
@@ -230,12 +234,12 @@ export async function readConfig(config: CliConfig): Promise<RenderOptions> {
         switch (config.configFormat) {
         case 'json':
             {
-                const s = await promisify(readFile)(config.configPath, { encoding: 'utf8' });
+                const s = await util.promisify(fs.readFile)(config.configPath, { encoding: 'utf8' });
                 conf = JSON.parse(s);
             }
             break;
         case 'js':
-            conf = requireDynamic(resolve(config.configPath));
+            conf = requireDynamic(path.resolve(config.configPath));
             break;
         }
         conf = Object.assign({}, config, conf);
@@ -248,7 +252,7 @@ export function readData(config: CliConfig) {
     if (config.dataUseStdin) {
         return readFromStdin();
     } else if (config.dataPath) {
-        return promisify(readFile)(config.dataPath, { encoding: 'utf8' });
+        return util.promisify(fs.readFile)(config.dataPath, { encoding: 'utf8' });
     }
     return Promise.resolve('');
 }
@@ -264,7 +268,7 @@ export async function processDocument(config: CliConfig) {
     if (config.useStdout) {
         await writeToStdout(buf);
     } else if (config.outputPath) {
-        await promisify(writeFile)(config.outputPath as string, buf);
+        await util.promisify(fs.writeFile)(config.outputPath as string, buf);
     }
 
     return buf;
@@ -287,8 +291,8 @@ export async function run() {
 
     if (config.watch && config.inputPath) {
         let timer: any = null;
-        const p = dirname(resolve(config.inputPath));
-        watch(p, (event, filename) => {
+        const p = path.dirname(path.resolve(config.inputPath));
+        fs.watch(p, (event: any, filename: string) => {
             if (! timer) {
                 timer = setTimeout(() => {
                     console.error(`Reloading ${filename} ...`);
