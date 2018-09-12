@@ -3,14 +3,6 @@
 // https://github.com/shellyln
 
 
-// import { dirname,
-//          join,
-//          resolve }                   from 'path';
-// import { existsSync,
-//          readFile,
-//          writeFile,
-//          watch }                     from 'fs';
-// import { promisify }                 from 'util';
 import { default as requireDynamic } from './require-dynamic';
 import { CliConfig,
          RenderOptions,
@@ -20,6 +12,7 @@ import { readFromStdin,
 import { render }                    from './render';
 import { showHelp }                  from './help';
 
+const os   = requireDynamic('os');
 const path = requireDynamic('path');
 const fs   = requireDynamic('fs');
 const util = requireDynamic('util');
@@ -182,6 +175,20 @@ export function makeCliConfig(argv: string[], helpFn: () => void) {
             } else if (t.endsWith('.jpeg')) {
                 config.outputFormat = 'jpeg';
             }
+        } else if (arg === '-ti' || arg === '--tmp-indir') {
+            if (config.inputPath) {
+                config.tempDir = path.dirname(config.inputPath);
+                config.useDataUrl = false;
+            }
+        } else if (arg === '-tc' || arg === '--tmp-cwd') {
+            config.tempDir = process.cwd();
+            config.useDataUrl = false;
+        } else if (arg === '-to' || arg === '--tmp-os') {
+            config.tempDir = os.tempdir();
+            config.useDataUrl = false;
+        } else if (arg === '-tm' || arg === '--tmp-mem') {
+            config.tempDir = void 0;
+            config.useDataUrl = true;
         } else if (arg === '--watch') {
             if (! config.useStdin) {
                 config.watch = true;
@@ -211,6 +218,15 @@ export function makeCliConfig(argv: string[], helpFn: () => void) {
         } else if (fs.existsSync(name + '.json')) {
             config.configFormat = 'json';
             config.configPath = name + '.json';
+        }
+    }
+    if (!config.useDataUrl && !config.tempDir) {
+        if (config.inputPath) {
+            config.tempDir = path.dirname(config.inputPath);
+            config.useDataUrl = false;
+        } else {
+            config.tempDir = process.cwd();
+            config.useDataUrl = false;
         }
     }
 

@@ -28,7 +28,13 @@ export interface FormatOptions {
 }
 
 
-export interface RenderOptions extends MarkdownOptions, FormatOptions {
+export interface TempOptions {
+    useDataUrl?: boolean;
+    tempDir?: string;
+}
+
+
+export interface RenderOptions extends MarkdownOptions, FormatOptions, TempOptions {
     title?: string;
 
     navigateOptions?: any;
@@ -42,7 +48,7 @@ export interface RenderOptions extends MarkdownOptions, FormatOptions {
 }
 
 
-export interface CliConfig extends FormatOptions {
+export interface CliConfig extends FormatOptions, TempOptions {
     useStdin: boolean;
     inputPath?: string;
 
