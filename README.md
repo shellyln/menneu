@@ -83,10 +83,13 @@ menneu - [OPTIONS]
 * `InputFilePath`
     * Path to input document template file.
     * If `-` is set, read from `STDIN`.
+    * If `-i` or `--in` is set in the *OPTIONS*, *InputFilePath* points a path of data file.
 
 #### Options
 * `-h`, `--help`
     * Show this help.
+* `-i` *InFilePath*, `--in` *InFilePath*
+    * *InFilePath*: Path to input document template file.
 * `-if` *InFormatName*, `--in-format` *InFormatName*
     * *InFormatName* : `lsx` | `lisp` | `md` | `markdown` | `html` | `htm`
     * Input document template file format.
@@ -112,9 +115,19 @@ menneu - [OPTIONS]
     * Output file format.
     * This format is set automatically from output file's extension.
         * If it is not set, defailt is `pdf`.
-* `-o`, `--out`
-    * Path to output file.
+* `-o` *OutPath*, `--out` *OutPath*
+    * *OutPath*: Path to output file.
     * If this option is not present, it is output to `STDOUT`.
+* `-t` *TempDir*, `--tmpdir` *TempDir*
+    * *TempDir*: Path to temporary directory that to generate the temporary html file passing to the Puppeteer.
+* `-ti`, `--tmp-indir`
+    * Set *TempDir* to the parent directory of the input document file.
+* `-tc`, `--tmp-cwd`
+    * Set *TempDir* to the current working directory.
+* `-to`, `--tmp-os`
+    * Set *TempDir* to the system temporary directory.
+* `-tm`, `--tmp-mem`
+    * No temporary directory is used. Pass a data URL to the Puppeteer.
 * `--watch`
     * Watch changes of the parent directory of `InputFilePath` forever.
     * If changes are detected, update the output.
