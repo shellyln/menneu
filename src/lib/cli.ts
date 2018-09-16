@@ -184,11 +184,21 @@ export function makeCliConfig(argv: string[], helpFn: () => void) {
             config.tempDir = process.cwd();
             config.useDataUrl = false;
         } else if (arg === '-to' || arg === '--tmp-os') {
-            config.tempDir = os.tempdir();
+            config.tempDir = os.tmpdir();
             config.useDataUrl = false;
         } else if (arg === '-tm' || arg === '--tmp-mem') {
             config.tempDir = void 0;
             config.useDataUrl = true;
+        } else if (arg === '-t' || arg === '--tmpdir') {
+            // next is path/to/temp/dir
+            if (args.length <= (i + 1)) {
+                helpFn();
+            }
+            if (! fs.existsSync(args[i + 1])) {
+                helpFn();
+            }
+            config.tempDir = args[++i];
+            config.useDataUrl = false;
         } else if (arg === '--watch') {
             if (! config.useStdin) {
                 config.watch = true;
