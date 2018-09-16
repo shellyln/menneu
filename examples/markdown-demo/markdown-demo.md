@@ -1,4 +1,11 @@
 
+
+![alt text](./assets/ménneu-logo.svg "Logo" =300x100)
+
+%%%(Image (@ (src "./examples/markdown-demo/assets/ménneu-logo.svg")
+             (width 300) (height 100) (unit "px") (alt "Logo2") ))
+
+
 %%%(style (@ (dangerouslySetInnerHTML ".content { font-style: italic; color: red; }")))
 %%%($now)
 %%%(Greeting (@ (to "Menneu")) "Good morning!")

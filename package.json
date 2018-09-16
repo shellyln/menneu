@@ -49,9 +49,9 @@
     "puppeteer": "^1.8.0",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
-    "red-agate": "^0.2.7",
-    "red-agate-barcode": "^0.2.7",
-    "red-agate-react-host": "^0.2.7",
+    "red-agate": "^0.2.8",
+    "red-agate-barcode": "^0.2.8",
+    "red-agate-react-host": "^0.2.8",
     "red-agate-svg-canvas": "^0.2.7"
   },
   "devDependencies": {

@@ -12,7 +12,6 @@ import { normalizeCss,
 
 
 
-
 export const NormalizeCss = (props: rdgt.ComponentProps) =>
     <style dangerouslySetInnerHTML={{__html: normalizeCss}}></style>;
 

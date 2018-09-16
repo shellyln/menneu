@@ -5,17 +5,20 @@
 
 import { S,
          LM_async,
-         LSX_async }             from 'liyad/modules/s-exp/s-expression';
-import { SxToken }               from 'liyad/modules/s-exp/types';
-import * as RedAgate             from 'red-agate/modules';
-import { components }            from '../components';
-import { getMarkdownRoot }       from '../components/Markdown';
-import { RenderOptions }         from './types';
+         LSX_async }                 from 'liyad/modules/s-exp/s-expression';
+import { SxToken }                   from 'liyad/modules/s-exp/types';
+import * as RedAgate                 from 'red-agate/modules';
+import { default as requireDynamic } from './require-dynamic';
+import { components }                from '../components';
+import { getMarkdownRoot }           from '../components/Markdown';
+import { RenderOptions }             from './types';
 import { markdownHeader,
-         markdownFooter}         from './fragments';
+         markdownFooter}             from './fragments';
 import { navigateOptionsDefault,
          imageOptionsDefault,
-         pdfOptionsDefault}      from './defaults';
+         pdfOptionsDefault}          from './defaults';
+
+const path = requireDynamic('path');
 
 
 
@@ -93,15 +96,21 @@ export async function render(source: string, data: any, options: RenderOptions) 
     const html = await RedAgate.renderAsHtml(await lsx(src));
 
     const ot = options.outputFormat.toLowerCase();
+    let tempPath: string | undefined = void 0;
+    if (options.tempDir && !options.useDataUrl) {
+        tempPath = `${options.tempDir}${path.sep}mn-tmp-*.html`;
+    }
     switch (ot) {
     case 'png': case 'jpeg':
         return RedAgate.HtmlRenderer.toImage(html,
             options.navigateOptions || navigateOptionsDefault,
-            Object.assign({}, options.imageOptions || imageOptionsDefault, { type: ot }));
+            Object.assign({}, options.imageOptions || imageOptionsDefault, { type: ot }),
+            tempPath);
     case 'pdf':
         return RedAgate.HtmlRenderer.toPdf(html,
             options.navigateOptions || navigateOptionsDefault,
-            options.pdfOptions || pdfOptionsDefault);
+            options.pdfOptions || pdfOptionsDefault,
+            tempPath);
     case 'html': default:
         return Promise.resolve(Buffer.from(html, 'utf8'));
     }
