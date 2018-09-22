@@ -160,6 +160,8 @@ module.exports = {
     // dataFormat: 'json',          // The file format of the data applied to the document template. (json | lisp)
     // outputFormat: 'pdf',         // Output file format. (pdf | html | png | jpeg)
 
+    // launchOptions:               // Puppeteer's option. See "puppeteer.launch(options)".
+    //     { headless: false },     //   https://github.com/GoogleChrome/puppeteer/blob/v1.8.0/docs/api.md#puppeteerlaunchoptions
     // navigateOptions: {},         // Puppeteer's option. See "page.goto(url, options)".
                                     //   https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagegotourl-options
     // imageOptions: {},            // Puppeteer's option. See "page.screenshot([options])".

@@ -95,6 +95,10 @@ export async function render(source: string, data: any, options: RenderOptions) 
 
     const html = await RedAgate.renderAsHtml(await lsx(src));
 
+    if (options.launchOptions) {
+        RedAgate.HtmlRenderer.launchOptions = options.launchOptions;
+    }
+
     const ot = options.outputFormat.toLowerCase();
     let tempPath: string | undefined = void 0;
     if (options.tempDir && !options.useDataUrl) {

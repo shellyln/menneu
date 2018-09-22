@@ -19,6 +19,7 @@ module.exports = {
     // dataFormat: 'json',   // json | lisp
     // outputFormat: 'pdf',  // pdf | html | png | jpeg
 
+    // launchOptions: { headless: false },
     // navigateOptions: {},  //
     // imageOptions: {},     //
     pdfOptions: {

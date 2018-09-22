@@ -40,6 +40,8 @@ export interface TempOptions {
 export interface RenderOptions extends MarkdownOptions, FormatOptions, TempOptions {
     title?: string;
 
+    launchOptions?: any;
+
     navigateOptions?: any;
     imageOptions?: any;
     pdfOptions?: any;
