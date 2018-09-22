@@ -17,6 +17,9 @@ export interface MarkdownOptions {
         render?: (tokens: any[], index: number) => string,
         marker?: string,
     }>;
+
+    bodyStyle?: string;
+    markdownBodyStyle?: string;
 }
 
 

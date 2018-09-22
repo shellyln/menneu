@@ -10,6 +10,8 @@ const escapeHtml = (s) => s
 
 module.exports = {
     title: 'Html example',
+    // bodyStyle: '',
+    // markdownBodyStyle: '',
 
     // rawInput: true,
 

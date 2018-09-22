@@ -1,6 +1,8 @@
 
 module.exports = {
     title: 'Billing statement example',
+    // bodyStyle: '',
+    // markdownBodyStyle: '',
 
     // rawInput: true,
 

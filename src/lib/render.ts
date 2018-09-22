@@ -67,7 +67,7 @@ export async function render(source: string, data: any, options: RenderOptions) 
     switch (options.inputFormat.toLowerCase()) {
     case 'markdown': case 'md':
         validateCode(src);
-        src = `${markdownHeader(options.title)}${src}${markdownFooter()}`;
+        src = `${markdownHeader(options)}${src}${markdownFooter()}`;
         break;
     case 'html': case 'htm':
         validateCode(src);

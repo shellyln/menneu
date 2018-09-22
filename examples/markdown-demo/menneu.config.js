@@ -10,6 +10,8 @@ const escapeHtml = (s) => s
 
 module.exports = {
     title: 'Markdown example',
+    // bodyStyle: '',
+    markdownBodyStyle: 'font-family: "Yu Gothic Medium", YuGothic, meiryo, "Microsoft JhengHei", "Microsoft YaHei", "SimHei", helvetica, arial, sans-serif;',
 
     // rawInput: true,
 

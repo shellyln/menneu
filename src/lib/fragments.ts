@@ -3,10 +3,13 @@
 // https://github.com/shellyln
 
 
+import { RenderOptions } from "./types";
 
-export const markdownHeader = (title?: string) =>
+
+
+export const markdownHeader = (options: RenderOptions) =>
 `(Html5 (head
-    ${(title !== void 0 && title !== '') ? `(title "${title.replace(/"/g, '\\"')}")` : ''}
+    ${(options.title !== void 0 && options.title !== '') ? `(title "${options.title.replace(/"/g, '\\"')}")` : ''}
     (meta (@ (charset "UTF-8")))
     (NormalizeCss)
     (MarkdownCss)
@@ -28,7 +31,11 @@ export const markdownHeader = (title?: string) =>
             }
         }
     ") ))
-) (body (div (@ (class "markdown-body")) (MarkdownRoot
+) (body (@ (style "${
+    options.bodyStyle ? options.bodyStyle.replace(/"/g, '\\"') : ''
+}")) (div (@ (class "markdown-body") (style "${
+    options.markdownBodyStyle ? options.markdownBodyStyle.replace(/"/g, '\\"') : ''
+}")) (MarkdownRoot
 """Markdown
 `;
 
