@@ -5,6 +5,9 @@
 
 
 export interface MarkdownOptions {
+    bodyStyle?: string;
+    markdownBodyStyle?: string;
+
     noDefaultMarkdownPlugins?: boolean;
     markdownPlugins?: Array<{
         plugin: any,
@@ -17,9 +20,6 @@ export interface MarkdownOptions {
         render?: (tokens: any[], index: number) => string,
         marker?: string,
     }>;
-
-    bodyStyle?: string;
-    markdownBodyStyle?: string;
 }
 
 

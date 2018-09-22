@@ -150,6 +150,10 @@ const escapeHtml = (s) => s
 module.exports = {
     title: 'example',               // Document title of markdown.
 
+    // bodyStyle: '',               // <body> style of markdown.
+    markdownBodyStyle:              // "markdownBody" <div> style of markdown.
+        'font-family: "Yu Gothic Medium", "Microsoft JhengHei", arial, sans-serif;',
+
     // rawInput: true,              // Disable Lisp block expansion.
 
     // inputFormat: 'md',           // Input document template file format. (md | html | lsx)
