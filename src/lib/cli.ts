@@ -257,6 +257,37 @@ export function readInput(config: CliConfig) {
 }
 
 
+export function getAppEnv() {
+    return {
+        styles: {
+            normalizeCss:       Styles.normalizeCss,
+            markdownCss:        Styles.markdownCss,
+            highlightCss:       Styles.highlightCss,
+            paperCss:           Styles.paperCss,
+        },
+        moment:                 require('moment'),
+        Liyad:                  require('liyad/modules'),
+        RedAgateUtil:           require('red-agate-util/modules'),
+        RedAgateSvgCanvas:      require('red-agate-svg-canvas/modules'),
+        RedAgateMath:           require('red-agate-math/modules'),
+        RedAgate:               require('red-agate/modules'),
+        components:             Object.assign({}, components.components, components.extraComponents),
+        highlightJs:            Markdown.highlightJs,
+        markdownit:             Markdown.markdownit,
+        markdownitPlugins: {
+            markdownitContaier: Markdown.mdiContaier,
+            markdownitEmoji:    Markdown.mdiEmoji,
+            markdownitSub:      Markdown.mdiSub,
+            markdownitSup:      Markdown.mdiSup,
+            markdownitCheckbox: Markdown.mdiCheckbox,
+            markdownitPlantuml: Markdown.mdiPlantUml,
+            markdownitMath:     Markdown.mdiMath,
+            markdownitImsize:   Markdown.imsize,
+        },
+    };
+}
+
+
 export async function readConfig(config: CliConfig): Promise<RenderOptions> {
     let conf = config;
     if (config.configPath) {
@@ -270,33 +301,7 @@ export async function readConfig(config: CliConfig): Promise<RenderOptions> {
         case 'js':
             conf = requireDynamic(path.resolve(config.configPath));
             if (typeof conf === 'function') {
-                conf = (conf as any)({
-                    styles: {
-                        normalizeCss:       Styles.normalizeCss,
-                        markdownCss:        Styles.markdownCss,
-                        highlightCss:       Styles.highlightCss,
-                        paperCss:           Styles.paperCss,
-                    },
-                    moment:                 require('moment'),
-                    Liyad:                  require('liyad/modules'),
-                    RedAgateUtil:           require('red-agate-util/modules'),
-                    RedAgateSvgCanvas:      require('red-agate-svg-canvas/modules'),
-                    RedAgateMath:           require('red-agate-math/modules'),
-                    RedAgate:               require('red-agate/modules'),
-                    components:             Object.assign({}, components.components, components.extraComponents),
-                    highlightJs:            Markdown.highlightJs,
-                    markdownit:             Markdown.markdownit,
-                    markdownitPlugins: {
-                        markdownitContaier: Markdown.mdiContaier,
-                        markdownitEmoji:    Markdown.mdiEmoji,
-                        markdownitSub:      Markdown.mdiSub,
-                        markdownitSup:      Markdown.mdiSup,
-                        markdownitCheckbox: Markdown.mdiCheckbox,
-                        markdownitPlantuml: Markdown.mdiPlantUml,
-                        markdownitMath:     Markdown.mdiMath,
-                        markdownitImsize:   Markdown.imsize,
-                    },
-                });
+                conf = (conf as any)(getAppEnv());
             }
             break;
         }
