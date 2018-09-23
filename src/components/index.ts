@@ -5,6 +5,7 @@
 
 import * as RedAgate    from 'red-agate/modules';
 import * as barcodes    from 'red-agate-barcode/modules';
+import * as RaReactHost from 'red-agate-react-host/modules';
 import { Markdown }     from './Markdown';
 import { Math,
          Mml }          from './Math';
@@ -20,9 +21,6 @@ import { NormalizeCss,
 
 
 export const components = {
-    // Repeat: RedAgate.Repeat,
-    // ForEach: RedAgate.ForEach,
-    // If: RedAgate.If,
     Do: RedAgate.Do,
     Facet: RedAgate.Facet,
     Asset: RedAgate.Asset,
@@ -82,4 +80,12 @@ export const components = {
     MarkdownCss,
     HighlightCss,
     PaperCss,
+};
+
+
+export const extraComponents = {
+    Repeat: RedAgate.Repeat,
+    ForEach: RedAgate.ForEach,
+    If: RedAgate.If,
+    ReactHost: RaReactHost.ReactHost,
 };

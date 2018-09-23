@@ -12,24 +12,25 @@ import { MarkdownOptions } from '../lib/types';
 //       and if you import "markdownit()" as "import * as markdownit from 'markdown-it'",
 //       an error will be returned when it is called.
 
+export const highlightJs = hljs;
 // tslint:disable-next-line:no-var-requires
-const markdownit = require('markdown-it');
+export const markdownit = require('markdown-it');
 // tslint:disable-next-line:no-var-requires
-const mdiContaier = require('markdown-it-container');
+export const mdiContaier = require('markdown-it-container');
 // tslint:disable-next-line:no-var-requires
-const mdiEmoji = require('markdown-it-emoji');
+export const mdiEmoji = require('markdown-it-emoji');
 // tslint:disable-next-line:no-var-requires
-const mdiSub = require('markdown-it-sub');
+export const mdiSub = require('markdown-it-sub');
 // tslint:disable-next-line:no-var-requires
-const mdiSup = require('markdown-it-sup');
+export const mdiSup = require('markdown-it-sup');
 // tslint:disable-next-line:no-var-requires
-const mdiCheckbox = require('markdown-it-checkbox');
+export const mdiCheckbox = require('markdown-it-checkbox');
 // tslint:disable-next-line:no-var-requires
-const mdiPlantUml = require('markdown-it-plantuml');
+export const mdiPlantUml = require('markdown-it-plantuml');
 // tslint:disable-next-line:no-var-requires
-const mdiMath = require('markdown-it-math');
+export const mdiMath = require('markdown-it-math');
 // tslint:disable-next-line:no-var-requires
-const imsize = require('markdown-it-imsize');
+export const imsize = require('markdown-it-imsize');
 
 
 

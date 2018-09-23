@@ -11,6 +11,9 @@ import { readFromStdin,
          writeToStdout }             from './io';
 import { render }                    from './render';
 import { showHelp }                  from './help';
+import * as components               from '../components';
+import * as Styles                   from './styles';
+import * as Markdown                 from '../components/Markdown';
 
 const os   = requireDynamic('os');
 const path = requireDynamic('path');
@@ -266,6 +269,31 @@ export async function readConfig(config: CliConfig): Promise<RenderOptions> {
             break;
         case 'js':
             conf = requireDynamic(path.resolve(config.configPath));
+            if (typeof conf === 'function') {
+                conf = (conf as any)({
+                    styles: {
+                        normalizeCss:       Styles.normalizeCss,
+                        markdownCss:        Styles.markdownCss,
+                        highlightCss:       Styles.highlightCss,
+                        paperCss:           Styles.paperCss,
+                    },
+                    Liyad:              require('liyad/modules'),
+                    RedAgate:           require('red-agate/modules'),
+                    components:         Object.assign({}, components.components, components.extraComponents),
+                    highlightJs:        Markdown.highlightJs,
+                    markdownit:         Markdown.markdownit,
+                    markdownitPlugins: {
+                        markdownitContaier: Markdown.mdiContaier,
+                        markdownitEmoji:    Markdown.mdiEmoji,
+                        markdownitSub:      Markdown.mdiSub,
+                        markdownitSup:      Markdown.mdiSup,
+                        markdownitCheckbox: Markdown.mdiCheckbox,
+                        markdownitPlantuml: Markdown.mdiPlantUml,
+                        markdownitMath:     Markdown.mdiMath,
+                        markdownitImsize:   Markdown.imsize,
+                    },
+                });
+            }
             break;
         }
         conf = Object.assign({}, config, conf);
