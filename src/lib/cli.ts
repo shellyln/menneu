@@ -257,7 +257,7 @@ export function readInput(config: CliConfig) {
 }
 
 
-export function getAppEnv() {
+export function getAppEnv(): any {
     return {
         styles: {
             normalizeCss:       Styles.normalizeCss,
