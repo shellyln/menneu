@@ -44,6 +44,7 @@
     "markdown-it-plantuml": "^1.2.0",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
+    "moment": "^2.22.2",
     "normalize.css": "^8.0.0",
     "paper-css": "^0.4.1",
     "puppeteer": "^1.8.0",
@@ -51,8 +52,10 @@
     "react-dom": "^16.5.2",
     "red-agate": "^0.2.11",
     "red-agate-barcode": "^0.2.11",
+    "red-agate-math": "^0.2.11",
     "red-agate-react-host": "^0.2.11",
-    "red-agate-svg-canvas": "^0.2.11"
+    "red-agate-svg-canvas": "^0.2.11",
+    "red-agate-util": "^0.2.11"
   },
   "devDependencies": {
     "@types/chart.js": "^2.7.35",

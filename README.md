@@ -223,6 +223,45 @@ module.exports = {
 };
 ```
 
+You can also export configuration by using the function.
+```js
+module.exports = (env) => {
+    // env is following object:
+    // {
+    //     styles: {
+    //         normalizeCss:       string,
+    //         markdownCss:        string,
+    //         highlightCss:       string,
+    //         paperCss:           string,
+    //     },
+    //     moment:                 object,
+    //     Liyad:                  object,
+    //     RedAgateUtil:           object,
+    //     RedAgateSvgCanvas:      object,
+    //     RedAgateMath:           object,
+    //     RedAgate:               object,
+    //     components:             object,
+    //     highlightJs:            object,
+    //     markdownit:             object,
+    //     markdownitPlugins: {
+    //         markdownitContaier: object,
+    //         markdownitEmoji:    object,
+    //         markdownitSub:      object,
+    //         markdownitSup:      object,
+    //         markdownitCheckbox: object,
+    //         markdownitPlantuml: object,
+    //         markdownitMath:     object,
+    //         markdownitImsize:   object,
+    //     },
+    // }
+
+    // The function should return the configuration object.
+    return {
+        ...
+    };
+};
+```
+
 ----
 
 
