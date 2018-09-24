@@ -80,7 +80,7 @@ module.exports = function (env) {
                         configFile: 'tsconfig.dist.json'
                     }),
                 ],
-                exclude: /node_modules[\/\\](?!(ascii2mathml|markdown-it.*|menneu|liyad|red-agate.*)).*$/
+                exclude: /node_modules[\/\\](?!(menneu|liyad|red-agate.*)).*$/
             }, {
                 test: /\.jsx?$/,
                 use: [
@@ -102,7 +102,7 @@ module.exports = function (env) {
                     },
                     // 'babel-loader',
                 ],
-                exclude: /node_modules[\/\\](?!(ascii2mathml|markdown-it.*|menneu|liyad|red-agate.*)).*$/
+                exclude: /node_modules[\/\\](?!(menneu|liyad|red-agate.*)).*$/
             }, {
                 enforce: 'pre',
                 test: /\.[tj]sx?$/,
@@ -111,7 +111,7 @@ module.exports = function (env) {
                     options: {
                     }
                 },
-                exclude: /node_modules[\/\\](?!(ascii2mathml|markdown-it.*|menneu|liyad|red-agate.*)).*$/
+                exclude: /node_modules[\/\\](?!(menneu|liyad|red-agate.*)).*$/
             }, {
                 test: /\.css$/,
                 use: [
