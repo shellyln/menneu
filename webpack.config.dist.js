@@ -15,10 +15,10 @@ module.exports = function (env) {
             fs: "empty",
             console: false,
             process: false,
-            global: false,
+            global: true,
             __filename: false,
             __dirname: false,
-            Buffer: false,
+            Buffer: true,
             setImmediate: false,
         },
         output: {
@@ -67,8 +67,8 @@ module.exports = function (env) {
                                 ['env', {
                                     'targets': {
                                         // 'node': 'current'
-                                        // 'browsers': [">0.25%", "not ie 11", "not op_mini all"]
-                                        'Chrome': ['current']
+                                        'browsers': [">0.25%", "not ie 11", "not op_mini all"]
+                                        // 'Chrome': ['current']
                                     }
                                 }]
                             ],
@@ -80,11 +80,29 @@ module.exports = function (env) {
                         configFile: 'tsconfig.dist.json'
                     }),
                 ],
-                exclude: /node_modules[\/\\](?!menneu).*$/
+                exclude: /node_modules[\/\\](?!(ascii2mathml|markdown-it.*|menneu|liyad|red-agate.*)).*$/
             }, {
                 test: /\.jsx?$/,
-                use: ['babel-loader'],
-                exclude: /node_modules[\/\\](?!menneu).*$/
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            'sourceMaps': true,
+                            'presets': [
+                                ['env', {
+                                    'targets': {
+                                        // 'node': 'current'
+                                        'browsers': [">0.25%", "not ie 11", "not op_mini all"]
+                                        // 'Chrome': ['current']
+                                    }
+                                }]
+                            ],
+                            'ignore': [],
+                        }
+                    },
+                    // 'babel-loader',
+                ],
+                exclude: /node_modules[\/\\](?!(ascii2mathml|markdown-it.*|menneu|liyad|red-agate.*)).*$/
             }, {
                 enforce: 'pre',
                 test: /\.[tj]sx?$/,
@@ -93,7 +111,7 @@ module.exports = function (env) {
                     options: {
                     }
                 },
-                exclude: /node_modules[\/\\](?!menneu).*$/
+                exclude: /node_modules[\/\\](?!(ascii2mathml|markdown-it.*|menneu|liyad|red-agate.*)).*$/
             }, {
                 test: /\.css$/,
                 use: [
