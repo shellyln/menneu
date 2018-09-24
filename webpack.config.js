@@ -20,6 +20,9 @@ module.exports = function (env) {
             devtoolModuleFilenameTemplate: '../[resource-path]',
             // devtoolModuleFilenameTemplate: void 0
         },
+        resolve: {
+            extensions: ['.tsx', '.ts', '.jsx', '.js']
+        },
         module: {
             rules: [{
                 test: /\.tsx?$/,
@@ -53,9 +56,6 @@ module.exports = function (env) {
         plugins: [
             new webpack.BannerPlugin({ banner: "#!/usr/bin/env node", raw: true })
         ],
-        resolve: {
-            extensions: ['.tsx', '.ts', '.jsx', '.js']
-        },
         devtool: 'source-map'
     },
 

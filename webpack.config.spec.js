@@ -19,6 +19,9 @@ module.exports = function (env) {
             devtoolModuleFilenameTemplate: '../[resource-path]',
             // devtoolModuleFilenameTemplate: void 0
         },
+        resolve: {
+            extensions: ['.tsx', '.ts', '.jsx', '.js']
+        },
         module: {
             rules: [{
                 test: /\.tsx?$/,
@@ -50,9 +53,6 @@ module.exports = function (env) {
             }]
         },
         plugins: [],
-        resolve: {
-            extensions: ['.tsx', '.ts', '.jsx', '.js']
-        },
         devtool: 'source-map'
     },
 
