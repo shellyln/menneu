@@ -240,6 +240,8 @@ module.exports = (env) => {
     //     RedAgateSvgCanvas:      object,
     //     RedAgateMath:           object,
     //     RedAgate:               object,
+    //     React:                  object,
+    //     ReactDom:               object,
     //     components:             object,
     //     highlightJs:            object,
     //     markdownit:             object,

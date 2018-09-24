@@ -271,6 +271,8 @@ export function getAppEnv(): any {
         RedAgateSvgCanvas:      require('red-agate-svg-canvas/modules'),
         RedAgateMath:           require('red-agate-math/modules'),
         RedAgate:               require('red-agate/modules'),
+        React:                  require('react'),
+        ReactDom:               require('react-dom'),
         components:             Object.assign({}, components.components, components.extraComponents),
         highlightJs:            Markdown.highlightJs,
         markdownit:             Markdown.markdownit,
