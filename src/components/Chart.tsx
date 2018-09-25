@@ -35,6 +35,17 @@ export class Chart extends rdgt.RedAgateComponent<ChartProps> {
         const c = (<rdgt.Canvas>{(ctx: SvgCanvas) => {
             // TODO: following members are not exist in the SvgCanvas.
             (ctx as any).canvas = {
+                // TODO: "getAttribute" is needed running on browsers.
+                //       Chart.js "platform.acquireContext" have platform fallback mechanism.
+                // See https://github.com/chartjs/Chart.js/pull/4591#issuecomment-319575939
+                getAttribute: (prop: string) => {
+                    switch (prop) {
+                        case 'width':  return this.props.width;
+                        case 'height': return this.props.height;
+                    }
+                    return void 0;
+                },
+                getContext: () => ctx,
                 width: this.props.width,
                 height: this.props.height,
                 style: {
@@ -43,7 +54,7 @@ export class Chart extends rdgt.RedAgateComponent<ChartProps> {
                 },
             };
             ctx.fontHeightRatio = 2;
-            const el = { getContext: () => ctx };
+            const el = (ctx as any).canvas;
 
             const opts = Object.assign({}, this.props.settings);
             if (! opts.options) {
