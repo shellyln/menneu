@@ -2,6 +2,21 @@ const webpack = require('webpack');
 const path = require('path');
 
 
+const babelOptions = {
+    loader: 'babel-loader',
+    options: {
+        'sourceMaps': true,
+        'presets': [
+            ['@babel/preset-env', {
+                'targets': {
+                    'chrome': 68
+                }
+            }]
+        ],
+        'ignore': [],
+    }
+};
+
 
 module.exports = function (env) {
     return [{
@@ -30,6 +45,9 @@ module.exports = function (env) {
             devtoolModuleFilenameTemplate: void 0
         },
         resolve: {
+            alias: {
+                'babel/polyfill': path.resolve(__dirname, 'src/empty'),
+            },
             extensions: ['.tsx', '.ts', '.jsx', '.js']
         },
         externals: {
@@ -59,23 +77,7 @@ module.exports = function (env) {
             rules: [{
                 test: /\.tsx?$/,
                 use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            'sourceMaps': true,
-                            'presets': [
-                                ['env', {
-                                    'targets': {
-                                        // 'node': 'current'
-                                        'browsers': [">0.25%", "not ie 11", "not op_mini all"]
-                                        // 'Chrome': ['current']
-                                    }
-                                }]
-                            ],
-                            'ignore': [],
-                        }
-                    },
-                    // 'babel-loader',
+                    babelOptions,
                     'ts-loader?' + JSON.stringify({
                         configFile: 'tsconfig.dist.json'
                     }),
@@ -84,23 +86,7 @@ module.exports = function (env) {
             }, {
                 test: /\.jsx?$/,
                 use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            'sourceMaps': true,
-                            'presets': [
-                                ['env', {
-                                    'targets': {
-                                        // 'node': 'current'
-                                        'browsers': [">0.25%", "not ie 11", "not op_mini all"]
-                                        // 'Chrome': ['current']
-                                    }
-                                }]
-                            ],
-                            'ignore': [],
-                        }
-                    },
-                    // 'babel-loader',
+                    babelOptions,
                 ],
                 exclude: /node_modules[\/\\](?!(menneu|liyad|red-agate.*)).*$/
             }, {

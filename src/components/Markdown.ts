@@ -28,8 +28,6 @@ export const mdiCheckbox = require('markdown-it-checkbox');
 // tslint:disable-next-line:no-var-requires
 export const mdiPlantUml = require('markdown-it-plantuml');
 // tslint:disable-next-line:no-var-requires
-export const ascii2mathml = require('ascii2mathml'); // dummy for building "web" target.
-// tslint:disable-next-line:no-var-requires
 export const mdiMath = require('markdown-it-math');
 // tslint:disable-next-line:no-var-requires
 export const imsize = require('markdown-it-imsize');
