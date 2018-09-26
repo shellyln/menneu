@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <head>
-    <meta  charset="UTF-8">
-    <script src="menneu.js"></script>
+    <meta charset="UTF-8">
+    <script src="menneu.min.js" async onload="start()"></script>
 </head>
 <body>
+    <h1>Please wait...</h1>
     <script>
 
 const escapeHtml = (s) => s
@@ -14,10 +15,9 @@ const escapeHtml = (s) => s
     .replace(/'/g, "&#39;");
 
 
-(async () => {
+const start = (async () => {
     const buf = await menneu.render(`
 # Hello! %%%(+ 1 2 3)
-
 
 
 %%%(style (@ (dangerouslySetInnerHTML ".content { font-style: italic; color: red; }")))
@@ -572,7 +572,6 @@ Q(A | B) = (Q(B | A)Q(A)) / Q(B)
 """)
 
 
-
 `, [1, 2, 3, 4, 5, 6], {
         inputFormat: 'md',
         dataFormat: 'object',
@@ -610,6 +609,6 @@ Q(A | B) = (Q(B | A)Q(A)) / Q(B)
     });
     document.write(buf.toString());
     document.close();
-})();
+});
     </script>
 </body>
