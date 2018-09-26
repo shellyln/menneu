@@ -5,18 +5,8 @@
 </head>
 <body>
     <h1>Please wait...</h1>
-    <script>
+    <script id="md" type="text/markdown+x">
 
-const escapeHtml = (s) => s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-
-
-const start = (async () => {
-    const buf = await menneu.render(`
 # Hello! %%%(+ 1 2 3)
 
 
@@ -106,13 +96,13 @@ the hedge. In another moment, down went Alice after it!
 
 # highlighting
 
-\`\`\`js
+```js
 function foo(x) {
     return x;
 }
-\`\`\`
+```
 
-\`\`\`html
+```html
 <!DOCTYPE html>
 <html lang="ja">
  <head>
@@ -127,7 +117,7 @@ function foo(x) {
   </article>
  </body>
 </html>
-\`\`\`
+```
 
 
 
@@ -268,7 +258,7 @@ Alice <-- Bob: another authentication Response
 (First usecase)
 (Another usecase) as (UC2)  
 usecase UC3
-usecase (Last\\\\nusecase) as UC4
+usecase (Last\\nusecase) as UC4
 
 Alice -> Bob : Bonjour
 Alice -> UC3 : Bonjour
@@ -279,7 +269,7 @@ Alice -> UC3 : Bonjour
 (First usecase)
 (Another usecase) as (UC2)  
 usecase UC3
-usecase (Last\\\\nusecase) as UC4
+usecase (Last\\nusecase) as UC4
 
 Alice -> Bob : Bonjour
 Alice -> UC3 : Bonjour
@@ -572,7 +562,19 @@ Q(A | B) = (Q(B | A)Q(A)) / Q(B)
 """)
 
 
-`, [1, 2, 3, 4, 5, 6], {
+    </script>
+    <script>
+
+const escapeHtml = (s) => s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
+
+const start = (async () => {
+    const buf = await menneu.render(document.getElementById('md').innerHTML, [1, 2, 3, 4, 5, 6], {
         inputFormat: 'md',
         dataFormat: 'object',
         outputFormat: 'html',
