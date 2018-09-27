@@ -5,5 +5,8 @@
 
 export * from './lib/types';
 export * from './lib/styles';
+export * from './lib/fragments';
 export * from './lib/render';
 export * from './lib/cli';
+
+export { getMarkdownRoot } from './components/Markdown';

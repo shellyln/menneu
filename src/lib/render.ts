@@ -13,10 +13,10 @@ import { components }                from '../components';
 import { getMarkdownRoot }           from '../components/Markdown';
 import { RenderOptions }             from './types';
 import { markdownHeader,
-         markdownFooter}             from './fragments';
+         markdownFooter }            from './fragments';
 import { navigateOptionsDefault,
          imageOptionsDefault,
-         pdfOptionsDefault}          from './defaults';
+         pdfOptionsDefault }         from './defaults';
 
 const path = requireDynamic('path');
 
@@ -68,6 +68,10 @@ export async function render(source: string, data: any, options: RenderOptions) 
     case 'markdown': case 'md':
         validateCode(src);
         src = `${markdownHeader(options)}${src}${markdownFooter()}`;
+        break;
+    case 'markdown-fragment': case 'md-fragment':
+        validateCode(src);
+        src = `(MarkdownRoot"""Markdown ${src} """)`;
         break;
     case 'html': case 'htm':
         validateCode(src);

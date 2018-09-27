@@ -25,7 +25,7 @@ export interface MarkdownOptions {
 
 export interface FormatOptions {
     rawInput?: boolean;
-    inputFormat: 'markdown' | 'md' | 'html' | 'htm' | 'lsx' | 'lisp';
+    inputFormat: 'markdown' | 'md' | 'markdown-fragment' | 'md-fragment' | 'html' | 'htm' | 'lsx' | 'lisp';
     dataFormat: 'lisp' | 'json' | 'object';
     outputFormat: 'html' | 'pdf' | 'png' | 'jpeg';
 }
