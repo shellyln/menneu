@@ -7,7 +7,12 @@ import * as rdgt    from 'red-agate/modules';
 
 
 export function raw(children: any): any {
-    if (Array.isArray(children)) {
+    if (typeof children === 'string') {
+        return rdgt.createElement(
+            rdgt.Template,
+            {dangerouslySetInnerHTML: {__html: children}}
+        );
+    } else if (Array.isArray(children)) {
         return (
             (children as any[])
             .map(x => typeof x === 'string' ?
