@@ -4,6 +4,7 @@
 
 
 import * as rdgt from 'red-agate/modules';
+import { raw }   from './raw';
 
 
 
@@ -13,22 +14,10 @@ export class RawHtml extends rdgt.RedAgateComponent<rdgt.ComponentProps> {
     }
 
     public transform(): rdgt.RedAgateNode {
-        return this.props.children;
+        return raw(this.props.children);
     }
 
     public render(contexts: Map<string, any>, children: string) {
-        return (children
-            .replace(/&amp;/g, '&')
-            .replace(/&#38;/g, '&')
-            .replace(/&gt;/g, '>')
-            .replace(/&#62;/g, '>')
-            .replace(/&lt;/g, '<')
-            .replace(/&#60;/g, '<')
-            .replace(/&quot;/g, '"')
-            .replace(/&#34;/g, '"')
-            .replace(/&apos;/g, "'")
-            .replace(/&#39;/g, "'")
-            .trim()
-        );
+        return (children.trim());
     }
 }

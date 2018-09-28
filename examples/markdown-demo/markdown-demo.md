@@ -1,5 +1,7 @@
 
 
+# Markdown example
+
 ![alt text](./assets/ménneu-logo.svg "Logo" =300x100)
 
 %%%(Image (@ (src "./examples/markdown-demo/assets/ménneu-logo.svg")
@@ -29,6 +31,25 @@ Alt-h2
 * こんにちは
 * 你們好
 * 你们好
+
+
+# Escape (Character entity references)
+
+&amp;&lt;&quot;&apos;
+
+`&amp;&lt;&quot;&apos;`
+
+```
+&amp;&lt;&quot;&apos;
+```
+
+&<>"'
+
+`&<>"'`
+
+```
+&<>"'
+```
 
 
 # Links

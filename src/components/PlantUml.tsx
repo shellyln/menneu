@@ -4,19 +4,18 @@
 
 
 /** @jsx rdgt.createElement */
-import * as rdgt          from 'red-agate/modules';
-import { getMarkdownRoot,
-         Markdown }       from './Markdown';
+import * as rdgt    from 'red-agate/modules';
+import { Markdown } from './Markdown';
+import { raw }      from './raw';
 
 
 
 export const PlantUmlLite = (props: rdgt.ComponentProps) =>
     <Markdown>
         @startuml{'\n'}
-        {props.children}{'\n'}
+        {raw(props.children)}{'\n'}
         @enduml
     </Markdown>;
-
 
 
 interface HtmlImageProps extends rdgt.ComponentProps {
@@ -50,15 +49,12 @@ export class PlantUml extends rdgt.RedAgateComponent<rdgt.ComponentProps> {
     private content = '';
 
     public transform(): rdgt.RedAgateNode {
-        const MdRoot = getMarkdownRoot({});
         this.uml =
-            <MdRoot>
-                <Markdown>
-                    @startuml{'\n'}
-                    {this.props.children}{'\n'}
-                    @enduml
-                </Markdown>
-            </MdRoot>;
+            <Markdown>
+                @startuml{'\n'}
+                {raw(this.props.children)}{'\n'}
+                @enduml
+            </Markdown>;
         return [];
     }
 

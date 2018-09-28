@@ -7,6 +7,7 @@ import * as hljs           from 'highlight.js';
 import { MarkdownIt }      from 'markdown-it';
 import * as rdgt           from 'red-agate/modules';
 import { MarkdownOptions } from '../lib/types';
+import { raw }             from './raw';
 
 // TODO: If target is set to esmodule,,
 //       and if you import "markdownit()" as "import * as markdownit from 'markdown-it'",
@@ -136,30 +137,18 @@ export class Markdown extends rdgt.RedAgateComponent<MarkdownProps> {
     }
 
     public transform(): rdgt.RedAgateNode {
-        return this.props.children;
+        return raw(this.props.children);
     }
 
     public render(contexts: Map<string, any>, children: string) {
-        const c = children
-            .replace(/&amp;/g, '&')
-            .replace(/&#38;/g, '&')
-            .replace(/&gt;/g, '>')
-            .replace(/&#62;/g, '>')
-            .replace(/&lt;/g, '<')
-            .replace(/&#60;/g, '<')
-            .replace(/&quot;/g, '"')
-            .replace(/&#34;/g, '"')
-            .replace(/&apos;/g, "'")
-            .replace(/&#39;/g, "'");
-
         const md: markdownit.MarkdownIt =
             this.getContext(contexts, CONTEXT_MARKDOWN_ROOT) ||
             getMarkdownIt({});
 
         if (this.props.inline) {
-            return md.renderInline(c);
+            return md.renderInline(children);
         } else {
-            return md.render(c);
+            return md.render(children);
         }
     }
 }
