@@ -47,6 +47,10 @@ node ./bin.cli/menneu.js - -t $MN_BASEDIR -if md -d ${IN_BASENAME}.data.lisp -o 
 
 CASE_NO=0010
 echo $CASE_NO
+node ./bin.cli/menneu.js - -c ${MN_BASEDIR}/menneu.config.js -t $MN_BASEDIR -if md -d ${IN_BASENAME}.data.lisp -o ${OUT_BASENAME}${CASE_NO}.pdf < ${IN_BASENAME}.md
+
+CASE_NO=0011
+echo $CASE_NO
 node ./bin.cli/menneu.js - -df lisp -i ${IN_BASENAME}.md -o ${OUT_BASENAME}${CASE_NO}.pdf < ${IN_BASENAME}.data.lisp
 
 
