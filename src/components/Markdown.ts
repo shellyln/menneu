@@ -3,11 +3,12 @@
 // https://github.com/shellyln
 
 
-import * as hljs           from 'highlight.js';
-import { MarkdownIt }      from 'markdown-it';
-import * as rdgt           from 'red-agate/modules';
-import { MarkdownOptions } from '../lib/types';
-import { raw }             from './raw';
+import { default as isNode } from '../lib/is-node';
+import * as hljs             from 'highlight.js';
+import { MarkdownIt }        from 'markdown-it';
+import * as rdgt             from 'red-agate/modules';
+import { MarkdownOptions }   from '../lib/types';
+import { raw }               from './raw';
 
 // TODO: If target is set to esmodule,,
 //       and if you import "markdownit()" as "import * as markdownit from 'markdown-it'",
@@ -70,7 +71,12 @@ export function getMarkdownIt(options: MarkdownOptions) {
         .use(mdiSub)
         .use(mdiSup)
         .use(mdiCheckbox)
-        .use(mdiPlantUml)
+        .use(mdiPlantUml, {
+            // TODO: To prevent following error in nodejs, use http if running on nodejs.
+            //       "Error: unable to verify the first certificate in nodejs"
+            //       You can also set env NODE_TLS_REJECT_UNAUTHORIZED=0 to prevent it.
+            server: `http${isNode ? '' : 's'}://www.plantuml.com/plantuml`
+        })
         .use(mdiMath)
         .use(imsize);
     }
