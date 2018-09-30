@@ -58,8 +58,15 @@ import { render } from 'menneu';
 ```
 > NOTE: To build it, you should use `webpack` + `raw-loader` (or other packagers and/or plugins) to load CSS as string.
 
+### Use APIs on the browsers:
+
+Install via NPM, or download UMD from [release](https://github.com/shellyln/menneu/releases) page.
+
 ----
 
+## Playground
+
+https://shellyln.github.io/menneu/playground.html
 
 ## Examples
 
