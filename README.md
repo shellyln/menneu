@@ -68,6 +68,13 @@ Install via NPM, or download UMD from [release](https://github.com/shellyln/menn
 
 https://shellyln.github.io/menneu/playground.html
 
+
+## Express starter with the browser
+
+[Ménneu Markdown Notebook](https://github.com/shellyln/menneu-md-notebook)  
+Edit markdown locally w/o installing any apps.
+
+
 ## Examples
 
 * [markdown-demo](https://github.com/shellyln/menneu/tree/master/examples/markdown-demo)
