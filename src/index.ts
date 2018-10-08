@@ -9,4 +9,5 @@ export * from './lib/fragments';
 export * from './lib/render';
 export * from './lib/cli';
 
-export { getMarkdownRoot } from './components/Markdown';
+export { getMarkdownIt,
+         getMarkdownRoot } from './components/Markdown';

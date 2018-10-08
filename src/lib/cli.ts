@@ -286,6 +286,8 @@ export function getAppEnv(): any {
             markdownitMath:     Markdown.mdiMath,
             markdownitImsize:   Markdown.imsize,
         },
+        getMarkdownIt:          Markdown.getMarkdownIt,
+        getMarkdownRoot:        Markdown.getMarkdownRoot,
     };
 }
 
