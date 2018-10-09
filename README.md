@@ -269,6 +269,8 @@ module.exports = (env) => {
     //         markdownitMath:     object,
     //         markdownitImsize:   object,
     //     },
+    //     getMarkdownIt:          function,
+    //     getMarkdownRoot:        function,
     // }
 
     // The function should return the configuration object.
