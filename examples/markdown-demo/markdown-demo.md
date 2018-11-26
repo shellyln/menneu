@@ -9,7 +9,7 @@
 
 
 %%%(style (@ (dangerouslySetInnerHTML ".content { font-style: italic; color: red; }")))
-%%%($now)
+%%%($now-fmt)
 %%%(Greeting (@ (to "Menneu")) "Good morning!")
 
 

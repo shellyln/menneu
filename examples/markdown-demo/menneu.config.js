@@ -41,7 +41,7 @@ module.exports = (env) => {
         },
 
         globals: {
-            "$now": () => (new Date).toLocaleDateString('en-US'),
+            "$now-fmt": () => (new Date).toLocaleDateString('en-US'),
             "$to-locale-string": (...args) => args.slice(-1)[0].toLocaleString(...(args.slice(0, -1))),
             "$dir": (...args) => console.dir(...args),
             "qwerty": "asdfgh",
