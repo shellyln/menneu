@@ -10,18 +10,24 @@
    <p>HTML</p>
 
 %%%($=for $data
-(div "hello," $data "," $index)
-)
+  (div "hello," $data "," $index) )
 
-%%%(Markdown
-"""
+%%%(Markdown"""
+# Markdown
 # h1
 ## h2
 ### h3
 
+%%%($=for $data
+  (div "loop in markdown block," $data "," $index) )
+
+%%%(RawHtml"""
+<i>nested raw html block in markdown block</i>
+""")
+
 * list
-"""
-)
+* list
+""")
 
   </article>
  </body>
