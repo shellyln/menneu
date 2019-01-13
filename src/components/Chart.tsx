@@ -14,6 +14,7 @@ const plugin = require('chartjs-plugin-datalabels');
 
 
 
+// tslint:disable-next-line:function-constructor
 const g = Function('return this')();
 
 

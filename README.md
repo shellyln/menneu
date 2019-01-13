@@ -21,7 +21,66 @@ And get the output as a PDF, PNG and JPEG rendered by [Puppeteer](https://github
 Furthermore, you can insert the data from the file into the document with the control statements.
 
 ----
+## Examples
 
+<table align="center">
+  <tbody>
+    <tr align="center">
+      <td style="width:33%">
+        <a href="https://shellyln.github.io/menneu/assets/pdf/example-markdown.pdf">
+          <img src="https://shellyln.github.io/menneu/assets/pdf/example-markdown.png" style="max-width:100%;">
+        </a>
+        Markdown Demo
+        <a href="https://github.com/shellyln/menneu/tree/master/examples/markdown-demo">
+          source
+        </a>
+        /
+        <a href="https://shellyln.github.io/menneu/assets/pdf/example-markdown.pdf">
+          pdf
+        </a>
+      </td>
+      <td width="33%">
+        <a href="https://shellyln.github.io/menneu/assets/pdf/example-bill.pdf">
+          <img src="https://shellyln.github.io/menneu/assets/pdf/example-bill.png" style="max-width:100%;">
+        </a>
+        Billing Statement
+        <a href="https://github.com/shellyln/menneu/tree/master/examples/billing">
+          source
+        </a>
+        /
+        <a href="https://shellyln.github.io/menneu/assets/pdf/example-bill.pdf">
+          pdf
+        </a>
+      </td>
+      <td width="33%">
+        <a href="https://shellyln.github.io/menneu/assets/pdf/example-html.pdf">
+          <img src="https://shellyln.github.io/menneu/assets/pdf/example-html.png" style="max-width:100%;">
+        </a>
+        HTML Demo
+        <a href="https://github.com/shellyln/menneu/tree/master/examples/html-demo">
+          source
+        </a>
+        /
+        <a href="https://shellyln.github.io/menneu/assets/pdf/example-html.pdf">
+          pdf
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:center">
+        Testing the basic and extended markdown syntaxes.
+      </td>
+      <td style="text-align:center">
+        Reporting example that markuped up with Lisp LSX syntax.
+      </td>
+      <td style="text-align:center">
+        Testing the html template that embedding Lisp LSX.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+----
 
 ## Getting started
 
@@ -73,13 +132,6 @@ https://shellyln.github.io/menneu/playground.html
 
 [Ménneu Markdown Notebook](https://github.com/shellyln/menneu-md-notebook)  
 Edit markdown locally w/o installing any apps.
-
-
-## Examples
-
-* [markdown-demo](https://github.com/shellyln/menneu/tree/master/examples/markdown-demo)
-* [html-demo](https://github.com/shellyln/menneu/tree/master/examples/html-demo)
-* [Billing statement](https://github.com/shellyln/menneu/tree/master/examples/billing)
 
 
 ----
@@ -474,18 +526,33 @@ You also can markup with [RedAgate](https://github.com/shellyln/red-agate) tag-l
 Document template:
 ```markdown
 %%%(Greeting (@ (to "Menneu")) "Good morning!")
-%%%(Svg (@ (width 100)
+%%%(Svg (@ (width  100)
            (height 100)
            (unit "mm") )
+    (Canvas (-> (ctx) (::ctx@moveTo  10  10)
+                      (::ctx@lineTo 190 190)
+                      (::ctx:strokeStyle="rgba(255,128,0,0.2)")
+                      (::ctx@stroke)
+                      (::ctx@beginPath) ))
     (Rect   (@  (x 5)
                 (y 67)
-                (width 70)
+                (width  70)
                 (height 11)
+                (strokeColor "blue")
                 (stroke) ))
     (Qr     (@  (x 5)
                 (y 7)
+                (cellSize 0.8)
                 (data "Hello") ))
-    (Ean13  (@  (x 5)
+    (Code128(@  (x 35)
+                (y  7)
+                (elementWidth 0.66)
+                (height 15)
+                (quietHeight 0)
+                (textHeight 7)
+                (font "7px 'OCRB'")
+                (data "Hello") ))
+    (Gtin13 (@  (x 10)
                 (y 37)
                 (elementWidth 0.66)
                 (height 15)
@@ -559,8 +626,8 @@ Following components are available by default:
 * Barcodes and 2D codes
     * [Code128](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Code128.ts)
     * [Code39](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Code39.ts)
-    * [Ean13](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Ean.ts)
-    * [Ean8](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Ean.ts)
+    * [Ean13](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Ean.ts) / Gtin13
+    * [Ean8](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Ean.ts) / Gtin8
     * [Ean5](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Ean.ts)
     * [Ean2](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Ean.ts)
     * [UpcA](https://github.com/shellyln/red-agate/blob/master/packages/red-agate-barcode/src/barcode/Ean.ts)
