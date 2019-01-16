@@ -643,13 +643,13 @@ Following components are available by default:
 * HTML fragments
     * [RawHtml](https://github.com/shellyln/menneu/blob/master/src/components/RawHtml.ts)
 * Math ML
-    * [Math](https://github.com/shellyln/menneu/blob/master/src/components/Math.ts)
+    * [Math](https://github.com/shellyln/menneu/blob/master/src/components/Math.tsx)
         * This is using the [markdown-it-math](https://www.npmjs.com/package/markdown-it-math).
-    * [Mml](https://github.com/shellyln/menneu/blob/master/src/components/Math.ts)
+    * [Mml](https://github.com/shellyln/menneu/blob/master/src/components/Math.tsx)
 * Charts and UML graphs
-    * [Chart](https://github.com/shellyln/menneu/blob/master/src/components/Chart.ts)
+    * [Chart](https://github.com/shellyln/menneu/blob/master/src/components/Chart.tsx)
         * This is using the [Chart.js](https://github.com/chartjs/Chart.js) and [chartjs-plugin-datalabels](https://github.com/chartjs/chartjs-plugin-datalabels).
-    * [PlantUml](https://github.com/shellyln/menneu/blob/master/src/components/PlantUml.ts)
+    * [PlantUml](https://github.com/shellyln/menneu/blob/master/src/components/PlantUml.tsx)
         * This is using the [markdown-it-plantuml](https://www.npmjs.com/package/markdown-it-plantuml).
     * [PlantUmlLite](https://github.com/shellyln/menneu/blob/master/src/components/PlantUml.tsx)
 * Style sheets
