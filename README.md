@@ -96,6 +96,19 @@ and run Ménneu:
 $ menneu README.md --raw -o README.pdf
 ```
 
+### Add shortcuts to Windows file explorer right-click 'Send to' menu
+##### Prerequirements
+```bash
+$ npm install -g menneu
+```
+##### Install
+Download the source archive from [https://github.com/shellyln/menneu/archive/master.zip](https://github.com/shellyln/menneu/archive/master.zip) and extract it.
+
+```cmd
+> cd menneu\shell-ext\windows
+> make-sendto-shortcuts.cmd
+```
+
 ### Use APIs:
 
 install via NPM:
