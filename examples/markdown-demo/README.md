@@ -1,6 +1,8 @@
 # Markdown Demo
 Testing the basic and extended markdown syntaxes.
 
+![markdown](https://shellyln.github.io/menneu/assets/pdf/example-markdown.png)
+
 ```bash
 $ pwd
 /path/to/menneu/examples/markdown-demo

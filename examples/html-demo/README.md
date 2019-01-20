@@ -1,6 +1,8 @@
 # HTML Demo
 Testing the html template that embedding Lisp LSX.
 
+![html](https://shellyln.github.io/menneu/assets/pdf/example-html.png)
+
 ```bash
 $ pwd
 /path/to/menneu/examples/html-demo

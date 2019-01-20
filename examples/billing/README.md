@@ -1,6 +1,8 @@
 # Billing Statement
 Reporting example that markuped up with Lisp LSX syntax.
 
+![bill](https://shellyln.github.io/menneu/assets/pdf/example-bill.png)
+
 ```bash
 $ pwd
 /path/to/menneu/examples/billing
