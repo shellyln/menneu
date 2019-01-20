@@ -32,3 +32,16 @@ test:node:8:
     - npm run clean
     - npm run build
     - npm test
+
+publish:artifacts:
+  stage: deploy
+#  only:
+#    - tags
+#    - triggers
+  script:
+    - npm run clean
+    - npm run build:dist:dev
+    - npm run build:dist:prod
+  artifacts:
+    paths:
+      - dist/
