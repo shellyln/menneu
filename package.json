@@ -1,7 +1,7 @@
 {
   "name": "menneu",
   "private": false,
-  "version": "0.0.32",
+  "version": "0.0.33",
   "description": "Component-based extensible document processor",
   "keywords": [
     "markdown",
@@ -34,7 +34,7 @@
     "chartjs-plugin-datalabels": "^0.5.0",
     "github-markdown-css": "^2.10.0",
     "highlight.js": "^9.13.1",
-    "liyad": "^0.0.36",
+    "liyad": "^0.0.37",
     "markdown-it": "^8.4.2",
     "markdown-it-checkbox": "^1.1.0",
     "markdown-it-container": "^2.0.0",
@@ -50,12 +50,12 @@
     "puppeteer": "^1.11.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "red-agate": "^0.2.15",
-    "red-agate-barcode": "^0.2.15",
-    "red-agate-math": "^0.2.15",
-    "red-agate-react-host": "^0.2.15",
-    "red-agate-svg-canvas": "^0.2.15",
-    "red-agate-util": "^0.2.15"
+    "red-agate": "^0.2.16",
+    "red-agate-barcode": "^0.2.16",
+    "red-agate-math": "^0.2.16",
+    "red-agate-react-host": "^0.2.16",
+    "red-agate-svg-canvas": "^0.2.16",
+    "red-agate-util": "^0.2.16"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -65,8 +65,8 @@
     "@types/highlight.js": "^9.12.3",
     "@types/jasmine": "^3.3.8",
     "@types/markdown-it": "0.0.6",
-    "@types/node": "^10.12.18",
-    "@types/react": "^16.7.21",
+    "@types/node": "^10.12.19",
+    "@types/react": "^16.7.22",
     "@types/react-dom": "^16.0.11",
     "babel-loader": "^8.0.5",
     "cpx": "^1.5.0",
