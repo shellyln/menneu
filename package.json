@@ -1,7 +1,7 @@
 {
   "name": "menneu",
   "private": false,
-  "version": "0.0.33",
+  "version": "0.0.34",
   "description": "Component-based extensible document processor",
   "keywords": [
     "markdown",
@@ -34,7 +34,7 @@
     "chartjs-plugin-datalabels": "^0.5.0",
     "github-markdown-css": "^2.10.0",
     "highlight.js": "^9.13.1",
-    "liyad": "^0.0.37",
+    "liyad": "^0.0.38",
     "markdown-it": "^8.4.2",
     "markdown-it-checkbox": "^1.1.0",
     "markdown-it-container": "^2.0.0",
