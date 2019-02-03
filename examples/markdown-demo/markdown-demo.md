@@ -8,7 +8,8 @@
              (width 300) (height 100) (unit "px") (alt "Logo2") ))
 
 
-%%%(style (@ (dangerouslySetInnerHTML ".content { font-style: italic; color: red; }")))
+%%%(style (@ (dangerouslySetInnerHTML ".content { font-family: serif; font-style: italic; color: red;
+    /* puppeteer 1.12.1 bug?: content text is transparent if font-family is not set when output to pdf. */ }")))
 %%%($now-fmt)
 %%%(Greeting (@ (to "Menneu")) "Good morning!")
 
