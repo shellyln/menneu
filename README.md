@@ -201,6 +201,7 @@ menneu - [OPTIONS]
     * *TempDir*: Path to temporary directory that to generate the temporary html file passing to the Puppeteer.
 * `-ti`, `--tmp-indir`
     * Set *TempDir* to the parent directory of the input document file.
+        * it is default option.
 * `-tc`, `--tmp-cwd`
     * Set *TempDir* to the current working directory.
 * `-to`, `--tmp-os`
@@ -489,8 +490,8 @@ Document template:
 ```markdown
 %%%($let a (#    ;; "#" is object literal function.
     (foo 1)
-    (bar ($list "World" "Jane" "Joe"))
-))
+    (bar ($list "World" "Jane" "Joe")) ))
+
 %%%($set (a bar 1) "John")
 %%%($get a bar 1)
 ```
@@ -504,12 +505,13 @@ Result:
 
 Document template:
 ```markdown
-%%%(
-($defun fac (n)
-    ($if (== n 0)
-        1
-        (* n ($self (- n 1))) ) )
-)
+%%%($last
+    ($defun fac (n)
+        ($if (== n 0)
+            1
+            (* n ($self (- n 1))) ) )
+    nil)
+
 Factorial of 3 is %%%(fac 3).
 ```
 
