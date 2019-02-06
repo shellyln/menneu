@@ -36,12 +36,12 @@ Alt-h2
 
 # Escape (Character entity references)
 
-&amp;&lt;&quot;&apos;
+&amp;&lt;&gt;&quot;&apos;
 
-`&amp;&lt;&quot;&apos;`
+`&amp;&lt;&gt;&quot;&apos;`
 
 ```
-&amp;&lt;&quot;&apos;
+&amp;&lt;&gt;&quot;&apos;
 ```
 
 &<>"'
@@ -167,7 +167,7 @@ function foo(x) {
                 (textHeight 7)
                 (font "7px 'OCRB'")
                 (data "Hello") ))
-    (Ean13  (@  (x  5)
+    (Ean13  (@  (x 15)
                 (y 37)
                 (elementWidth 0.66)
                 (height 15)
