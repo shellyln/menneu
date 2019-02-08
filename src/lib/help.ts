@@ -63,6 +63,7 @@ OPTIONS:
       TempDir: Path to temporary directory that to generate the temporary html file passing to the Puppeteer.
   -ti, --tmp-indir
       Set TempDir to the parent directory of the input document file.
+          It is default option.
   -tc, --tmp-cwd
       Set TempDir to the current working directory.
   -to, --tmp-os
