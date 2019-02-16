@@ -1,7 +1,7 @@
 {
   "name": "menneu",
   "private": false,
-  "version": "0.0.40",
+  "version": "0.0.39",
   "description": "Component-based extensible document processor",
   "keywords": [
     "markdown",
@@ -30,9 +30,6 @@
     "menneu": "./bin.cli/menneu.js"
   },
   "dependencies": {
-    "puppeteer": "^1.12.2"
-  },
-  "devDependencies": {
     "ascii2mathml": "github:shellyln/ascii2mathml#fix-dependencies-vulnerability-201902-a",
     "chart.js": "^2.7.3",
     "chartjs-plugin-datalabels": "^0.5.0",
@@ -51,6 +48,7 @@
     "moment": "^2.24.0",
     "normalize.css": "^8.0.1",
     "paper-css": "^0.4.1",
+    "puppeteer": "^1.12.2",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "red-agate": "^0.2.16",
@@ -58,7 +56,9 @@
     "red-agate-math": "^0.2.16",
     "red-agate-react-host": "^0.2.16",
     "red-agate-svg-canvas": "^0.2.16",
-    "red-agate-util": "^0.2.16",
+    "red-agate-util": "^0.2.16"
+  },
+  "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.3",
     "@babel/preset-env": "^7.3.1",
