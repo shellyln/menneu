@@ -16,6 +16,7 @@ npm install
 
 rm -rf node_modules/markdown-it-math/node_modules/
 rm -rf node_modules/micromatch/node_modules/braces/
+rm -rf node_modules/cpx/node_modules/braces/
 npm dedupe
 
 rm -rf node_modules/

@@ -26,6 +26,7 @@
         "space-within-parens": false,
         "quotemark": false,
         "no-submodule-imports": false,
-        "space-before-function-paren": false
+        "space-before-function-paren": false,
+        "no-implicit-dependencies": [true, "dev"]
     }
 }
