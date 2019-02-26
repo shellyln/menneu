@@ -30,7 +30,6 @@
     "menneu": "./bin.cli/menneu.js"
   },
   "dependencies": {
-    "ascii2mathml": "runarberg/ascii2mathml#4615e1b6e80f4740fe0ddc848fbfdc695467487f",
     "chart.js": "^2.7.3",
     "chartjs-plugin-datalabels": "^0.5.0",
     "github-markdown-css": "^3.0.1",
@@ -41,7 +40,7 @@
     "markdown-it-container": "^2.0.0",
     "markdown-it-emoji": "^1.4.0",
     "markdown-it-imsize": "^2.0.1",
-    "markdown-it-math": "^4.1.0",
+    "markdown-it-math": "shellyln/markdown-it-math#f1402ee538a717183a307de3a8d3e3ce6e48251d",
     "markdown-it-plantuml": "^1.3.0",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
@@ -69,9 +68,7 @@
     "@types/node": "^11.9.5",
     "@types/react": "^16.8.4",
     "@types/react-dom": "^16.8.2",
-    "acorn": "^6.1.0",
     "babel-loader": "^8.0.5",
-    "braces": "^2.3.2",
     "cpx": "^1.5.0",
     "cross-env": "^5.2.0",
     "jasmine": "^3.3.1",
