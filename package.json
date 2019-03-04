@@ -1,7 +1,7 @@
 {
   "name": "menneu",
   "private": false,
-  "version": "0.0.44",
+  "version": "0.0.45",
   "description": "Component-based extensible document processor",
   "keywords": [
     "markdown",
