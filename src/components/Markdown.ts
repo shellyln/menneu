@@ -32,7 +32,11 @@ export const mdiPlantUml = require('markdown-it-plantuml');
 // tslint:disable-next-line:no-var-requires
 export const mdiMath = require('markdown-it-math');
 // tslint:disable-next-line:no-var-requires
-export const imsize = require('markdown-it-imsize');
+export const mdiImsize = require('markdown-it-imsize');
+// tslint:disable-next-line:no-var-requires
+export const mdiAnchor = require('markdown-it-anchor');
+// tslint:disable-next-line:no-var-requires
+export const mdiToc = require('markdown-it-table-of-contents');
 
 
 
@@ -78,7 +82,9 @@ export function getMarkdownIt(options: MarkdownOptions) {
             server: `http${isNode ? '' : 's'}://www.plantuml.com/plantuml`
         })
         .use(mdiMath)
-        .use(imsize);
+        .use(mdiImsize)
+        .use(mdiAnchor)
+        .use(mdiToc);
     }
 
     if (options.markdownCustomContainers) {

@@ -1,6 +1,6 @@
 
 
-# Markdown example
+<div style="font-size: 2em; font-weight: bold;">Markdown example</div>
 
 ![alt text](./assets/ménneu-logo.svg "Logo" =300x100)
 
@@ -13,6 +13,14 @@
 %%%($now-fmt)
 %%%(Greeting (@ (to "Menneu")) "Good morning!")
 
+
+----
+
+<div style="font-size: 2em; font-weight: bold;">Table of Contents</div>
+
+[[TOC]]
+
+----
 
 # Heading
 
