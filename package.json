@@ -41,7 +41,7 @@
     "markdown-it-container": "^2.0.0",
     "markdown-it-emoji": "^1.4.0",
     "markdown-it-imsize": "^2.0.1",
-    "markdown-it-math": "shellyln/markdown-it-math#0e535ffa35d382d32c756dd84220107a43a0ac9c",
+    "markdown-it-math": "shellyln/markdown-it-math#55893b648c80a25bfb51be8b008fc4ccdb921407",
     "markdown-it-plantuml": "^1.3.0",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
