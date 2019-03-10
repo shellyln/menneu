@@ -234,6 +234,9 @@ module.exports = {
     markdownBodyStyle:              // "markdownBody" <div> style of markdown.
         'font-family: "Yu Gothic Medium", "Microsoft JhengHei", arial, sans-serif;',
 
+    // tocIncludeLevel: [1, 2],     // Headings levels to use (2 for h2:s etc)
+                                    //   https://github.com/Oktavilla/markdown-it-table-of-contents/blob/master/README.md#options
+
     // rawInput: true,              // Disable Lisp block expansion.
 
     // inputFormat: 'md',           // Input document template file format. (md | html | lsx)

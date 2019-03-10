@@ -84,7 +84,9 @@ export function getMarkdownIt(options: MarkdownOptions) {
         .use(mdiMath)
         .use(mdiImsize)
         .use(mdiAnchor)
-        .use(mdiToc);
+        .use(mdiToc, {
+            includeLevel: options.tocIncludeLevel || [1, 2],
+        });
     }
 
     if (options.markdownCustomContainers) {

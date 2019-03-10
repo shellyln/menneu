@@ -602,3 +602,18 @@ Q(A | B) = (Q(B | A)Q(A)) / Q(B)
 Q(A | B) = (Q(B | A)Q(A)) / Q(B)
 """)
 
+
+
+### To view math formula in all browsers, load [MathJax](https://www.mathjax.org/) script file.
+
+If you want to render math formula to PDF using Ménneu with MathJax, set the following option to `menneu.config.js`.
+
+```js
+{
+    ...
+    navigateOptions: { waitUntil: 'networkidle0' }
+    ...
+}
+```
+
+%%%(script (@ (src "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML") (crossorigin "anonymous") ))
