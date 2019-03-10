@@ -1,6 +1,6 @@
 
 
-# Markdown example
+<div style="font-size: 2em; font-weight: bold;">Markdown example</div>
 
 ![alt text](./assets/ménneu-logo.svg "Logo" =300x100)
 
@@ -13,6 +13,16 @@
 %%%($now-fmt)
 %%%(Greeting (@ (to "Menneu")) "Good morning!")
 
+
+(page break)
+<div style="page-break-before:always"></div>
+
+
+<div style="font-size: 2em; font-weight: bold;">Table of Contents</div>
+
+[[TOC]]
+
+<div style="page-break-before:always"></div>
 
 # Heading
 
@@ -594,3 +604,18 @@ Q(A | B) = (Q(B | A)Q(A)) / Q(B)
 Q(A | B) = (Q(B | A)Q(A)) / Q(B)
 """)
 
+
+
+### To view math formula in all browsers, load [MathJax](https://www.mathjax.org/) script file.
+
+If you want to render math formula to PDF using Ménneu with MathJax, set the following option to `menneu.config.js`.
+
+```js
+{
+    ...
+    navigateOptions: { waitUntil: 'networkidle0' }
+    ...
+}
+```
+
+%%%(script (@ (src "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML") (crossorigin "anonymous") ))

@@ -20,6 +20,8 @@ export interface MarkdownOptions {
         render?: (tokens: any[], index: number) => string,
         marker?: string,
     }>;
+
+    tocIncludeLevel?: number[];
 }
 
 

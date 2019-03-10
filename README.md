@@ -234,6 +234,9 @@ module.exports = {
     markdownBodyStyle:              // "markdownBody" <div> style of markdown.
         'font-family: "Yu Gothic Medium", "Microsoft JhengHei", arial, sans-serif;',
 
+    // tocIncludeLevel: [1, 2],     // Headings levels to use (2 for h2:s etc)
+                                    //   https://github.com/Oktavilla/markdown-it-table-of-contents/blob/master/README.md#options
+
     // rawInput: true,              // Disable Lisp block expansion.
 
     // inputFormat: 'md',           // Input document template file format. (md | html | lsx)
@@ -334,6 +337,8 @@ module.exports = (env) => {
     //         markdownitPlantuml: object,
     //         markdownitMath:     object,
     //         markdownitImsize:   object,
+    //         markdownitAnchor:   object,
+    //         markdownitToc:      object,
     //     },
     //     getMarkdownIt:          function,
     //     getMarkdownRoot:        function,
@@ -357,12 +362,14 @@ Markdown is parsed into HTML by [markdown-it](https://github.com/markdown-it/mar
 and converting from HTML into PDF by [puppeteer](https://github.com/GoogleChrome/puppeteer) .
 
 Following markdown-it plugins are available by default:
+* [markdown-it-anchor](https://github.com/valeriangalliat/markdown-it-anchor)
 * [markdown-it-checkbox](https://github.com/mcecot/markdown-it-checkbox)
 * [markdown-it-container](https://github.com/markdown-it/markdown-it-container)
 * [markdown-it-emoji](https://github.com/markdown-it/markdown-it-emoji)
 * [markdown-it-imsize](https://github.com/tatsy/markdown-it-imsize)
 * [markdown-it-math](https://github.com/runarberg/markdown-it-math)
 * [markdown-it-plantuml](https://github.com/gmunguia/markdown-it-plantuml)
+* [markdown-it-table-of-contents](https://github.com/Oktavilla/markdown-it-table-of-contents)
 * [markdown-it-sub](https://github.com/markdown-it/markdown-it-sub)
 * [markdown-it-sup](https://github.com/markdown-it/markdown-it-sup)
 
@@ -539,7 +546,7 @@ Result:
 You also can markup with [RedAgate](https://github.com/shellyln/red-agate) tag-lib components.
 
 Document template:
-```markdown
+```lisp
 %%%(Greeting (@ (to "Menneu")) "Good morning!")
 %%%(Svg (@ (width  100)
            (height 100)

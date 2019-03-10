@@ -14,6 +14,8 @@ module.exports = (env) => {
         // bodyStyle: '',
         markdownBodyStyle: 'font-family: "Yu Gothic Medium", YuGothic, meiryo, "Microsoft JhengHei", "Microsoft YaHei", "SimHei", helvetica, arial, sans-serif;',
 
+        // tocIncludeLevel: [1, 2, 3],
+
         // rawInput: true,
 
         // inputFormat: 'md',    // md | html | lsx
@@ -21,7 +23,7 @@ module.exports = (env) => {
         // outputFormat: 'pdf',  // pdf | html | png | jpeg
 
         // launchOptions: { headless: false },
-        // navigateOptions: {},  //
+        navigateOptions: { waitUntil: 'networkidle0' },  // To render math formula by MathJax, set 'waitUntil' to 'networkidle0'.
         // imageOptions: {},     //
         pdfOptions: {
             width: '210mm',
