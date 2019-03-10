@@ -14,13 +14,15 @@
 %%%(Greeting (@ (to "Menneu")) "Good morning!")
 
 
-----
+(page break)
+<div style="page-break-before:always"></div>
+
 
 <div style="font-size: 2em; font-weight: bold;">Table of Contents</div>
 
 [[TOC]]
 
-----
+<div style="page-break-before:always"></div>
 
 # Heading
 
