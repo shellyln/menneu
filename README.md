@@ -546,7 +546,7 @@ Result:
 You also can markup with [RedAgate](https://github.com/shellyln/red-agate) tag-lib components.
 
 Document template:
-```markdown
+```lisp
 %%%(Greeting (@ (to "Menneu")) "Good morning!")
 %%%(Svg (@ (width  100)
            (height 100)
