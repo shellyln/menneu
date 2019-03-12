@@ -91,6 +91,9 @@ install via NPM:
 $ npm install -g menneu
 ```
 
+> Note: To install to Windows outside the WSL, you should do it with MinGW bash.  
+> Some dependency packages depends on bash and *nix commands.
+
 and run Ménneu:
 ```bash
 $ menneu README.md --raw -o README.pdf
