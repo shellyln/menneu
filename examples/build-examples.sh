@@ -15,7 +15,9 @@ node ./bin.cli/menneu.js ${IN_BASENAME}.md --raw -o ${OUT_BASENAME}${CASE_NO}.pd
 
 CASE_NO=0002
 echo $CASE_NO
+node ./bin.cli/menneu.js ${IN_BASENAME}.md -d ${IN_BASENAME}.data.lisp -o ${OUT_BASENAME}${CASE_NO}.html
 node ./bin.cli/menneu.js ${IN_BASENAME}.md -d ${IN_BASENAME}.data.lisp -o ${OUT_BASENAME}${CASE_NO}.pdf
+node ./bin.cli/menneu.js ${IN_BASENAME}.md -d ${IN_BASENAME}.data.lisp -o ${OUT_BASENAME}${CASE_NO}.png
 
 CASE_NO=0003
 echo $CASE_NO
@@ -64,7 +66,9 @@ node ./bin.cli/menneu.js ${IN_BASENAME}.html --raw -o ${OUT_BASENAME}${CASE_NO}.
 
 CASE_NO=1002
 echo $CASE_NO
+node ./bin.cli/menneu.js ${IN_BASENAME}.html -d ${IN_BASENAME}.data.lisp -o ${OUT_BASENAME}${CASE_NO}.html
 node ./bin.cli/menneu.js ${IN_BASENAME}.html -d ${IN_BASENAME}.data.lisp -o ${OUT_BASENAME}${CASE_NO}.pdf
+node ./bin.cli/menneu.js ${IN_BASENAME}.html -d ${IN_BASENAME}.data.lisp -o ${OUT_BASENAME}${CASE_NO}.png
 
 
 MN_BASEDIR=./examples/billing
@@ -73,7 +77,9 @@ IN_BASENAME=$MN_BASEDIR/billing
 
 CASE_NO=2001
 echo $CASE_NO
+node ./bin.cli/menneu.js ${IN_BASENAME}.lsx -d ${IN_BASENAME}.data.lisp -o ${OUT_BASENAME}${CASE_NO}.html
 node ./bin.cli/menneu.js ${IN_BASENAME}.lsx -d ${IN_BASENAME}.data.lisp -o ${OUT_BASENAME}${CASE_NO}.pdf
+node ./bin.cli/menneu.js ${IN_BASENAME}.lsx -d ${IN_BASENAME}.data.lisp -o ${OUT_BASENAME}${CASE_NO}.png
 
 
 echo Done!!
