@@ -4,13 +4,11 @@
 
 
 /** @jsx rdgt.createElement */
-import * as rdgt                     from 'red-agate/modules';
+import * as rdgt               from 'red-agate/modules';
 import { SvgCanvas,
-         SvgCanvas2DGradient }       from 'red-agate-svg-canvas/modules';
-import * as ChartJs                  from 'chart.js';
-
-// tslint:disable-next-line:no-var-requires
-const plugin = require('chartjs-plugin-datalabels');
+         SvgCanvas2DGradient } from 'red-agate-svg-canvas/modules';
+import * as ChartJs            from 'chart.js';
+import                              'chartjs-plugin-datalabels';
 
 
 
