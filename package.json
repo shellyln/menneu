@@ -101,7 +101,7 @@
     "build:cjs:2": "shx cp -f src/lib/require-cjs.js bin/lib/require-cjs.js",
     "build:esm": "tsc --outDir modules --declaration --declarationDir ./modules",
     "build:esm:2": "shx cp -f src/lib/require-cjs.js modules/lib/require-cjs.cjs",
-    "build:esm:3": "node -e \"require('./build-scripts/copy-as-mjs').copyAsMjs('modules','modules')",
+    "build:esm:3": "node -e \"require('./build-scripts/copy-as-mjs').copyAsMjs('modules','modules')\"",
     "build:spec": "webpack-cli --mode=development --config webpack.config.spec.js",
     "build:cli": "run-s build:cli:prod",
     "build:cli:prod": "cross-env NODE_ENV=production webpack-cli --mode=production --config webpack.config.js",
