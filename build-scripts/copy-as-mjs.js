@@ -10,7 +10,9 @@ function copyAsMjs(srcDir, destDir, options) {
         destExt: '.mjs',
     }, options || {});
 
-    fs.mkdirSync(destDir, { recursive: true });
+    if (! fs.existsSync(destDir)) {
+        fs.mkdirSync(destDir, { recursive: true });
+    }
 
     if (fs.lstatSync(srcDir).isDirectory()) {
         const files = fs.readdirSync(srcDir);
