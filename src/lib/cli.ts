@@ -15,6 +15,24 @@ import * as components               from '../components';
 import * as Styles                   from './styles';
 import * as Markdown                 from '../components/Markdown';
 
+import * as moment_                  from 'moment';
+import * as liyad_                   from 'liyad/modules';
+import * as redAgateUtil_            from 'red-agate-util/modules';
+import * as redAgateSvgCanvas_       from 'red-agate-svg-canvas/modules';
+import * as redAgateMath_            from 'red-agate-math/modules';
+import * as redAgate_                from 'red-agate/modules';
+import * as react_                   from 'react';
+import * as reactDom_                from 'react-dom';
+
+const moment            = (moment_ as any).default || moment_;
+const Liyad             = liyad_;
+const RedAgateUtil      = redAgateUtil_;
+const RedAgateSvgCanvas = redAgateSvgCanvas_;
+const RedAgateMath      = redAgateMath_;
+const RedAgate          = redAgate_;
+const React             = (react_ as any).default || react_;
+const ReactDom          = (reactDom_ as any).default || reactDom_;
+
 const os   = requireDynamic('os');
 const path = requireDynamic('path');
 const fs   = requireDynamic('fs');
@@ -265,14 +283,14 @@ export function getAppEnv(): any {
             highlightCss:       Styles.highlightCss,
             paperCss:           Styles.paperCss,
         },
-        moment:                 require('moment'),
-        Liyad:                  require('liyad/modules'),
-        RedAgateUtil:           require('red-agate-util/modules'),
-        RedAgateSvgCanvas:      require('red-agate-svg-canvas/modules'),
-        RedAgateMath:           require('red-agate-math/modules'),
-        RedAgate:               require('red-agate/modules'),
-        React:                  require('react'),
-        ReactDom:               require('react-dom'),
+        moment,
+        Liyad,
+        RedAgateUtil,
+        RedAgateSvgCanvas,
+        RedAgateMath,
+        RedAgate,
+        React,
+        ReactDom,
         components:             Object.assign({}, components.components, components.extraComponents),
         highlightJs:            Markdown.highlightJs,
         markdownit:             Markdown.markdownit,

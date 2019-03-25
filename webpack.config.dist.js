@@ -48,7 +48,7 @@ module.exports = function (env) {
             alias: {
                 'babel/polyfill': path.resolve(__dirname, 'src/empty'),
             },
-            extensions: ['.tsx', '.ts', '.jsx', '.js']
+            extensions: ['.tsx', '.ts', '.jsx', '.mjs', '.cjs', '.js']
         },
         externals: {
             react: {

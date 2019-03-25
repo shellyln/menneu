@@ -21,7 +21,7 @@ module.exports = function (env) {
             // devtoolModuleFilenameTemplate: void 0
         },
         resolve: {
-            extensions: ['.tsx', '.ts', '.jsx', '.js']
+            extensions: ['.tsx', '.ts', '.jsx', '.mjs', '.cjs', '.js']
         },
         module: {
             rules: [{

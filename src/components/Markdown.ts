@@ -10,33 +10,51 @@ import * as rdgt             from 'red-agate/modules';
 import { MarkdownOptions }   from '../lib/types';
 import { raw }               from './raw';
 
-// TODO: If target is set to esmodule,,
-//       and if you import "markdownit()" as "import * as markdownit from 'markdown-it'",
-//       an error will be returned when it is called.
-
 export const highlightJs = hljs;
-// tslint:disable-next-line:no-var-requires
-export const markdownit = require('markdown-it');
-// tslint:disable-next-line:no-var-requires
-export const mdiContaier = require('markdown-it-container');
-// tslint:disable-next-line:no-var-requires
-export const mdiEmoji = require('markdown-it-emoji');
-// tslint:disable-next-line:no-var-requires
-export const mdiSub = require('markdown-it-sub');
-// tslint:disable-next-line:no-var-requires
-export const mdiSup = require('markdown-it-sup');
-// tslint:disable-next-line:no-var-requires
-export const mdiCheckbox = require('markdown-it-checkbox');
-// tslint:disable-next-line:no-var-requires
-export const mdiPlantUml = require('markdown-it-plantuml');
-// tslint:disable-next-line:no-var-requires
-export const mdiMath = require('markdown-it-math');
-// tslint:disable-next-line:no-var-requires
-export const mdiImsize = require('markdown-it-imsize');
-// tslint:disable-next-line:no-var-requires
-export const mdiAnchor = require('markdown-it-anchor');
-// tslint:disable-next-line:no-var-requires
-export const mdiToc = require('markdown-it-table-of-contents');
+
+// tslint:disable-next-line:no-duplicate-imports
+import * as markdownit_ from 'markdown-it';
+export const markdownit = (markdownit_ as any).default || markdownit_;
+
+// @ts-ignore TS7016 Could not find a declaration file
+import * as mdiContaier_ from 'markdown-it-container';
+export const mdiContaier = (mdiContaier_ as any).default || mdiContaier_;
+
+// @ts-ignore TS7016 Could not find a declaration file
+import * as mdiEmoji_ from 'markdown-it-emoji';
+export const mdiEmoji = (mdiEmoji_ as any).default || mdiEmoji_;
+
+// @ts-ignore TS7016 Could not find a declaration file
+import * as mdiSub_ from 'markdown-it-sub';
+export const mdiSub = (mdiSub_ as any).default || mdiSub_;
+
+// @ts-ignore TS7016 Could not find a declaration file
+import * as mdiSup_ from 'markdown-it-sup';
+export const mdiSup = (mdiSup_ as any).default || mdiSup_;
+
+// @ts-ignore TS7016 Could not find a declaration file
+import * as mdiCheckbox_ from 'markdown-it-checkbox';
+export const mdiCheckbox = (mdiCheckbox_ as any).default || mdiCheckbox_;
+
+// @ts-ignore TS7016 Could not find a declaration file
+import * as mdiPlantUml_ from 'markdown-it-plantuml';
+export const mdiPlantUml = (mdiPlantUml_ as any).default || mdiPlantUml_;
+
+// @ts-ignore TS7016 Could not find a declaration file
+import * as mdiMath_ from 'markdown-it-math';
+export const mdiMath = (mdiMath_ as any).default || mdiMath_;
+
+// @ts-ignore TS7016 Could not find a declaration file
+import * as mdiImsize_ from 'markdown-it-imsize';
+export const mdiImsize = (mdiImsize_ as any).default || mdiImsize_;
+
+// @ts-ignore TS7016 Could not find a declaration file
+import * as mdiAnchor_ from 'markdown-it-anchor';
+export const mdiAnchor = (mdiAnchor_ as any).default || mdiAnchor_;
+
+// @ts-ignore TS7016 Could not find a declaration file
+import * as mdiToc_ from 'markdown-it-table-of-contents';
+export const mdiToc = (mdiToc_ as any).default || mdiToc_;
 
 
 
