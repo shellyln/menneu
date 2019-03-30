@@ -121,17 +121,42 @@ $ npm install menneu --save
 
 and import Ménneu in your code:
 ```ts
-import { render } from 'menneu';
+// index.mjs
+import './extension'; // import it if you don't use webpack
+                      // and use node with the
+                      // `--experimental-modules --no-warnings` options
+import { render } from 'menneu/modules';
+import fs from 'fs';
+import util from 'util';
+const writeFileAsync = util.promisify(fs.writeFile);
 
 (async () => {
-    const buf = await render('# Hello!', {}, {
-        inputFormat: 'md',
-        dataFormat: 'object',
-        outputFormat: 'pdf',
-    });
+    try {
+        const buf = await render('# Hello!', {}, {
+            rawInput: true,
+            inputFormat: 'md',
+            dataFormat: 'object',
+            outputFormat: 'pdf',
+        });
+        await writeFileAsync('./hello.pdf', buf);
+    } catch (e) {
+        console.log(e);
+    }
 })();
 ```
-> NOTE: To build it, you should use `webpack` + `raw-loader` (or other packagers and/or plugins) to load CSS as string.
+
+```ts
+// extension.js
+const fs = require('fs');
+
+require.extensions['.css'] = function (module, filename) {
+    module.exports = fs.readFileSync(filename, 'utf8');
+};
+```
+
+> NOTE: To build it, you should use `webpack` + `raw-loader` (or other packagers and/or plugins) to load CSS as string.   
+> You can also import from the `.mjs` file on a node with the `--experimental-modules --no-warnings` options enabled,  
+> and import `menneu/modules/*` paths.
 
 ### Use APIs on the browsers:
 
