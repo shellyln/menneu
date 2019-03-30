@@ -21,7 +21,13 @@ module.exports = function (env) {
             // devtoolModuleFilenameTemplate: void 0
         },
         resolve: {
-            extensions: ['.tsx', '.ts', '.jsx', '.mjs', '.cjs', '.js']
+            // TODO:
+            // ERROR in ./node_modules/red-agate-react-host/modules/react-host.mjs 11:15-50
+            //       Can't import the named export 'renderToStaticMarkup' from non EcmaScript module (only default export is available)
+            // ERROR in ./node_modules/red-agate-util/modules/runtime/require-dynamic.mjs 7:56-74
+            //       Can't import the namespace object from non EcmaScript module (only default export is available)
+            // extensions: ['.tsx', '.ts', '.jsx', '.mjs', '.cjs', '.js']
+            extensions: ['.tsx', '.ts', '.jsx', '.js']
         },
         module: {
             rules: [{
