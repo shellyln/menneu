@@ -4,17 +4,15 @@
 
 
 import { default as isNode } from '../lib/is-node';
-import * as hljs             from 'highlight.js';
-import { MarkdownIt }        from 'markdown-it';
 import * as rdgt             from 'red-agate/modules';
 import { MarkdownOptions }   from '../lib/types';
 import { raw }               from './raw';
 
-export const highlightJs = hljs;
+import * as hljs_  from 'highlight.js';
+export const highlightJs: typeof hljs_ = (hljs_ as any).default || hljs_;
 
-// tslint:disable-next-line:no-duplicate-imports
 import * as markdownit_ from 'markdown-it';
-export const markdownit = (markdownit_ as any).default || markdownit_;
+export const markdownit: typeof markdownit_ = (markdownit_ as any).default || markdownit_;
 
 // @ts-ignore TS7016 Could not find a declaration file
 import * as mdiContaier_ from 'markdown-it-container';
@@ -74,12 +72,12 @@ export abstract class MdRootT extends rdgt.RedAgateComponent<rdgt.ComponentProps
 
 
 export function getMarkdownIt(options: MarkdownOptions) {
-    const md: MarkdownIt = markdownit({
+    const md = markdownit({
         html: true,
         highlight(str: string, lang: string) {
-            if (lang && hljs.getLanguage(lang)) {
+            if (lang && highlightJs.getLanguage(lang)) {
                 try {
-                    return hljs.highlight(lang, str).value;
+                    return highlightJs.highlight(lang, str).value;
                 } catch (e) {}
             }
             // use external default escaping

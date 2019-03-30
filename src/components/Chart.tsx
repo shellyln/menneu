@@ -7,8 +7,10 @@
 import * as rdgt               from 'red-agate/modules';
 import { SvgCanvas,
          SvgCanvas2DGradient } from 'red-agate-svg-canvas/modules';
-import * as ChartJs            from 'chart.js';
-import                              'chartjs-plugin-datalabels';
+
+import * as ChartJs_ from 'chart.js';
+const ChartJs: typeof ChartJs_ = (ChartJs_ as any).default || ChartJs_;
+import 'chartjs-plugin-datalabels';
 
 
 
