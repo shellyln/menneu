@@ -3,7 +3,7 @@
 // https://github.com/shellyln
 
 
-import { default as requireDynamic } from './require-dynamic';
+import { default as requireDynamic } from 'red-agate-util/modules/runtime/require-dynamic';
 
 
 

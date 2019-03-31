@@ -8,7 +8,7 @@ import { S,
          LSX_async }                 from 'liyad/modules/s-exp/s-expression';
 import { SxToken }                   from 'liyad/modules/s-exp/types';
 import * as RedAgate                 from 'red-agate/modules';
-import { default as requireDynamic } from './require-dynamic';
+import { default as requireDynamic } from 'red-agate-util/modules/runtime/require-dynamic';
 import { components }                from '../components';
 import { getMarkdownRoot }           from '../components/Markdown';
 import { RenderOptions }             from './types';

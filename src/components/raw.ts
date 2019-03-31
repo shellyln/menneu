@@ -2,7 +2,7 @@
 // license: ISC
 // https://github.com/shellyln
 
-import * as rdgt    from 'red-agate/modules';
+import * as rdgt from 'red-agate/modules';
 
 
 

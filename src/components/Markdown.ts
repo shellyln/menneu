@@ -3,7 +3,7 @@
 // https://github.com/shellyln
 
 
-import { default as isNode } from '../lib/is-node';
+import { default as isNode } from 'red-agate-util/modules/runtime/is-node';
 import * as rdgt             from 'red-agate/modules';
 import { MarkdownOptions }   from '../lib/types';
 import { raw }               from './raw';
