@@ -158,6 +158,8 @@ require.extensions['.css'] = function (module, filename) {
 > You can also import from the `.mjs` file on a node with the `--experimental-modules --no-warnings` options enabled,  
 > and import `menneu/modules/*` paths.
 
+See [this](https://github.com/shellyln/menneu-api-usage-on-esm) example.
+
 ### Use APIs on the browsers:
 
 Install via NPM, or download UMD from [release](https://github.com/shellyln/menneu/releases) page.
