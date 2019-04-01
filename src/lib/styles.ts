@@ -11,18 +11,23 @@ declare var __webpack_require__: any;
 const isWebpack = typeof __webpack_require__ === 'function';
 
 
+function stripDefault(x: any) {
+    return x.default || x;
+}
+
+
 function req() {
     if (isWebpack) {
-        // bunding them.
+        // bundling them.
         return {
             // tslint:disable-next-line:no-var-requires
-            normalizeCss: require('normalize.css/normalize.css'),
+            normalizeCss: stripDefault(require('normalize.css/normalize.css')),
             // tslint:disable-next-line:no-var-requires
-            markdownCss:  require('github-markdown-css/github-markdown.css'),
+            markdownCss:  stripDefault(require('github-markdown-css/github-markdown.css')),
             // tslint:disable-next-line:no-var-requires
-            highlightCss: require('highlight.js/styles/solarized-dark.css'),
+            highlightCss: stripDefault(require('highlight.js/styles/solarized-dark.css')),
             // tslint:disable-next-line:no-var-requires
-            paperCss:     require('paper-css/paper.css'),
+            paperCss:     stripDefault(require('paper-css/paper.css')),
         };
     } else {
         return {
