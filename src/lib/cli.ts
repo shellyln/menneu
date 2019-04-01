@@ -15,21 +15,23 @@ import * as components               from '../components';
 import * as Styles                   from './styles';
 import * as Markdown                 from '../components/Markdown';
 
-import * as moment_                  from 'moment';
 import * as liyad_                   from 'liyad/modules';
 import * as redAgateUtil_            from 'red-agate-util/modules';
 import * as redAgateSvgCanvas_       from 'red-agate-svg-canvas/modules';
 import * as redAgateMath_            from 'red-agate-math/modules';
 import * as redAgate_                from 'red-agate/modules';
+import * as moment_                  from 'moment';
 import * as react_                   from 'react';
 import * as reactDom_                from 'react-dom';
 
-const moment            = (moment_ as any).default || moment_;
 const Liyad             = liyad_;
 const RedAgateUtil      = redAgateUtil_;
 const RedAgateSvgCanvas = redAgateSvgCanvas_;
 const RedAgateMath      = redAgateMath_;
 const RedAgate          = redAgate_;
+
+// NOTE: hack bad .d.ts definition for ESM.
+const moment            = (moment_ as any).default || moment_;
 const React             = (react_ as any).default || react_;
 const ReactDom          = (reactDom_ as any).default || reactDom_;
 

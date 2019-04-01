@@ -8,8 +8,10 @@ import * as rdgt               from 'red-agate/modules';
 import { SvgCanvas,
          SvgCanvas2DGradient } from 'red-agate-svg-canvas/modules';
 
+// NOTE: hack bad .d.ts definition for ESM.
 import * as ChartJs_ from 'chart.js';
 const ChartJs: typeof ChartJs_ = (ChartJs_ as any).default || ChartJs_;
+
 import 'chartjs-plugin-datalabels';
 
 

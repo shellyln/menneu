@@ -8,51 +8,53 @@ import * as rdgt             from 'red-agate/modules';
 import { MarkdownOptions }   from '../lib/types';
 import { raw }               from './raw';
 
-import * as hljs_  from 'highlight.js';
+// NOTE: hack bad .d.ts definition for ESM.
+import * as hljs_ from 'highlight.js';
 export const highlightJs: typeof hljs_ = (hljs_ as any).default || hljs_;
 
+// NOTE: hack bad .d.ts definition for ESM.
 import * as markdownit_ from 'markdown-it';
 export const markdownit: typeof markdownit_ = (markdownit_ as any).default || markdownit_;
 
 // @ts-ignore TS7016 Could not find a declaration file
-import * as mdiContaier_ from 'markdown-it-container';
-export const mdiContaier = (mdiContaier_ as any).default || mdiContaier_;
+import mdiContaier_ from 'markdown-it-container';
+export const mdiContaier = mdiContaier_;
 
 // @ts-ignore TS7016 Could not find a declaration file
-import * as mdiEmoji_ from 'markdown-it-emoji';
-export const mdiEmoji = (mdiEmoji_ as any).default || mdiEmoji_;
+import mdiEmoji_ from 'markdown-it-emoji';
+export const mdiEmoji = mdiEmoji_;
 
 // @ts-ignore TS7016 Could not find a declaration file
-import * as mdiSub_ from 'markdown-it-sub';
-export const mdiSub = (mdiSub_ as any).default || mdiSub_;
+import mdiSub_ from 'markdown-it-sub';
+export const mdiSub = mdiSub_;
 
 // @ts-ignore TS7016 Could not find a declaration file
-import * as mdiSup_ from 'markdown-it-sup';
-export const mdiSup = (mdiSup_ as any).default || mdiSup_;
+import mdiSup_ from 'markdown-it-sup';
+export const mdiSup = mdiSup_;
 
 // @ts-ignore TS7016 Could not find a declaration file
-import * as mdiCheckbox_ from 'markdown-it-checkbox';
-export const mdiCheckbox = (mdiCheckbox_ as any).default || mdiCheckbox_;
+import mdiCheckbox_ from 'markdown-it-checkbox';
+export const mdiCheckbox = mdiCheckbox_;
 
 // @ts-ignore TS7016 Could not find a declaration file
-import * as mdiPlantUml_ from 'markdown-it-plantuml';
-export const mdiPlantUml = (mdiPlantUml_ as any).default || mdiPlantUml_;
+import mdiPlantUml_ from 'markdown-it-plantuml';
+export const mdiPlantUml = mdiPlantUml_;
 
 // @ts-ignore TS7016 Could not find a declaration file
-import * as mdiMath_ from 'markdown-it-math';
-export const mdiMath = (mdiMath_ as any).default || mdiMath_;
+import mdiMath_ from 'markdown-it-math';
+export const mdiMath = mdiMath_;
 
 // @ts-ignore TS7016 Could not find a declaration file
-import * as mdiImsize_ from 'markdown-it-imsize';
-export const mdiImsize = (mdiImsize_ as any).default || mdiImsize_;
+import mdiImsize_ from 'markdown-it-imsize';
+export const mdiImsize = mdiImsize_;
 
 // @ts-ignore TS7016 Could not find a declaration file
-import * as mdiAnchor_ from 'markdown-it-anchor';
-export const mdiAnchor = (mdiAnchor_ as any).default || mdiAnchor_;
+import mdiAnchor_ from 'markdown-it-anchor';
+export const mdiAnchor = mdiAnchor_;
 
 // @ts-ignore TS7016 Could not find a declaration file
-import * as mdiToc_ from 'markdown-it-table-of-contents';
-export const mdiToc = (mdiToc_ as any).default || mdiToc_;
+import mdiToc_ from 'markdown-it-table-of-contents';
+export const mdiToc = mdiToc_;
 
 
 
