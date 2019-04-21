@@ -174,6 +174,11 @@ https://shellyln.github.io/menneu/playground.html
 Edit markdown locally w/o installing any apps.
 
 
+## GUI Editor
+
+[mdne - Markdown Neo Edit](https://www.npmjs.com/package/mdne)  
+A simple markdown and code editor powered by Ace and Carlo.
+
 ----
 
 
