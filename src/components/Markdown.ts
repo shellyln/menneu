@@ -33,6 +33,14 @@ import mdiSup_ from 'markdown-it-sup';
 export const mdiSup = mdiSup_;
 
 // @ts-ignore TS7016 Could not find a declaration file
+import mdiIns_ from 'markdown-it-ins';
+export const mdiIns = mdiIns_;
+
+// @ts-ignore TS7016 Could not find a declaration file
+import mdiMark_ from 'markdown-it-mark';
+export const mdiMark = mdiMark_;
+
+// @ts-ignore TS7016 Could not find a declaration file
 import mdiCheckbox_ from 'markdown-it-checkbox';
 export const mdiCheckbox = mdiCheckbox_;
 
@@ -55,6 +63,18 @@ export const mdiAnchor = mdiAnchor_;
 // @ts-ignore TS7016 Could not find a declaration file
 import mdiToc_ from 'markdown-it-table-of-contents';
 export const mdiToc = mdiToc_;
+
+// @ts-ignore TS7016 Could not find a declaration file
+import mdiFootNote_ from 'markdown-it-footnote';
+export const mdiFootNote = mdiFootNote_;
+
+// @ts-ignore TS7016 Could not find a declaration file
+import mdiDefList_ from 'markdown-it-deflist';
+export const mdiDefList = mdiDefList_;
+
+// @ts-ignore TS7016 Could not find a declaration file
+import mdiAbbr_ from 'markdown-it-abbr';
+export const mdiAbbr = mdiAbbr_;
 
 
 
@@ -92,6 +112,8 @@ export function getMarkdownIt(options: MarkdownOptions) {
         .use(mdiEmoji)
         .use(mdiSub)
         .use(mdiSup)
+        .use(mdiIns)
+        .use(mdiMark)
         .use(mdiCheckbox)
         .use(mdiPlantUml, {
             // TODO: To prevent following error in nodejs, use http if running on nodejs.
@@ -104,7 +126,10 @@ export function getMarkdownIt(options: MarkdownOptions) {
         .use(mdiAnchor)
         .use(mdiToc, {
             includeLevel: options.tocIncludeLevel || [1, 2],
-        });
+        })
+        .use(mdiFootNote)
+        .use(mdiDefList)
+        .use(mdiAbbr);
     }
 
     if (options.markdownCustomContainers) {
