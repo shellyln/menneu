@@ -409,6 +409,11 @@ Following markdown-it plugins are available by default:
 * [markdown-it-table-of-contents](https://github.com/Oktavilla/markdown-it-table-of-contents)
 * [markdown-it-sub](https://github.com/markdown-it/markdown-it-sub)
 * [markdown-it-sup](https://github.com/markdown-it/markdown-it-sup)
+* [markdown-it-ins](https://github.com/markdown-it/markdown-it-ins)
+* [markdown-it-mark](https://github.com/markdown-it/markdown-it-mark)
+* [markdown-it-footnote](https://github.com/markdown-it/markdown-it-footnote)
+* [markdown-it-deflist](https://github.com/markdown-it/markdown-it-deflist)
+* [markdown-it-abbr](https://github.com/markdown-it/markdown-it-abbr)
 
 You can append other plugins by configureing the `menneu.config.js` .
 
