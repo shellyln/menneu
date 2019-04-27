@@ -2,7 +2,7 @@
   "name": "menneu",
   "private": false,
   "version": "0.0.59",
-  "description": "Component-based extensible document processor",
+  "description": "Ménneu - Component-based extensible document processor",
   "keywords": [
     "markdown",
     "md",
@@ -13,10 +13,13 @@
     "chart",
     "UML",
     "lisp",
-    "lsx",
+    "Liyad",
+    "LSX",
     "Ménneu",
     "react",
-    "redagate"
+    "redagate",
+    "markdown-it",
+    "puppeteer"
   ],
   "main": "./bin/index.js",
   "module": "./modules/index.js",

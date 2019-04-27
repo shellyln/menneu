@@ -819,4 +819,4 @@ export interface CliConfig extends FormatOptions {
 
 ## License
 [ISC](https://github.com/shellyln/menneu/blob/master/LICENSE.md)  
-Copyright (c) 2018, Shellyl_N and Authors.
+Copyright (c) 2018, 2019 Shellyl_N and Authors.
