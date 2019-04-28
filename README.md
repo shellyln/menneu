@@ -119,9 +119,11 @@ $ npm install menneu --save
 and import Ménneu in your code:
 ```ts
 // index.mjs
-import './extension'; // import it if you don't use webpack
-                      // and use node with the
-                      // `--experimental-modules --no-warnings` options
+import './extension'; // * Import it if you don't use webpack
+                      //   and use node with the
+                      //   `--experimental-modules --no-warnings` options.
+                      // * If `node>=12`, `--es-module-specifier-resolution=node`
+                      //   option is additionally required.
 import { render } from 'menneu/modules';
 import fs from 'fs';
 import util from 'util';
@@ -155,7 +157,7 @@ require.extensions['.css'] = function (module, filename) {
 >
 > You can also import from the `.mjs` file on a node with the `--experimental-modules --no-warnings` options enabled,  
 > and import `menneu/modules/*` paths.
->> If you run on `node>=12`, `--es-module-specifier-resolution=node` option is additionally required.
+>> If you run it on `node>=12`, `--es-module-specifier-resolution=node` option is additionally required.
 
 See these [(1)](https://github.com/shellyln/menneu-api-usage-on-esm) [(2)](https://github.com/shellyln/mdne) examples.
 
