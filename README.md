@@ -152,10 +152,12 @@ require.extensions['.css'] = function (module, filename) {
 ```
 
 > NOTE: To build it, you should use `webpack` + `raw-loader` (or other packagers and/or plugins) to load CSS as string.   
+>
 > You can also import from the `.mjs` file on a node with the `--experimental-modules --no-warnings` options enabled,  
 > and import `menneu/modules/*` paths.
+>> If you run on `node>=12`, `--es-module-specifier-resolution=node` option is additionally required.
 
-See [this](https://github.com/shellyln/menneu-api-usage-on-esm) example.
+See these [(1)](https://github.com/shellyln/menneu-api-usage-on-esm) [(2)](https://github.com/shellyln/mdne) examples.
 
 ### Use APIs on the browsers:
 
