@@ -119,7 +119,9 @@ export function getMarkdownIt(options: MarkdownOptions) {
             // TODO: To prevent following error in nodejs, use http if running on nodejs.
             //       "Error: unable to verify the first certificate in nodejs"
             //       You can also set env NODE_TLS_REJECT_UNAUTHORIZED=0 to prevent it.
-            server: `http${isNode ? '' : 's'}://www.plantuml.com/plantuml`
+            server: options.plantUmlServerUrl ?
+                options.plantUmlServerUrl :
+                `http${isNode ? '' : 's'}://www.plantuml.com/plantuml`,
         })
         .use(mdiMath)
         .use(mdiImsize)

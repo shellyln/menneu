@@ -21,6 +21,7 @@ export interface MarkdownOptions {
         marker?: string,
     }>;
 
+    plantUmlServerUrl?: string;
     tocIncludeLevel?: number[];
 }
 

@@ -13,6 +13,9 @@ module.exports = {
     // bodyStyle: '',
     // markdownBodyStyle: '',
 
+    // plantUmlServerUrl: 'https://shellyln.github.io',
+    // tocIncludeLevel: [1, 2, 3],
+
     // rawInput: true,
 
     // inputFormat: 'md',    // md | html | lsx

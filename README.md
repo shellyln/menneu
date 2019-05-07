@@ -339,6 +339,11 @@ module.exports = {
             }
         },
     }],
+
+    // plantUmlServerUrl:           // markdown-it-plantuml server URL
+    //     'https://www.example.com/plantuml',
+    // tocIncludeLevel:             // markdown-it-table-of-contents TOC levels
+    //     [1, 2, 3],
 };
 ```
 

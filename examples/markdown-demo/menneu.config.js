@@ -14,6 +14,7 @@ module.exports = (env) => {
         // bodyStyle: '',
         markdownBodyStyle: 'font-family: "Yu Gothic Medium", YuGothic, meiryo, "Microsoft JhengHei", "Microsoft YaHei", "SimHei", helvetica, arial, sans-serif;',
 
+        // plantUmlServerUrl: 'https://shellyln.github.io',
         // tocIncludeLevel: [1, 2, 3],
 
         // rawInput: true,
