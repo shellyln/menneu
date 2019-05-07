@@ -1,1 +1,3 @@
-"%AppData%\npm\menneu.cmd" "%1" -o "%1.html"
+set param1=%1
+set param1=%param1:"=%
+"%AppData%\npm\menneu.cmd" "%param1%" -o "%param1%.html"
