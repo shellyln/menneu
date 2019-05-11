@@ -1,7 +1,7 @@
 {
   "name": "menneu",
   "private": false,
-  "version": "0.0.62",
+  "version": "0.0.63",
   "description": "Ménneu - Component-based extensible document processor",
   "keywords": [
     "markdown",
@@ -37,7 +37,7 @@
     "chartjs-plugin-datalabels": "^0.6.0",
     "github-markdown-css": "^3.0.1",
     "highlight.js": "^9.15.6",
-    "liyad": "^0.0.51",
+    "liyad": "^0.0.52",
     "markdown-it": "^8.4.2",
     "markdown-it-abbr": "^1.0.4",
     "markdown-it-anchor": "^5.0.2",
@@ -60,12 +60,12 @@
     "puppeteer": "^1.15.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "red-agate": "^0.2.18",
-    "red-agate-barcode": "^0.2.18",
-    "red-agate-math": "^0.2.18",
-    "red-agate-react-host": "^0.2.18",
-    "red-agate-svg-canvas": "^0.2.18",
-    "red-agate-util": "^0.2.18"
+    "red-agate": "^0.2.19",
+    "red-agate-barcode": "^0.2.19",
+    "red-agate-math": "^0.2.19",
+    "red-agate-react-host": "^0.2.19",
+    "red-agate-svg-canvas": "^0.2.19",
+    "red-agate-util": "^0.2.19"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -75,8 +75,8 @@
     "@types/highlight.js": "^9.12.3",
     "@types/jasmine": "^3.3.12",
     "@types/markdown-it": "0.0.6",
-    "@types/node": "^11.13.8",
-    "@types/react": "^16.8.14",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
     "babel-loader": "^8.0.5",
     "cpx": "^1.5.0",
@@ -90,11 +90,11 @@
     "rimraf": "^2.6.3",
     "shx": "^0.3.2",
     "source-map-loader": "^0.2.4",
-    "ts-loader": "^5.4.4",
+    "ts-loader": "^6.0.0",
     "tslint": "^5.16.0",
     "typescript": "^3.4.5",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.1"
+    "webpack": "^4.31.0",
+    "webpack-cli": "^3.3.2"
   },
   "scripts": {
     "clean": "run-s clean:cjs clean:esm clean:cli clean:spec clean:dist clean:debug",
