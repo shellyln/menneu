@@ -57,6 +57,38 @@ export async function render(source: string, data: any, options: RenderOptions) 
     }
 
     let src = source;
+    if (options.replacementMacros) {
+        for (const macro of options.replacementMacros) {
+            if (macro.fn === 'lsx') {
+                const matches: Array<Promise<SxToken>> = [];
+                src.replace(macro.re, (matchedSubstr, p0) => {
+                    matches.push(lsx(p0));
+                    return matchedSubstr;
+                });
+                const trees = await Promise.all(matches);
+                const replacements = await Promise.all(trees.map(t => RedAgate.renderAsHtml(t)));
+                let count = 0;
+                src = src.replace(macro.re, (matchedSubstr, p0) => {
+                    return replacements[count++];
+                });
+            } else {
+                if (macro.async) {
+                    const matches: Array<Promise<string>> = [];
+                    src.replace(macro.re, (...args) => {
+                        matches.push((macro.fn as any)(...args));
+                        return args[0];
+                    });
+                    const replacements = await Promise.all(matches);
+                    let count = 0;
+                    src = src.replace(macro.re, (matchedSubstr, p0) => {
+                        return replacements[count++];
+                    });
+                } else {
+                    src = src.replace(macro.re, macro.fn);
+                }
+            }
+        }
+    }
     if (options.rawInput) {
         src = src
             .replace(/\\/g, '\\\\')

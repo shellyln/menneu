@@ -340,6 +340,20 @@ module.exports = {
         },
     }],
 
+    // replacementMacros: [{
+    //     re: /\!\!\!([\s\S]+?)\!\!\!/g,
+    //     fn: 'lsx', // evaluate input as LSX script
+    // }, {
+    //     re: /\$\$\$\{(.)([\s\S]+?)\}\$\$\$/g,
+    //     fn: async (m, p0, p1) =>
+    //         `<span style="background-color: green;"><strong>${p0}</strong>${p1}</span>`,
+    //     async: true,
+    // }, {
+    //     re: /\$\{(.)([\s\S]+?)\}/g,
+    //     fn: (m, p0, p1) =>
+    //         `<span style="background-color: pink;"><strong>${p0}</strong>${p1}</span>`,
+    // }],
+
     // plantUmlServerUrl:           // markdown-it-plantuml server URL
     //     'https://www.example.com/plantuml',
     // tocIncludeLevel:             // markdown-it-table-of-contents TOC levels

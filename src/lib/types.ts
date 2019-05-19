@@ -23,6 +23,12 @@ export interface MarkdownOptions {
 
     plantUmlServerUrl?: string;
     tocIncludeLevel?: number[];
+
+    replacementMacros?: Array<{
+        re: RegExp,
+        fn: 'lsx' | ((matchedSubstr: string, ...pN: string[]) => string),
+        async?: boolean,
+    }>;
 }
 
 

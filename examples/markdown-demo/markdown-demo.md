@@ -542,6 +542,19 @@ Alice -> UC3 : Bonjour
 ))))
 
 
+
+# Macros
+
+Macro: ${Hello, macro!} 
+Async macro: $$${Hello, async macro!}$$$
+
+LSX macro: !!! (+ 1 2 3 4 5) !!!
+!!! (Qr (@ (data "1234567")
+           (cellSize 0.8) ))
+!!!
+!!! (* 1 2 3 4 5) !!!
+
+
 # Superscript / Subscript
 
 * H~2~0

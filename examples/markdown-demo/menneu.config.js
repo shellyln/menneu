@@ -76,5 +76,17 @@ module.exports = (env) => {
                 }
             },
         }],
+
+        replacementMacros: [{
+            re: /\!\!\!([\s\S]+?)\!\!\!/g,
+            fn: 'lsx',
+        }, {
+            re: /\$\$\$\{(.)([\s\S]+?)\}\$\$\$/g,
+            fn: async (m, p0, p1) => `<span style="background-color: green;"><strong>${p0}</strong>${p1}</span>`,
+            async: true,
+        }, {
+            re: /\$\{(.)([\s\S]+?)\}/g,
+            fn: (m, p0, p1) => `<span style="background-color: pink;"><strong>${p0}</strong>${p1}</span>`,
+        }],
     };
 };
