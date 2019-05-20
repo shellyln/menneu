@@ -553,6 +553,7 @@ LSX macro: !!! (+ 1 2 3 4 5) !!!
            (cellSize 0.8) ))
 !!!
 !!! (* 1 2 3 4 5) !!!
+!!! (+ ...$data) !!!
 
 
 # Superscript / Subscript

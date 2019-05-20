@@ -56,6 +56,22 @@ export async function render(source: string, data: any, options: RenderOptions) 
         lsx.appendGlobals(options.globals);
     }
 
+    if (data !== null && data !== void 0 && data !== '') {
+        let d = null;
+        switch (options.dataFormat) {
+        case 'json':
+            d = JSON.parse(data);
+            break;
+        case 'lisp':
+            d = await LM_async(data);
+            break;
+        default:
+            d = data;
+            break;
+        }
+        lsx.appendGlobals({$data: d});
+    }
+
     let src = source;
     if (options.replacementMacros) {
         for (const macro of options.replacementMacros) {
@@ -111,22 +127,6 @@ export async function render(source: string, data: any, options: RenderOptions) 
         break;
     case 'lsx': default:
         break;
-    }
-
-    if (data !== null && data !== void 0 && data !== '') {
-        let d = null;
-        switch (options.dataFormat) {
-        case 'json':
-            d = JSON.parse(data);
-            break;
-        case 'lisp':
-            d = await LM_async(data);
-            break;
-        default:
-            d = data;
-            break;
-        }
-        lsx.appendGlobals({$data: d});
     }
 
     const html = await RedAgate.renderAsHtml(await lsx(src));
