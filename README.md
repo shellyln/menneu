@@ -119,8 +119,8 @@ $ npm install menneu --save
 and import Ménneu in your code:
 ```ts
 // index.mjs
-import './extension'; // * Import it if you don't use webpack
-                      //   and use node with the
+import './extension'; // * To import without using webpack,
+                      //   use node with the
                       //   `--experimental-modules --no-warnings` options.
                       // * If `node>=12`, `--es-module-specifier-resolution=node`
                       //   option is additionally required.
