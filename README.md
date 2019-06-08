@@ -1,7 +1,7 @@
 # Ménneu
 ## Component-based extensible document processor
 
-✒️Render the { markdown | lsx | html } document templates into a ✨beautiful✨ { pdf | html | image }📄 formats.
+✒️Render the { markdown | lsx | html } document templates into a ✨beautiful✨ { pdf | html | image }📑📊📈📰📄 formats.
 
 [![Ménneu](https://shellyln.github.io/assets/image/ménneu-logo.svg)](https://github.com/shellyln/menneu/)
 
@@ -79,6 +79,18 @@ Furthermore, you can insert the data from the file into the document with the co
     </tr>
   </tbody>
 </table>
+
+## Real world examples
+
+* [mdne - Markdown Neo Edit](https://www.npmjs.com/package/mdne)   
+  A simple markdown and code editor powered by Markdown-it, Ace and Carlo.
+
+* [Ménneu Reporting App for kintone](https://github.com/shellyln/menneu-reporting-app-for-kintone)  
+  Create ✨beautiful✨ 📑📊reports📈📰 easily with Ménneu + kintone.  
+  You can easily build the complex documents written in Markdown,
+  HTML and LSX that including 🖼images, 📊charts, 🔷UML diagrams,
+  barcodes and 2d codes (QR Code).
+    * [Kanban board for kintone](https://github.com/shellyln/kanban-board-for-kintone)
 
 ----
 
