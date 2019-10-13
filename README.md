@@ -177,6 +177,25 @@ See these [(1)](https://github.com/shellyln/menneu-api-usage-on-esm) [(2)](https
 
 Install via NPM, or download UMD from [release](https://github.com/shellyln/menneu/releases) page.
 
+
+> NOTE: If you wish to use UMD single file on Node.js w/o installing react, Please write as below.
+> * menneu-umd-bootstrap.js
+>    ```js
+>    // Usage: echo "# Hello" | node ./menneu-umd-bootstrap.js - -of html
+>
+>    const Module = require('module');
+>    const loader = Module._load;
+>    Module._load = (request, parent) => {
+>        if (request === 'react' || request === 'react-dom' || request === 'react-dom/server') {
+>            return ({});
+>        }
+>        return loader(request, parent);
+>    };
+>
+>    const menneu = require('./menneu.min.js');
+>    menneu.run();
+>    ```
+
 ----
 
 ## Playground
