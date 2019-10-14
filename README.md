@@ -177,8 +177,29 @@ See these [(1)](https://github.com/shellyln/menneu-api-usage-on-esm) [(2)](https
 
 Install via NPM, or download UMD from [release](https://github.com/shellyln/menneu/releases) page.
 
+> #### If you wish to use UMD single file on browser, Please write as below:
+> * index.html
+>     ```html
+>     <!DOCTYPE html>
+>     <head><meta charset="UTF-8">
+>     <script src="./menneu.min.js"></script><script>
+>     (async() => {
+>         try {
+>             const buf = await menneu.render('# Hello!', {}, {
+>                 rawInput: true,
+>                 inputFormat: 'md',
+>                 dataFormat: 'object',
+>                 outputFormat: 'html',
+>             });
+>             console.log((new TextDecoder).decode(buf));
+>         } catch (e) {
+>             console.log(e);
+>         }
+>     })();
+>     </script></head>
+>     ```
 
-> NOTE: If you wish to use UMD single file on Node.js w/o installing react, Please write as below.
+> #### If you wish to use UMD single file on Node.js w/o installing react, Please write as below:
 > * menneu-umd-bootstrap.js
 >    ```js
 >    // Usage: echo "# Hello" | node ./menneu-umd-bootstrap.js - -of html
