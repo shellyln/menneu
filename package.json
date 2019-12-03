@@ -117,7 +117,7 @@
     "build:dist:dev": "webpack-cli --mode=development --config webpack.config.dist.js",
     "lint": "tslint ./src/**/*.ts -t verbose",
     "test": "jasmine",
-    "prepublishOnly": "run-s clean build test",
+    "prepublishOnly": "run-s clean build test lint",
     "ncu": "ncu -u -x @types/markdown-it"
   },
   "repository": {
