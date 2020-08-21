@@ -137,7 +137,7 @@ export function getMarkdownIt(options: MarkdownOptions) {
     if (options.markdownCustomContainers) {
         for (const c of options.markdownCustomContainers) {
             const o = Object.assign({}, c);
-            delete o.name;
+            delete (o as any).name;  // NOTE: (TS>=4.0) TS2790: The operand of a 'delete' operator must be optional.
             md.use(mdiContaier, c.name, o);
         }
     }
