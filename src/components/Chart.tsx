@@ -7,6 +7,7 @@
 import * as rdgt               from 'red-agate/modules';
 import { SvgCanvas,
          SvgCanvas2DGradient } from 'red-agate-svg-canvas/modules';
+import { globalObj }           from 'liyad/modules/s-exp/global-this';
 
 // NOTE: hack bad .d.ts definition for ESM.
 import * as ChartJs_ from 'chart.js';
@@ -16,8 +17,7 @@ import 'chartjs-plugin-datalabels';
 
 
 
-// tslint:disable-next-line:function-constructor
-const g = Function('return this')();
+const g = globalObj;
 
 
 export interface ChartProps extends rdgt.ShapeBaseProps, rdgt.ImagingShapeBasePropsMixin {
