@@ -121,6 +121,8 @@ module.exports = function (env) {
         externals: [
             'fs',   // Used in `markdown-it-imsize`
             'path', // Used in `markdown-it-imsize`
+            'react',
+            'react-dom',
         ],
         plugins: [
             new webpack.ProvidePlugin({
