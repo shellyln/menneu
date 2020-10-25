@@ -122,7 +122,11 @@ module.exports = function (env) {
             'fs',   // Used in `markdown-it-imsize`
             'path', // Used in `markdown-it-imsize`
         ],
-        plugins: [],
+        plugins: [
+            new webpack.ProvidePlugin({
+                Buffer: ['buffer', 'Buffer'],
+            }),
+        ],
         devtool: 'source-map'
     },
 
