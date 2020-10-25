@@ -123,6 +123,7 @@ module.exports = function (env) {
             'path', // Used in `markdown-it-imsize`
             'react',
             'react-dom',
+            'react-dom/server',
         ],
         plugins: [
             new webpack.ProvidePlugin({
