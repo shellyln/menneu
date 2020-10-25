@@ -173,6 +173,34 @@ require.extensions['.css'] = function (module, filename) {
 
 See these [(1)](https://github.com/shellyln/menneu-api-usage-on-esm) [(2)](https://github.com/shellyln/mdne) examples.
 
+
+> NOTICE:  
+> Use with `webpack >= 5`
+>
+> If you get the error:
+>
+> ```
+> Module not found: Error: Can't resolve '(importing/path/to/filename)'
+> in '(path/to/node_modules/path/to/dirname)'
+> Did you mean '(filename).js'?`
+> ```
+>
+> Add following setting to your `webpack.config.js`.
+>
+> ```js
+> {
+>     test: /\.m?js/,
+>     resolve: {
+>         fullySpecified: false,
+>     },
+> },
+> ```
+>
+> On `webpack >= 5`, the extension in the request is mandatory for it to be fully specified
+> if the origin is a '*.mjs' file or a '*.js' file where the package.json contains '"type": "module"'.
+
+
+
 ### Use APIs on the browsers:
 
 Install via NPM, or download UMD from [release](https://github.com/shellyln/menneu/releases) page.
