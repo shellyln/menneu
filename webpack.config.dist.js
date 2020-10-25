@@ -27,14 +27,14 @@ module.exports = function (env) {
             ]
         },
         node: {
-            fs: "empty",
-            console: false,
-            process: false,
-            global: true,
+            // fs: "empty",
+            // console: false,
+            // process: false,
+            global: false,
             __filename: false,
             __dirname: false,
-            Buffer: true,
-            setImmediate: false,
+            // Buffer: true,
+            // setImmediate: false,
         },
         output: {
             library: 'menneu',
@@ -98,6 +98,11 @@ module.exports = function (env) {
                 ],
                 exclude: /node_modules[\/\\](?!(menneu|liyad|red-agate.*)).*$/
             }, {
+                test: /\.m?js/,
+                resolve: {
+                    fullySpecified: false,
+                },
+            }, {
                 enforce: 'pre',
                 test: /\.[tj]sx?$/,
                 use: {
@@ -113,6 +118,10 @@ module.exports = function (env) {
                 ]
             }]
         },
+        externals: [
+            'fs',   // Used in `markdown-it-imsize`
+            'path', // Used in `markdown-it-imsize`
+        ],
         plugins: [],
         devtool: 'source-map'
     },
