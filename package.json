@@ -27,7 +27,7 @@
   "types": "./bin/index.d.ts",
   "typings": "./bin/index.d.ts",
   "engines": {
-    "node": ">=8.0"
+    "node": ">=10.0"
   },
   "bin": {
     "menneu": "bin.cli/menneu.js"
