@@ -23,7 +23,7 @@ export function readFromStdin() {
 
 
 export function writeToStdout(data: Buffer | string) {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
         const done = process.stdout.write(data);
         if (done) {
             resolve();
