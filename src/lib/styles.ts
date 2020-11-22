@@ -3,45 +3,20 @@
 // https://github.com/shellyln
 
 
-import { default as requireDynamic } from 'red-agate-util/modules/runtime/require-dynamic';
-
-
-
-declare var __webpack_require__: any;
-const isWebpack = typeof __webpack_require__ === 'function';
-
+// @ts-ignore
+import normalizeCss_ from 'normalize.css/normalize.css';
+// @ts-ignore
+import markdownCss_  from 'github-markdown-css/github-markdown.css';
+// @ts-ignore
+import highlightCss_ from 'highlight.js/styles/solarized-dark.css';
+// @ts-ignore
+import paperCss_     from 'paper-css/paper.css';
 
 function stripDefault(x: any) {
     return x.default || x;
 }
 
-
-function req() {
-    if (isWebpack) {
-        // bundling them.
-        return {
-            // tslint:disable-next-line:no-var-requires
-            normalizeCss: stripDefault(require('normalize.css/normalize.css')),
-            // tslint:disable-next-line:no-var-requires
-            markdownCss:  stripDefault(require('github-markdown-css/github-markdown.css')),
-            // tslint:disable-next-line:no-var-requires
-            highlightCss: stripDefault(require('highlight.js/styles/solarized-dark.css')),
-            // tslint:disable-next-line:no-var-requires
-            paperCss:     stripDefault(require('paper-css/paper.css')),
-        };
-    } else {
-        return {
-            normalizeCss: requireDynamic('normalize.css/normalize.css'),
-            markdownCss:  requireDynamic('github-markdown-css/github-markdown.css'),
-            highlightCss: requireDynamic('highlight.js/styles/solarized-dark.css'),
-            paperCss:     requireDynamic('paper-css/paper.css'),
-        };
-    }
-}
-
-export const {
-    normalizeCss,
-    markdownCss,
-    highlightCss,
-    paperCss,
-} = req();
+export const normalizeCss = stripDefault(normalizeCss_);
+export const markdownCss  = stripDefault(markdownCss_);
+export const highlightCss = stripDefault(highlightCss_);
+export const paperCss     = stripDefault(paperCss_);
