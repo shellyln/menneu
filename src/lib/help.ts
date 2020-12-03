@@ -70,6 +70,8 @@ OPTIONS:
       Set TempDir to the system temporary directory.
   -tm, --tmp-mem
       No temporary directory is used. Pass a data URL to the Puppeteer.
+  --dark-theme
+      Use dark theme to render markdown.
   --watch
       Watch changes of the parent directory of InputFilePath forever.
       If changes are detected, update the output.

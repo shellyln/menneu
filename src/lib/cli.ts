@@ -131,6 +131,8 @@ export function makeCliConfig(argv: string[], helpFn: () => void) {
             }
         } else if (arg === '--raw') {
             config.rawInput = true;
+        } else if (arg === '--dark-theme') {
+            config.darkTheme = true;
         } else if (arg === '-df' || arg === '--data-format') {
             df = true;
             // next is data format (lisp|json)
@@ -282,6 +284,7 @@ export function getAppEnv(): any {
         styles: {
             normalizeCss:       Styles.normalizeCss,
             markdownCss:        Styles.markdownCss,
+            markdownDarkCss:    Styles.markdownDarkCss,
             highlightCss:       Styles.highlightCss,
             paperCss:           Styles.paperCss,
         },

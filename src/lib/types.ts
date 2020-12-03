@@ -37,6 +37,7 @@ export interface FormatOptions {
     inputFormat: 'markdown' | 'md' | 'markdown-fragment' | 'md-fragment' | 'html' | 'htm' | 'lsx' | 'lisp';
     dataFormat: 'lisp' | 'json' | 'object';
     outputFormat: 'html' | 'pdf' | 'png' | 'jpeg';
+    darkTheme?: boolean;
 }
 
 

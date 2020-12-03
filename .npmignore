@@ -60,6 +60,8 @@ build/Release
 # NPM files
 .npmrc
 
+# Minified CSS
+# /src/assets/*.min.css
 
 
 ###################
