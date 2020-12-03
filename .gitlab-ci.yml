@@ -48,6 +48,7 @@ publish:artifacts:
 #    - triggers
   script:
     - npm run clean
+    - npm run build:css
     - npm run build:dist:dev
     - npm run build:dist:prod
   artifacts:
