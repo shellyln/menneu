@@ -15,6 +15,7 @@ import { Chart }        from './Chart';
 import { RawHtml }      from './RawHtml';
 import { NormalizeCss,
          MarkdownCss,
+         MarkdownDarkCss,
          HighlightCss,
          PaperCss }     from './styles';
 
@@ -80,6 +81,7 @@ export const components = {
     RawHtml,
     NormalizeCss,
     MarkdownCss,
+    MarkdownDarkCss,
     HighlightCss,
     PaperCss,
 };

@@ -12,7 +12,7 @@ export const markdownHeader = (options: RenderOptions) =>
     ${(options.title !== void 0 && options.title !== '') ? `(title "${options.title.replace(/"/g, '\\"')}")` : ''}
     (meta (@ (charset "UTF-8")))
     (NormalizeCss)
-    (MarkdownCss)
+    (${options.darkTheme ? 'MarkdownDarkCss' : 'MarkdownCss'})
     (HighlightCss)
     (style (@ (dangerouslySetInnerHTML "
         @page {

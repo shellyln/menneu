@@ -324,6 +324,8 @@ menneu - [OPTIONS]
     * Set *TempDir* to the system temporary directory.
 * `-tm`, `--tmp-mem`
     * No temporary directory is used. Pass a data URL to the Puppeteer.
+* `--dark-theme`
+    * Use dark theme to render markdown.
 * `--watch`
     * Watch changes of the parent directory of `InputFilePath` forever.
     * If changes are detected, update the output.
@@ -358,6 +360,8 @@ module.exports = {
     // inputFormat: 'md',           // Input document template file format. (md | html | lsx)
     // dataFormat: 'json',          // The file format of the data applied to the document template. (json | lisp)
     // outputFormat: 'pdf',         // Output file format. (pdf | html | png | jpeg)
+
+    // darkTheme: true,             // Use dark theme to render markdown.
 
     // launchOptions:               // Puppeteer's option. See "puppeteer.launch(options)".
     //     { headless: false },     //   https://github.com/GoogleChrome/puppeteer/blob/v1.8.0/docs/api.md#puppeteerlaunchoptions
@@ -449,6 +453,7 @@ module.exports = (env) => {
     //     styles: {
     //         normalizeCss:       string,
     //         markdownCss:        string,
+    //         markdownDarkCss:    string,
     //         highlightCss:       string,
     //         paperCss:           string,
     //     },
@@ -923,3 +928,6 @@ export interface CliConfig extends FormatOptions {
 ## License
 [ISC](https://github.com/shellyln/menneu/blob/master/LICENSE.md)  
 Copyright (c) 2018, 2019 Shellyl_N and Authors.
+
+## Bundled softwares' license
+* [github-markdown-css](https://github.com/sindresorhus/github-markdown-css): [license](https://github.com/sindresorhus/github-markdown-css/blob/gh-pages/license) (MIT)

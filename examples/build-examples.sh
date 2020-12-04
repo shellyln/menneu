@@ -55,6 +55,12 @@ CASE_NO=0011
 echo $CASE_NO
 node ./bin.cli/menneu.js - -df lisp -i ${IN_BASENAME}.md -o ${OUT_BASENAME}${CASE_NO}.pdf < ${IN_BASENAME}.data.lisp
 
+CASE_NO=0012
+echo $CASE_NO
+node ./bin.cli/menneu.js ${IN_BASENAME}.md --dark-theme -d ${IN_BASENAME}.data.lisp -o ${OUT_BASENAME}${CASE_NO}.html
+node ./bin.cli/menneu.js ${IN_BASENAME}.md --dark-theme -d ${IN_BASENAME}.data.lisp -o ${OUT_BASENAME}${CASE_NO}.pdf
+node ./bin.cli/menneu.js ${IN_BASENAME}.md --dark-theme -d ${IN_BASENAME}.data.lisp -o ${OUT_BASENAME}${CASE_NO}.png
+
 
 MN_BASEDIR=./examples/html-demo
 IN_BASENAME=$MN_BASEDIR/html-demo
