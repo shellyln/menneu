@@ -13,8 +13,8 @@ import * as hljs_ from 'highlight.js';
 export const highlightJs: typeof hljs_ = (hljs_ as any).default || hljs_;
 
 // NOTE: hack bad .d.ts definition for ESM.
-import * as markdownit_ from 'markdown-it';
-export const markdownit: typeof markdownit_ = (markdownit_ as any).default || markdownit_;
+import * as MarkdownIt from 'markdown-it';
+export const markdownit: typeof MarkdownIt = (MarkdownIt as any).default || MarkdownIt;
 
 // @ts-ignore TS7016 Could not find a declaration file
 import mdiContaier_ from 'markdown-it-container';
@@ -185,7 +185,7 @@ export function getMarkdownRoot(options: MarkdownOptions): typeof MdRootT {
 
 
 export interface MarkdownProps extends rdgt.ComponentProps {
-    md?: markdownit.MarkdownIt;
+    md?: MarkdownIt;
     inline?: boolean;
 }
 
@@ -200,7 +200,7 @@ export class Markdown extends rdgt.RedAgateComponent<MarkdownProps> {
     }
 
     public render(contexts: Map<string, any>, children: string) {
-        const md: markdownit.MarkdownIt =
+        const md: MarkdownIt =
             this.getContext(contexts, CONTEXT_MARKDOWN_ROOT) ||
             getMarkdownIt({});
 

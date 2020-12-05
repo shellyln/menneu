@@ -927,7 +927,9 @@ export interface CliConfig extends FormatOptions {
 
 ## License
 [ISC](https://github.com/shellyln/menneu/blob/master/LICENSE.md)  
-Copyright (c) 2018, 2019 Shellyl_N and Authors.
+Copyright (c) 2018 - 2020 Shellyl_N and Authors.
 
 ## Bundled softwares' license
 * [github-markdown-css](https://github.com/sindresorhus/github-markdown-css): [license](https://github.com/sindresorhus/github-markdown-css/blob/gh-pages/license) (MIT)
+* [highlight.js](https://github.com/highlightjs/highlight.js): [license](https://github.com/highlightjs/highlight.js/blob/master/LICENSE) (BSD 3-Clause)
+* [normalize.css](https://github.com/necolas/normalize.css/): [license](https://github.com/necolas/normalize.css/blob/master/LICENSE.md) (MIT)
