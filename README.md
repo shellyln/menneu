@@ -81,16 +81,30 @@ Furthermore, you can insert the data from the file into the document with the co
 </table>
 
 ## Real world examples
-
-* [mdne - Markdown Neo Edit](https://www.npmjs.com/package/mdne)   
-  A simple markdown and code editor powered by Markdown-it, Ace and Carlo.
-
-* [Ménneu Reporting App for kintone](https://github.com/shellyln/menneu-reporting-app-for-kintone)  
-  Create ✨beautiful✨ 📑📊reports📈📰 easily with Ménneu + kintone.  
-  You can easily build the complex documents written in Markdown,
-  HTML and LSX that including 🖼images, 📊charts, 🔷UML diagrams,
-  barcodes and 2d codes (QR Code).
-    * [Kanban board for kintone](https://github.com/shellyln/kanban-board-for-kintone)
+* [MDNE - Markdown Neo Edit](https://github.com/shellyln/mdne-electron) 
+    * A simple markdown and code editor powered by Markdown-it and Ace.
+        * [mdne-electron](https://github.com/shellyln/mdne-electron)
+            * Standalone offline desktop app for Windows/Mac/Linux.
+                * [Electron](https://electronjs.org/) app
+        * [mdne online](https://shellyln.github.io/mdne/)
+            * Online markdown editor for Chrome/Chromium Edge/Firefox.
+                * [PWA](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps) (Progressive Web Apps)
+        * [mdne-sf](https://github.com/shellyln/mdne-sf)
+            * Edit Salesforce record's field. (browser app)
+            * Markdown preview Visualforce page example
+        * [mdne (mdne-classic)](https://github.com/shellyln/mdne)
+            * Offline desktop app for Google Chrome browser + Node.js.
+                * [Carlo](https://github.com/GoogleChromeLabs/carlo) app
+        * [mdne-for-kintone](https://github.com/shellyln/mdne-for-kintone)
+            * Edit kintone record's field. (browser app)
+* [Zirconia](https://github.com/shellyln/zirconia)
+    * Report rendering library for Salesforce LWC and Visualforce.
+* [Ménneu Reporting App for kintone](https://github.com/shellyln/menneu-reporting-app-for-kintone)
+    * Create ✨beautiful✨ 📑📊reports📈📰 easily with Ménneu + kintone.  
+      You can easily build the complex documents written in Markdown,
+      HTML and LSX that including 🖼images, 📊charts, 🔷UML diagrams,
+      barcodes and 2d codes (QR Code).
+* [Kanban board for kintone](https://github.com/shellyln/kanban-board-for-kintone)
 
 ----
 
